@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::get('/admin/login', 'AuthController@login')->name('login');
 Route::post('/admin/login', 'AuthController@doLogin')->name('doLogin');
 Route::get('/admin/logout', 'AuthController@doLogout')->name('doLogout');
+Route::get('/admin/captcha', 'AuthController@captcha')->name('captcha');
 
 Route::resources([
 	'/admin/user' => 'UserController',

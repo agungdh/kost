@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Hash;
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+use Gregwar\Captcha\CaptchaBuilder;
 
 class AuthController extends Controller
 {
@@ -87,6 +90,21 @@ class AuthController extends Controller
         // 
     }
 
+    public function doLogout()
+    {
+    	session()->flush();
+
+    	return redirect()->route('root');
+    }
+
+    public function captcha() {
+        $builder = new CaptchaBuilder;
+        $builder->build();
+
+        return response($builder->output())
+                        ->header('Content-type', 'image/jpeg');
+    }
+
     private function sendSMTPMail($toEmail, $subject, $body, $html = TRUE)
     {
         if (!file_exists(base_path('private/config/smtpemail.json'))) {
@@ -131,13 +149,6 @@ class AuthController extends Controller
         }
 
         return $data;
-    }
-
-    public function doLogout()
-    {
-    	session()->flush();
-
-    	return redirect()->route('root');
     }
 
 }
