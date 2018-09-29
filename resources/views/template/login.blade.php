@@ -1,23 +1,15 @@
 @extends('template.logtemplate')
 
-@php
-if (session('input')) {
-    $email = session('input')['email'];
-} else {
-    $email = '';
-}
-@endphp
-
 @section('body')
 <form id="sign_in" method="POST" action="{{ route('doLogin') }}">
     @csrf
-    <div class="msg">Sign in to start your session</div>
+    <div class="msg">Sign in to start your session{{ session('test') }}</div>
     <div class="input-group">
         <span class="input-group-addon">
             <i class="material-icons">email</i>
         </span>
         <div class="form-line">
-            <input type="text" class="form-control" name="email" placeholder="Email" required value="{{ $email }}">
+            <input type="text" class="form-control" name="email" placeholder="Email" required value="{{ session('email') }}">
         </div>
     </div>
     <div class="input-group">
@@ -42,4 +34,12 @@ if (session('input')) {
         </div>
     </div>
 </form>
+@endsection
+
+@section('js')
+@if(session('alert'))
+<script type="text/javascript">
+    swal('{{ session('alert')['title'] }}', '{{ session('alert')['message'] }}', '{{ session('alert')['class'] }}');
+</script>
+@endif
 @endsection

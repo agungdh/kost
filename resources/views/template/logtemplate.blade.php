@@ -24,6 +24,9 @@
     <!-- Custom Css -->
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/css/style.css" rel="stylesheet">
 
+    <!-- Sweetalert Css -->
+    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/sweetalert/sweetalert.css" rel="stylesheet" 
+
     @yield('css')
 </head>
 
@@ -41,20 +44,22 @@
     </div>
 
     <!-- Jquery Core Js -->
-    <script src=".{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core Js -->
-    <script src=".{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap/js/bootstrap.js"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src=".{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/node-waves/waves.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/node-waves/waves.js"></script>
 
     <!-- Validation Plugin Js -->
-    <script src=".{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-validation/jquery.validate.js"></script>
 
     <!-- Custom Js -->
-    <script src=".{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/js/admin.js"></script>
-    <script src=".{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/js/pages/examples/sign-in.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/js/admin.js"></script>
+    
+    <!-- SweetAlert Plugin Js -->
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/sweetalert/sweetalert.min.js"></script>
 
     @yield('js')
 </body>

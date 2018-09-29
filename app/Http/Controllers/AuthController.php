@@ -27,10 +27,11 @@ class AuthController extends Controller
 				session([
 					'id' => $user->id,
 					'email' => $user->email,
-					'password' => $user->password,
-					'nama' => $user->nama,
+                    'nama' => $user->nama,
+                    'alamat' => $user->alamat,
+                    'id_desa' => $user->id_desa,
+					'nohp' => $user->nohp,
                     'level' => $user->level,
-                    'id_pemilik_kos' => $user->id_pemilik_kos,
                     'active' => $user->active,
 					'token' => $user->token,
 					'login' => true
@@ -40,7 +41,14 @@ class AuthController extends Controller
 			}
 		}
 
-		return redirect()->route('login')->with('input', ['email' => $request->email, 'password' => $request->password]);
+		return redirect()->
+                    route('login')
+                    ->with('email', $request->email)
+                    ->with('alert', [
+                        'title' => 'ERROR !!!',
+                        'message' => 'Login Gagal !!!',
+                        'class' => 'error',
+                    ]);
     }
 
     public function register()
