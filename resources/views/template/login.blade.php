@@ -1,15 +1,23 @@
 @extends('template.logtemplate')
 
 @section('body')
-<form id="sign_in" method="POST" action="{{ route('doLogin') }}">
-    @csrf
+{!! Form::open(['route' => 'doLogin']) !!}
     <div class="msg">Sign in to start your session{{ session('test') }}</div>
     <div class="input-group">
         <span class="input-group-addon">
             <i class="material-icons">email</i>
         </span>
         <div class="form-line">
-            <input type="text" class="form-control" name="email" placeholder="Email" required value="{{ session('email') }}">
+            {!!
+                Form::text(
+                    'email', 
+                    null, 
+                    [
+                        'class'=> 'form-control', 
+                        'id' => 'email', 
+                        'placeholder'=>'Email'
+                    ])
+            !!}
         </div>
     </div>
     <div class="input-group">
@@ -17,7 +25,15 @@
             <i class="material-icons">lock</i>
         </span>
         <div class="form-line">
-            <input type="password" class="form-control" name="password" placeholder="Password" required>
+            {!!
+                Form::password(
+                    'password',  
+                    [
+                        'class'=> 'form-control', 
+                        'id' => 'password', 
+                        'placeholder'=>'Password'
+                    ])
+            !!}
         </div>
     </div>
     <div class="row">
@@ -33,7 +49,7 @@
             <a href="forgot-password.html">Forgot Password?</a>
         </div>
     </div>
-</form>
+{!! Form::close() !!}
 @endsection
 
 @section('js')
