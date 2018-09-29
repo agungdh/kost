@@ -19,17 +19,21 @@ Route::get('/', function () {
     }
 })->name('root');
 
-Route::get('/admin/login', 'LoginController@login')->name('login');
-Route::post('/admin/login', 'LoginController@doLogin')->name('doLogin');
-Route::get('/admin/logout', 'LoginController@doLogout')->name('doLogout');
+Route::get('/admin/login', 'AuthController@login')->name('login');
+Route::post('/admin/login', 'AuthController@doLogin')->name('doLogin');
+Route::get('/admin/logout', 'AuthController@doLogout')->name('doLogout');
 
 Route::resources([
 	'/admin/user' => 'UserController',
 ]);
 
-Route::get('/createadmin', function() {
-	DB::table('user')->where('username', 'admin')->delete();
-	DB::table('user')->insert(['username' => 'admin', 'password' => Hash::make('admin'), 'nama' => 'Administrator', 'level' => 'a']);
+// Route::get('/createadmin', function() {
+// 	DB::table('user')->where('username', 'admin')->delete();
+// 	DB::table('user')->insert(['username' => 'admin', 'password' => Hash::make('admin'), 'nama' => 'Administrator', 'level' => 'a']);
 
-	return redirect()->route('login');
-});
+// 	return redirect()->route('login');
+// });
+
+// Route::get('/test', function() {
+// 	echo bin2hex(random_bytes(64));
+// });

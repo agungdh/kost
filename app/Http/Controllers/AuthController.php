@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Hash;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
     public function login()
     {
@@ -16,17 +16,20 @@ class LoginController extends Controller
     public function doLogin(Request $request)
     {
     	$user = DB::table('user')
-			    		->where('username', $request->username)
+			    		->where('email', $request->email)
 			    		->first();
 
 		if ($user != null) {
 			if (Hash::check($request->password, $user->password)) {
 				session([
-					'id_user' => $user->id_user,
-					'username' => $user->username,
+					'id' => $user->id,
+					'email' => $user->email,
 					'password' => $user->password,
 					'nama' => $user->nama,
-					'level' => $user->level,
+                    'level' => $user->level,
+                    'id_pemilik_kos' => $user->id_pemilik_kos,
+                    'active' => $user->active,
+					'token' => $user->token,
 					'login' => true
 				]);
 
@@ -34,7 +37,7 @@ class LoginController extends Controller
 			}
 		}
 
-		return redirect()->route('login')->with('input', ['username' => $request->username, 'password' => $request->password]);
+		return redirect()->route('login')->with('input', ['email' => $request->email, 'password' => $request->password]);
     }
 
     public function register()
@@ -59,8 +62,29 @@ class LoginController extends Controller
 
     public function chpassAccount()
     {
+        // 
+    }
+
+    public function forgetPassword()
+    {
+        // 
+    }
+
+    public function doForgetPassword()
+    {
     	// 
     }
+
+    public function forgetPasswordChpass()
+    {
+        // 
+    }
+
+    public function doForgetPasswordChpass()
+    {
+        // 
+    }
+
 
     public function doLogout()
     {
