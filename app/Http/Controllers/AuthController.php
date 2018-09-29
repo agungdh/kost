@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Hash;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class AuthController extends Controller
 {
@@ -72,7 +74,7 @@ class AuthController extends Controller
 
     public function doForgetPassword()
     {
-    	// 
+    	$this->sendSMTPMail('agungdh@live.com', 'ini test pada waktu ' . date('d-m-Y H:i:s'), view('errors.404')->render());
     }
 
     public function forgetPasswordChpass()
@@ -85,14 +87,21 @@ class AuthController extends Controller
         // 
     }
 
-    private function sendSMTPMail($server, $encryption, $email, $password, $port, $toEmail, $subject, $body, $html = TRUE)
+    private function sendSMTPMail($toEmail, $subject, $body, $html = TRUE)
     {
+        if (!file_exists(base_path('private/config/smtpemail.json'))) {
+            echo 'Config not found!';
+            die;
+        }
+
+        $config = json_decode(file_get_contents(base_path('private/config/smtpemail.json')));
+
         $data = new \stdClass();
 
         $mail = new PHPMailer(true);                              
         try {
             $mail->isSMTP();                                      
-            $mail->Host = $server;  
+            $mail->Host = $config->host;  
             $mail->SMTPOptions = [ 'ssl' => [
                                      'verify_peer' => false,
                                      'verify_peer_name' => false,
@@ -100,12 +109,12 @@ class AuthController extends Controller
                                     ]
                                 ];
             $mail->SMTPAuth = true;                               
-            $mail->Username = $email;                 
-            $mail->Password = $password;                           
-            $mail->SMTPSecure = $encryption;                            
-            $mail->Port = $port;                                    
+            $mail->Username = $config->username;                 
+            $mail->Password = $config->password;                           
+            $mail->SMTPSecure = $config->encryption;                            
+            $mail->Port = $config->port;                                    
 
-            $mail->setFrom($email);
+            $mail->setFrom($config->username);
             $mail->addAddress($toEmail);               
             
             $mail->isHTML($html);                                  

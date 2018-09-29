@@ -1,0 +1,7 @@
+{
+  "username": "youremail@example.com",
+  "password": "yourpassword",
+  "host": "your.smtp.server",
+  "encryption": "your encryption (tls/ssl)",
+  "port": "your port (587)"
+}
