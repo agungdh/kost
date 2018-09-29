@@ -9,8 +9,6 @@ use Hash;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-use Gregwar\Captcha\CaptchaBuilder;
-
 class AuthController extends Controller
 {
     public function login()
@@ -95,14 +93,6 @@ class AuthController extends Controller
     	session()->flush();
 
     	return redirect()->route('root');
-    }
-
-    public function captcha() {
-        $builder = new CaptchaBuilder;
-        $builder->build();
-
-        return response($builder->output())
-                        ->header('Content-type', 'image/jpeg');
     }
 
     private function sendSMTPMail($toEmail, $subject, $body, $html = TRUE)
