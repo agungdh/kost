@@ -85,6 +85,44 @@ class AuthController extends Controller
         // 
     }
 
+    private function sendSMTPMail($server, $encryption, $email, $password, $port, $toEmail, $subject, $body, $html = TRUE)
+    {
+        $data = new \stdClass();
+
+        $mail = new PHPMailer(true);                              
+        try {
+            $mail->isSMTP();                                      
+            $mail->Host = $server;  
+            $mail->SMTPOptions = [ 'ssl' => [
+                                     'verify_peer' => false,
+                                     'verify_peer_name' => false,
+                                     'allow_self_signed' => true
+                                    ]
+                                ];
+            $mail->SMTPAuth = true;                               
+            $mail->Username = $email;                 
+            $mail->Password = $password;                           
+            $mail->SMTPSecure = $encryption;                            
+            $mail->Port = $port;                                    
+
+            $mail->setFrom($email);
+            $mail->addAddress($toEmail);               
+            
+            $mail->isHTML($html);                                  
+            $mail->Subject = $subject;
+            $mail->Body    = $body;
+
+            $mail->send();
+            
+            $data->success = true;
+        } catch (Exception $e) {
+            $data->message = $mail->ErrorInfo;
+
+            $data->success = false;
+        }
+
+        return $data;
+    }
 
     public function doLogout()
     {
