@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $judul }}</title>
     <!-- Favicon-->
     <link rel="icon" href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/favicon.ico" type="image/x-icon">
@@ -123,6 +124,13 @@
 
     <!-- Jquery Core Js -->
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    </script>
 
     <!-- Bootstrap Core Js -->
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap/js/bootstrap.js"></script>
