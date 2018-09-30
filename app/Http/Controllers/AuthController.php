@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     public function login()
     {
-    	return view('template.login');
+    	return view('template.log.login');
     }
 
     public function doLogin(Request $request)
@@ -44,7 +44,7 @@ class AuthController extends Controller
 
     				return redirect()->route('root');                    
                 } else {
-                    return view('template.emailbutuhkonfirmasi')->with('user', $user);
+                    return view('template.email.butuhkonfirmasi')->with('user', $user);
                 }
 			}
 		}
@@ -61,7 +61,7 @@ class AuthController extends Controller
 
     public function register()
     {
-        return view('template.register');
+        return view('template.log.register');
     }
 
     public function doRegister(Request $request)
@@ -83,7 +83,7 @@ class AuthController extends Controller
         $insertId = DB::table('user')
             ->insertGetId($data);
 
-        $html = view('template.emailaktivasi', [
+        $html = view('template.email.aktivasi', [
                                             'id' => md5($insertId),
                                             'email' => md5($data['email']),
                                             'token' => $data['token'],
@@ -130,7 +130,7 @@ class AuthController extends Controller
 
     public function resendActivate(Request $request)
     {
-        $html = view('template.emailaktivasi', [
+        $html = view('template.email.aktivasi', [
                                             'id' => $request->head,
                                             'email' => $request->body,
                                             'token' => $request->token,
@@ -154,7 +154,7 @@ class AuthController extends Controller
 
     public function forgetPassword()
     {
-        return view('template.forgetpassword');
+        return view('template.log.forgetpassword');
     }
 
     public function doForgetPassword(Request $request)
@@ -179,7 +179,7 @@ class AuthController extends Controller
                     'token' => $token,
                 ]);
 
-        $html = view('template.lupapassword')
+        $html = view('template.email.lupapassword')
                     ->with('user', $user)
                     ->with('token', $token)
                     ->render();

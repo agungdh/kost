@@ -1,4 +1,4 @@
-@extends('template.logtemplate')
+@extends('template.log.template')
 
 @section('body')
 {!! Form::open(['route' => 'doRegister']) !!}
