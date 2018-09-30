@@ -24,20 +24,24 @@ class AuthController extends Controller
 
 		if ($user != null) {
 			if (Hash::check($request->password, $user->password)) {
-				session([
-					'id' => $user->id,
-					'email' => $user->email,
-                    'nama' => $user->nama,
-                    'alamat' => $user->alamat,
-                    'id_desa' => $user->id_desa,
-					'nohp' => $user->nohp,
-                    'level' => $user->level,
-                    'active' => $user->active,
-					'token' => $user->token,
-					'login' => true
-				]);
+                if ($user->active == 'y') {
+    				session([
+    					'id' => $user->id,
+    					'email' => $user->email,
+                        'nama' => $user->nama,
+                        'alamat' => $user->alamat,
+                        'id_desa' => $user->id_desa,
+    					'nohp' => $user->nohp,
+                        'level' => $user->level,
+                        'active' => $user->active,
+    					'token' => $user->token,
+    					'login' => true
+    				]);
 
-				return redirect()->route('root');
+    				return redirect()->route('root');                    
+                } else {
+
+                }
 			}
 		}
 
@@ -65,6 +69,57 @@ class AuthController extends Controller
             'alamat' => 'required',
             'nohp' => 'required',
         ]);
+
+        $data = $request->only('email','password','nama','alamat','nohp');
+        $data['password'] = Hash::make($data['password']);
+        $data['level'] = 'p';
+        $data['active'] = 'n';
+        $data['token'] = bin2hex(random_bytes(16));
+
+        $insertId = DB::table('user')
+            ->insertGetId($data);
+
+        return view('template.emailaktivasi', [
+                                            'id' => md5($insertId),
+                                            'email' => md5($data['email']),
+                                            'token' => $data['token'],
+                                        ]);
+
+        // return redirect()
+        //             ->route('login')
+        //             ->with('alert', [
+        //                 'title' => 'SUCCESS !!!',
+        //                 'message' => 'Pendaftaran berhasil, silakan cek email untuk konfirmasi email.',
+        //                 'class' => 'success',
+        //             ]);
+    }
+
+    public function activate(Request $request)
+    {
+        $user = DB::table('user')
+                ->where('token', $request->token)
+                ->first();
+
+        if ($user) {
+            if (md5($user->id) == $request->head && md5($user->email) == $request->body) {
+                DB::table('user')
+                    ->where('id', $user->id)
+                    ->update([
+                        'active' => 'y',
+                        'token' => null,
+                    ]);
+
+                return redirect()
+                        ->route('login')
+                        ->with('alert', [
+                            'title' => 'SUCCESS !!!',
+                            'message' => 'Aktivasi berhasil !!!',
+                            'class' => 'success',
+                        ]);
+            }
+        }
+
+        return redirect()->route('root');
     }
 
     public function account()
