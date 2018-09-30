@@ -16,3 +16,5 @@ yarn-error.log
 private/config/smtpemail\.json
 
 sftp-config\.json
+
+private/config/email\.json
