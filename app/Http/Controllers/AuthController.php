@@ -30,7 +30,6 @@ class AuthController extends Controller
     					'email' => $user->email,
                         'nama' => $user->nama,
                         'alamat' => $user->alamat,
-                        'id_desa' => $user->id_desa,
     					'nohp' => $user->nohp,
                         'level' => $user->level,
                         'active' => $user->active,
@@ -79,19 +78,21 @@ class AuthController extends Controller
         $insertId = DB::table('user')
             ->insertGetId($data);
 
-        return view('template.emailaktivasi', [
+        $html = view('template.emailaktivasi', [
                                             'id' => md5($insertId),
                                             'email' => md5($data['email']),
                                             'token' => $data['token'],
-                                        ]);
+                                        ])->render();
 
-        // return redirect()
-        //             ->route('login')
-        //             ->with('alert', [
-        //                 'title' => 'SUCCESS !!!',
-        //                 'message' => 'Pendaftaran berhasil, silakan cek email untuk konfirmasi email.',
-        //                 'class' => 'success',
-        //             ]);
+        $this->sendSMTPMail($data['email'], 'Aktivasi akun anda', $html);
+
+        return redirect()
+                    ->route('login')
+                    ->with('alert', [
+                        'title' => 'SUCCESS !!!',
+                        'message' => 'Pendaftaran berhasil, silakan cek email untuk konfirmasi email.',
+                        'class' => 'success',
+                    ]);
     }
 
     public function activate(Request $request)
