@@ -19,15 +19,15 @@ Route::get('/', function () {
     }
 })->name('root');
 
-Route::get('/admin/login', 'AuthController@login')->name('login');
-Route::post('/admin/login', 'AuthController@doLogin')->name('doLogin');
-Route::get('/admin/logout', 'AuthController@doLogout')->name('doLogout');
-Route::get('/admin/register', 'AuthController@register')->name('register');
-Route::post('/admin/register', 'AuthController@doRegister')->name('doRegister');
-Route::get('/admin/activate', 'AuthController@activate')->name('activate');
-Route::post('/admin/resendactivate', 'AuthController@resendActivate')->name('resendActivate');
-Route::get('/admin/successresendactivate', 'AuthController@successResendActivate')->name('successResendActivate');
+Route::get('/login', 'AuthController@login')->name('login');
+Route::post('/login', 'AuthController@doLogin')->name('doLogin');
+Route::get('/logout', 'AuthController@doLogout')->name('doLogout');
+Route::get('/register', 'AuthController@register')->name('register');
+Route::post('/register', 'AuthController@doRegister')->name('doRegister');
+Route::get('/activate', 'AuthController@activate')->name('activate');
+Route::post('/resendactivate', 'AuthController@resendActivate')->name('resendActivate');
+Route::get('/successresendactivate', 'AuthController@successResendActivate')->name('successResendActivate');
 
 Route::resources([
-	'/admin/user' => 'UserController',
+	'/user' => 'UserController',
 ]);
