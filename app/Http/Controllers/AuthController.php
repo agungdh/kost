@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     public function login()
     {
-    	return view('template/login');
+    	return view('template.login');
     }
 
     public function doLogin(Request $request)
@@ -53,12 +53,18 @@ class AuthController extends Controller
 
     public function register()
     {
-    	// 
+        return view('template.register');
     }
 
-    public function doRegister()
+    public function doRegister(Request $request)
     {
-    	// 
+    	$request->validate([
+            'email' => 'required|unique:user,email|email',
+            'password' => 'required|confirmed',
+            'nama' => 'required',
+            'alamat' => 'required',
+            'nohp' => 'required',
+        ]);
     }
 
     public function account()
