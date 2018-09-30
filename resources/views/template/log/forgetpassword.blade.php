@@ -2,7 +2,7 @@
 
 @section('body')
 {!! Form::open(['route' => 'doForgetPassword']) !!}
-    <div class="msg">Sign in to start your session</div>
+    <div class="msg">Reset Password</div>
     <div class="input-group">
         <span class="input-group-addon">
             <i class="material-icons">email</i>

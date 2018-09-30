@@ -2,7 +2,7 @@
 
 @section('body')
 {!! Form::open(['route' => 'doLogin']) !!}
-    <div class="msg">Sign in to start your session</div>
+    <div class="msg">Login</div>
 
     <div class="input-group">
         <span class="input-group-addon">

@@ -2,7 +2,7 @@
 
 @section('body')
 {!! Form::open(['route' => 'doForgetPasswordChPass']) !!}
-    <div class="msg">Sign in to start your session</div>
+    <div class="msg">Reset Password</div>
 
     {!! Form::hidden('head', $head) !!}
 

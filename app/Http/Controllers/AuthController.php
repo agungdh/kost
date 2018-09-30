@@ -251,7 +251,7 @@ class AuthController extends Controller
     {
     	session()->flush();
 
-    	return redirect()->route('root');
+    	return redirect()->route('login');
     }
 
     // =================
