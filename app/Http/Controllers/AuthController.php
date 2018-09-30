@@ -89,7 +89,7 @@ class AuthController extends Controller
                                             'token' => $data['token'],
                                         ])->render();
 
-        $this->sendSMTPMail($data['email'], 'Aktivasi akun anda', $html);
+        $this->mail($data['email'], 'Aktivasi akun anda', $html);
 
         return redirect()
                     ->route('login')
@@ -136,7 +136,7 @@ class AuthController extends Controller
                                             'token' => $request->token,
                                         ])->render();
 
-        $this->sendSMTPMail($request->email, 'Aktivasi akun anda', $html);
+        $this->mail($request->email, 'Aktivasi akun anda', $html);
 
         return json_encode(TRUE);
     }
@@ -174,7 +174,7 @@ class AuthController extends Controller
 
     public function doForgetPassword()
     {
-    	$this->sendSMTPMail('agungdh@live.com', 'ini test pada waktu ' . date('d-m-Y H:i:s'), view('errors.404')->render());
+    	$this->mail('agungdh@live.com', 'ini test pada waktu ' . date('d-m-Y H:i:s'), view('errors.404')->render());
     }
 
     public function forgetPasswordChpass()
@@ -192,6 +192,24 @@ class AuthController extends Controller
     	session()->flush();
 
     	return redirect()->route('root');
+    }
+
+    private function mail($toEmail, $subject, $body, $html = TRUE) {
+        if (!file_exists(base_path('private/config/emailprovider.json'))) {
+            echo 'Config not found!';
+            die;
+        }
+
+        $config = json_decode(file_get_contents(base_path('private/config/emailprovider.json')));   
+
+        if ($config->type == 'local') {
+            $this->sendMail($toEmail, $subject, $body, $html);
+        } elseif ($config->type == 'smtp') {
+            $this->sendSMTPMail($toEmail, $subject, $body, $html);
+        } else {
+            echo 'Fatal Error !!!';
+            die;
+        }
     }
 
     private function sendSMTPMail($toEmail, $subject, $body, $html = TRUE)
@@ -222,6 +240,38 @@ class AuthController extends Controller
             $mail->Port = $config->port;                                    
 
             $mail->setFrom($config->username);
+            $mail->addAddress($toEmail);               
+            
+            $mail->isHTML($html);                                  
+            $mail->Subject = $subject;
+            $mail->Body    = $body;
+
+            $mail->send();
+            
+            $data->success = true;
+        } catch (Exception $e) {
+            $data->message = $mail->ErrorInfo;
+
+            $data->success = false;
+        }
+
+        return $data;
+    }
+
+    private function sendMail($toEmail, $subject, $body, $html = TRUE)
+    {
+        if (!file_exists(base_path('private/config/email.json'))) {
+            echo 'Config not found!';
+            die;
+        }
+
+        $config = json_decode(file_get_contents(base_path('private/config/email.json')));
+
+        $data = new \stdClass();
+
+        $mail = new PHPMailer(true);                              
+        try {
+            $mail->setFrom($config->from);
             $mail->addAddress($toEmail);               
             
             $mail->isHTML($html);                                  
