@@ -27,6 +27,10 @@ Route::post('/register', 'AuthController@doRegister')->name('doRegister');
 Route::get('/activate', 'AuthController@activate')->name('activate');
 Route::post('/resendactivate', 'AuthController@resendActivate')->name('resendActivate');
 Route::get('/successresendactivate', 'AuthController@successResendActivate')->name('successResendActivate');
+Route::get('/forgetpassword', 'AuthController@forgetPassword')->name('forgetPassword');
+Route::post('/forgetpassword', 'AuthController@doForgetPassword')->name('doForgetPassword');
+Route::get('/forgetpasswordchpass', 'AuthController@forgetPasswordChPass')->name('forgetPasswordChPass');
+Route::post('/forgetpasswordchpass', 'AuthController@doForgetPasswordChPass')->name('doForgetPasswordChPass');
 
 Route::resources([
 	'/user' => 'UserController',

@@ -152,39 +152,52 @@ class AuthController extends Controller
                     ]);
     }
 
-    public function account()
-    {
-    	// 
-    }
-
-    public function chAccount()
-    {
-    	// 
-    }
-
-    public function chpassAccount()
-    {
-        // 
-    }
-
     public function forgetPassword()
     {
-        // 
+        return view('template.forgetpassword');
     }
 
-    public function doForgetPassword()
+    public function doForgetPassword(Request $request)
     {
-    	$this->mail('agungdh@live.com', 'ini test pada waktu ' . date('d-m-Y H:i:s'), view('errors.404')->render());
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        $user = DB::table('user')
+                    ->where('email', $request->email)
+                    ->first();
+
+        if (!$user) {
+            return redirect()->route('root');   
+        }
+
+        $token = bin2hex(random_bytes(16));
+
+        DB::table('user')
+                ->where('id', $user->id)
+                ->update([
+                    'token' => $token,
+                ]);
+
+        $html = view('template.lupapassword')
+                    ->with('user', $user)
+                    ->with('token', $token)
+                    ->render();
+
+        $this->mail($user->email, 'Reset Password', $html);
+
+        return redirect()
+                    ->route('login')
+                    ->with('alert', [
+                        'title' => 'SUCCESS !!!',
+                        'message' => 'Silakan cek email untuk reset password.',
+                        'class' => 'success',
+                    ]);
     }
 
-    public function forgetPasswordChpass()
+    function forgetPasswordChPass()
     {
-        // 
-    }
-
-    public function doForgetPasswordChpass()
-    {
-        // 
+        
     }
 
     public function doLogout()
@@ -193,6 +206,10 @@ class AuthController extends Controller
 
     	return redirect()->route('root');
     }
+
+    // =================
+    // Private Functions
+    // =================
 
     private function mail($toEmail, $subject, $body, $html = TRUE) {
         if (!file_exists(base_path('private/config/emailprovider.json'))) {
