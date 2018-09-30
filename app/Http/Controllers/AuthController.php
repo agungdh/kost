@@ -195,9 +195,56 @@ class AuthController extends Controller
                     ]);
     }
 
-    function forgetPasswordChPass()
+    public function forgetPasswordChPass(Request $request)
     {
-        
+        $user = DB::table('user')
+                ->where('token', $request->token)
+                ->first();
+
+        if ($user) {
+            if (md5($user->id) == $request->head && md5($user->email) == $request->body) {
+                return view('template.log.forgetpasswordchpass')
+                            ->with('user', $user)
+                            ->with('head', $request->head)
+                            ->with('body', $request->body)
+                            ->with('token', $request->token);
+            }
+        }
+
+        return redirect()->route('root');
+    }
+
+    public function doForgetPasswordChPass(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|confirmed',
+        ]);
+
+        $user = DB::table('user')
+                ->where('token', $request->token)
+                ->first();
+
+        if ($user) {
+            if (md5($user->id) == $request->head && md5($user->email) == $request->body) {
+                DB::table('user')
+                    ->where('id', $user->id)
+                    ->update([
+                        'password' => Hash::make($request->password),
+                        'active' => 'y',
+                        'token' => null,
+                    ]);
+
+                return redirect()
+                        ->route('login')
+                        ->with('alert', [
+                            'title' => 'SUCCESS !!!',
+                            'message' => 'Berhasil ganti password !!!',
+                            'class' => 'success',
+                        ]);
+            }
+        }
+
+        return redirect()->route('root');
     }
 
     public function doLogout()
