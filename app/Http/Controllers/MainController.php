@@ -8,10 +8,7 @@ class MainController extends Controller
 {
     public function index()
     {
-    	if (session('login') != true) {
-	    	return redirect()->route('login');
-	    } else {
-	    	dd(session()->all());
-	    }
+    	
     }
+
 }
