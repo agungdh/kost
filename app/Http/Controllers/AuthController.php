@@ -18,6 +18,11 @@ class AuthController extends Controller
 
     public function doLogin(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
     	$user = DB::table('user')
 			    		->where('email', $request->email)
 			    		->first();
@@ -39,7 +44,7 @@ class AuthController extends Controller
 
     				return redirect()->route('root');                    
                 } else {
-
+                    return view('template.emailbutuhkonfirmasi')->with('user', $user);
                 }
 			}
 		}
@@ -121,6 +126,30 @@ class AuthController extends Controller
         }
 
         return redirect()->route('root');
+    }
+
+    public function resendActivate(Request $request)
+    {
+        $html = view('template.emailaktivasi', [
+                                            'id' => $request->head,
+                                            'email' => $request->body,
+                                            'token' => $request->token,
+                                        ])->render();
+
+        $this->sendSMTPMail($request->email, 'Aktivasi akun anda', $html);
+
+        return json_encode(TRUE);
+    }
+
+    public function successResendActivate()
+    {
+        return redirect()
+                    ->route('login')
+                    ->with('alert', [
+                        'title' => 'SUCCESS !!!',
+                        'message' => 'silakan cek email untuk konfirmasi email.',
+                        'class' => 'success',
+                    ]);
     }
 
     public function account()

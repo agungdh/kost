@@ -7,7 +7,11 @@
         <span class="input-group-addon">
             <i class="material-icons">email</i>
         </span>
-        <div class="form-line">
+        @php
+        $class = $errors->has('email') ? 'form-line error focused' : 'form-line';
+        $message = $errors->has('email') ? '<label class="error">' . $errors->first('email') . '</label>' : '';
+        @endphp
+        <div class="{{ $class }}">
             {!!
                 Form::text(
                     'email', 
@@ -16,16 +20,20 @@
                         'class'=> 'form-control', 
                         'id' => 'email', 
                         'placeholder'=>'Email',
-                        'required'=>'required',
                     ])
             !!}
         </div>
+        {!! $message !!}
     </div>
     <div class="input-group">
         <span class="input-group-addon">
             <i class="material-icons">lock</i>
         </span>
-        <div class="form-line">
+        @php
+        $class = $errors->has('password') ? 'form-line error focused' : 'form-line';
+        $message = $errors->has('password') ? '<label class="error">' . $errors->first('password') . '</label>' : '';
+        @endphp
+        <div class="{{ $class }}">
             {!!
                 Form::password(
                     'password',  
@@ -33,10 +41,10 @@
                         'class'=> 'form-control', 
                         'id' => 'password', 
                         'placeholder'=>'Password',
-                        'required'=>'required',
                     ])
             !!}
         </div>
+        {!! $message !!}
     </div>
     <div class="row">
         <div class="col-xs-12">

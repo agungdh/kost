@@ -25,6 +25,8 @@ Route::get('/admin/logout', 'AuthController@doLogout')->name('doLogout');
 Route::get('/admin/register', 'AuthController@register')->name('register');
 Route::post('/admin/register', 'AuthController@doRegister')->name('doRegister');
 Route::get('/admin/activate', 'AuthController@activate')->name('activate');
+Route::post('/admin/resendactivate', 'AuthController@resendActivate')->name('resendActivate');
+Route::get('/admin/successresendactivate', 'AuthController@successResendActivate')->name('successResendActivate');
 
 Route::resources([
 	'/admin/user' => 'UserController',
