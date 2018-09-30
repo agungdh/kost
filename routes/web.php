@@ -13,7 +13,7 @@
 
 Route::get('/', 'MainController@index')->name('root');
 
-Route::get('/admin', 'AdminController@dashboard')->name('dashboard');
+Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
 
 Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/login', 'AuthController@doLogin')->name('doLogin');

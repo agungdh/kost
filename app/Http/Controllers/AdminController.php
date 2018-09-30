@@ -8,7 +8,7 @@ class AdminController extends Controller
 {
 	public function __construct()
 	{
-		$this->middleware('aa:a,p');
+		$this->middleware('CustomAuth:a,p');
 	}
 
 	public function dashboard()
