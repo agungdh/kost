@@ -11,13 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    if (session('login') != true) {
-    	return redirect()->route('login');
-    } else {
-    	dd(session()->all());
-    }
-})->name('root');
+Route::get('/', 'MainController@index')->name('root');
 
 Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/login', 'AuthController@doLogin')->name('doLogin');
