@@ -13,8 +13,6 @@
 
 Route::get('/', 'MainController@index')->name('root');
 
-Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
-
 Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/login', 'AuthController@doLogin')->name('doLogin');
 Route::get('/logout', 'AuthController@doLogout')->name('doLogout');
@@ -27,6 +25,11 @@ Route::get('/forgetpassword', 'AuthController@forgetPassword')->name('forgetPass
 Route::post('/forgetpassword', 'AuthController@doForgetPassword')->name('doForgetPassword');
 Route::get('/forgetpasswordchpass', 'AuthController@forgetPasswordChPass')->name('forgetPasswordChPass');
 Route::post('/forgetpasswordchpass', 'AuthController@doForgetPasswordChPass')->name('doForgetPasswordChPass');
+
+Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
+
+Route::get('/profile', 'AdminController@profile')->name('profile');
+Route::put('/profile', 'AdminController@doProfile')->name('doProfile');
 
 Route::resources([
 	'/user' => 'UserController',
