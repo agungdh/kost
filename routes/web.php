@@ -32,6 +32,8 @@ Route::get('/profile', 'AdminController@profile')->name('profile');
 Route::put('/profile', 'AdminController@doProfile')->name('doProfile');
 Route::get('/chpass', 'AdminController@chpass')->name('chpass');
 Route::put('/chpass', 'AdminController@doChpass')->name('doChpass');
+Route::get('/foto', 'AdminController@foto')->name('foto');
+Route::put('/foto', 'AdminController@doFoto')->name('doFoto');
 
 Route::resources([
 	'/user' => 'UserController',

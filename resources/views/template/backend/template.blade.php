@@ -85,7 +85,7 @@
                         <ul class="dropdown-menu pull-right">
                             <li><a href="{{ route('profile') }}"><i class="material-icons">person</i>Profil</a></li>
                             <li><a href="{{ route('chpass') }}"><i class="material-icons">lock</i>Ubah Password</a></li>
-                            <li><a href="profil"><i class="material-icons">image</i>Ubah Foto</a></li>
+                            <li><a href="{{ route('foto') }}"><i class="material-icons">image</i>Ubah Foto</a></li>
                             <li role="seperator" class="divider"></li>
                             <li><a href="{{ route('doLogout') }}"><i class="material-icons">input</i>Logout</a></li>
                         </ul>

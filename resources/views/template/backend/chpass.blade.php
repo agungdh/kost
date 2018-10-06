@@ -14,7 +14,7 @@
             </h2>
         </div>
         <div class="body">
-            {!! Form::model($user, ['route' => 'doChpass']) !!}
+            {!! Form::open(['route' => 'doChpass']) !!}
             @method('put')
 
                 <label for="oldpassword">Password Lama</label>
@@ -31,46 +31,6 @@
                                     'class'=> 'form-control', 
                                     'id' => 'oldpassword', 
                                     'placeholder'=>'Password Lama',
-                                ])
-                        !!}
-                    </div>
-                    {!! $message !!}
-                </div>
-                
-                <label for="newpassword">Password Baru</label>
-                <div class="form-group">
-                    @php
-                    $class = $errors->has('newpassword') ? 'form-line error focused' : 'form-line';
-                    $message = $errors->has('newpassword') ? '<label class="error">' . $errors->first('newpassword') . '</label>' : '';
-                    @endphp
-                    <div class="{{ $class }}">
-                        {!!
-                            Form::password(
-                                'newpassword', 
-                                [
-                                    'class'=> 'form-control', 
-                                    'id' => 'newpassword', 
-                                    'placeholder'=>'Password Baru',
-                                ])
-                        !!}
-                    </div>
-                    {!! $message !!}
-                </div>
-
-                <label for="newpassword_confirmation">Ulangi Password Baru</label>
-                <div class="form-group">
-                    @php
-                    $class = $errors->has('newpassword') ? 'form-line error focused' : 'form-line';
-                    $message = $errors->has('newpassword') ? '<label class="error">' . $errors->first('newpassword') . '</label>' : '';
-                    @endphp
-                    <div class="{{ $class }}">
-                        {!!
-                            Form::password(
-                                'newpassword_confirmation', 
-                                [
-                                    'class'=> 'form-control', 
-                                    'id' => 'newpassword_confirmation', 
-                                    'placeholder'=>'Ulangi Password Baru',
                                 ])
                         !!}
                     </div>

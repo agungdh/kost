@@ -48,11 +48,7 @@ class AdminController extends Controller
 
     public function chpass()
     {
-    	$user = DB::table('user')
-                        ->where('id', session('id'))
-                        ->first();
-
-        return view('template.backend.chpass', compact('user'));
+        return view('template.backend.chpass');
     }
 
     public function doChpass(Request $request)
@@ -79,11 +75,7 @@ class AdminController extends Controller
 
     public function foto()
     {
-        $user = DB::table('user')
-                        ->where('id', session('id'))
-                        ->first();
-
-        
+        return view('template.backend.foto');
     }
 
     public function doFoto(Request $request)
