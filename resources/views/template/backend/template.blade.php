@@ -75,7 +75,14 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/images/user.png" width="48" height="48" alt="User" />
+                    @php
+                    if (file_exists(storage_path('app/public/profilephoto/' . session('id')))) {
+                        $url = asset('storage/profilephoto/' . session('id'));
+                    } else {
+                        $url = asset('assets/AdminBSBMaterialDesign-1.0.5/images/user.png');
+                    }
+                    @endphp
+                    <img src="{{ $url }}" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ session('nama') }}</div>
