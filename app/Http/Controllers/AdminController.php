@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Hash;
+use Storage;
 
 class AdminController extends Controller
 {
@@ -80,11 +81,13 @@ class AdminController extends Controller
 
     public function doFoto(Request $request)
     {
-        $user = DB::table('user')
-                        ->where('id', session('id'))
-                        ->first();
+        $request->validate([
+            'foto' => 'required|image',
+        ]);
 
-        
+        Storage::putFileAs('public/profilephoto', $request->file('foto'), session('id'));
+
+        return redirect()->route('dashboard');
     }
 
     public function chemail()
