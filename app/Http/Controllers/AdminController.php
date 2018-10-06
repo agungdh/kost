@@ -44,7 +44,11 @@ class AdminController extends Controller
 
         session($user);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('profile')->with('alert', [
+                        'title' => 'BERHASIL !!!',
+                        'message' => 'Ubah Profil Berhasil !!!',
+                        'class' => 'success',
+                    ]);
     }
 
     public function chpass()
@@ -64,7 +68,11 @@ class AdminController extends Controller
         if (Hash::check($request->oldpassword, $user->password)) {
             DB::table('user')->where('id', session('id'))->update(['password' => Hash::make($request->newpassword)]);
 
-            return redirect()->route('dashboard');
+            return redirect()->route('chpass')->with('alert', [
+                        'title' => 'BERHASIL !!!',
+                        'message' => 'Ubah Password Berhasil !!!',
+                        'class' => 'success',
+                    ]);
         } 
 
         return redirect()->route('chpass')->with('alert', [
@@ -82,12 +90,16 @@ class AdminController extends Controller
     public function doFoto(Request $request)
     {
         $request->validate([
-            'foto' => 'required|image',
+            'foto' => 'required|max:1024|image',
         ]);
 
         Storage::putFileAs('public/profilephoto', $request->file('foto'), session('id'));
 
-        return redirect()->route('dashboard');
+        return redirect()->route('foto')->with('alert', [
+                        'title' => 'BERHASIL !!!',
+                        'message' => 'Ubah Foto Berhasil !!!',
+                        'class' => 'success',
+                    ]);
     }
 
     public function chemail()
