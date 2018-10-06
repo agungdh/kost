@@ -44,7 +44,7 @@ class AuthController extends Controller
 
     				return redirect()->route('dashboard');                    
                 } else {
-                    return view('template.email.butuhkonfirmasi')->with('user', $user);
+                    return view('template.backend.butuhkonfirmasi')->with('user', $user);
                 }
 			}
 		}

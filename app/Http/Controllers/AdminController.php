@@ -104,11 +104,7 @@ class AdminController extends Controller
 
     public function chemail()
     {
-        $user = DB::table('user')
-                        ->where('id', session('id'))
-                        ->first();
-
-        
+        return view('template.backend.chemail');
     }
 
     public function doChemail(Request $request)
