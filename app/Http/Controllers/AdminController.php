@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Hash;
 
 class AdminController extends Controller
 {
@@ -19,7 +20,6 @@ class AdminController extends Controller
 
     public function profile()
     {
-        dd(session()->all());
         $user = DB::table('user')
                         ->where('id', session('id'))
                         ->first();
@@ -52,16 +52,29 @@ class AdminController extends Controller
                         ->where('id', session('id'))
                         ->first();
 
-        
+        return view('template.backend.chpass', compact('user'));
     }
 
     public function doChpass(Request $request)
     {
-    	$user = DB::table('user')
-                        ->where('id', session('id'))
-                        ->first();
+    	$request->validate([
+            'oldpassword' => 'required',
+            'newpassword' => 'required|confirmed',
+        ]);
 
-        
+        $user = DB::table('user')->where('id', session('id'))->first();
+
+        if (Hash::check($request->oldpassword, $user->password)) {
+            DB::table('user')->where('id', session('id'))->update(['password' => Hash::make($request->newpassword)]);
+
+            return redirect()->route('dashboard');
+        } 
+
+        return redirect()->route('chpass')->with('alert', [
+                        'title' => 'ERROR !!!',
+                        'message' => 'Password Salah !!!',
+                        'class' => 'error',
+                    ]);
     }
 
     public function foto()

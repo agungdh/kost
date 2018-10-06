@@ -30,6 +30,8 @@ Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
 
 Route::get('/profile', 'AdminController@profile')->name('profile');
 Route::put('/profile', 'AdminController@doProfile')->name('doProfile');
+Route::get('/chpass', 'AdminController@chpass')->name('chpass');
+Route::put('/chpass', 'AdminController@doChpass')->name('doChpass');
 
 Route::resources([
 	'/user' => 'UserController',

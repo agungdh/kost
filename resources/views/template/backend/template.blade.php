@@ -84,7 +84,7 @@
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
                             <li><a href="{{ route('profile') }}"><i class="material-icons">person</i>Profil</a></li>
-                            <li><a href="profil"><i class="material-icons">lock</i>Ubah Password</a></li>
+                            <li><a href="{{ route('chpass') }}"><i class="material-icons">lock</i>Ubah Password</a></li>
                             <li><a href="profil"><i class="material-icons">image</i>Ubah Foto</a></li>
                             <li role="seperator" class="divider"></li>
                             <li><a href="{{ route('doLogout') }}"><i class="material-icons">input</i>Logout</a></li>
@@ -156,6 +156,12 @@
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap-select/js/bootstrap-select.js"></script>
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/chartjs/Chart.bundle.js"></script>
+
+    @if(session('alert'))
+    <script type="text/javascript">
+        swal('{{ session('alert')['title'] }}', '{{ session('alert')['message'] }}', '{{ session('alert')['class'] }}');
+    </script>
+    @endif
 
     <!-- View Js -->
     @yield('js')
