@@ -9,14 +9,14 @@
   <div class="card">
       <div class="header">
           <h2>
-              DATA CV/PT
+              DATA KOST
           </h2>
       </div>
       <div class="body">
           <div class="button-demo">
             <a href="{{ route('kost.create') }}">
               <button type="button" class="btn bg-blue waves-effect">
-                <i class="material-icons">add</i>Tambah CV/PT
+                <i class="material-icons">add</i>Tambah Kost
               </button>
             </a>
           </div>
@@ -24,7 +24,16 @@
               <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                   <thead>
                       <tr>
-                          <th style="text-align: center;">Nama Perusahaan</th>
+                          <th style="text-align: center;">Nama</th>
+                          <th style="text-align: center;">Alamat</th>
+                          <th style="text-align: center;">Provinsi</th>
+                          <th style="text-align: center;">Kabupaten</th>
+                          <th style="text-align: center;">Kecamatan</th>
+                          <th style="text-align: center;">Kelurahan</th>
+                          <th style="text-align: center;">Tipe</th>
+                          <th style="text-align: center;">Bulanan</th>
+                          <th style="text-align: center;">Tahunan</th>
+                          <th style="text-align: center;">Kosong</th>
                           <th style="text-align: center;">Proses</th>
                       </tr>
                   </thead>
