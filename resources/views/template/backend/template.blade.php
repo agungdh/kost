@@ -185,6 +185,12 @@
     <script type="text/javascript">
         $(".select2").select2();
     </script>
+    <script src="{{ asset('assets') }}/bower_components/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+    <script type="text/javascript">
+        $( '.uang' ).mask('000.000.000.000.000.000', {
+            reverse: true
+        });    
+    </script>
 
     @if(session('alert'))
     <script type="text/javascript">

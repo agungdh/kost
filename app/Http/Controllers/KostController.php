@@ -31,6 +31,7 @@ class KostController extends Controller
             'desa' => 'required',
             'tipe' => 'required',
             'kamartersedia' => 'required|numeric',
+            'deskripsi' => 'required',
         ]);
     }
 

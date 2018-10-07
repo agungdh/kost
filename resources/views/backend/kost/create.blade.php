@@ -182,7 +182,7 @@
                                 'bulanan', 
                                 null, 
                                 [
-                                    'class'=> 'form-control', 
+                                    'class'=> 'form-control uang', 
                                     'id' => 'bulanan', 
                                     'placeholder'=>'Biaya Bulanan',
                                 ])
@@ -203,7 +203,7 @@
                                 'tahunan', 
                                 null, 
                                 [
-                                    'class'=> 'form-control', 
+                                    'class'=> 'form-control uang', 
                                     'id' => 'tahunan', 
                                     'placeholder'=>'Biaya Tahunan',
                                 ])
@@ -233,6 +233,28 @@
                     {!! $message !!}
                 </div>
 
+                <label for="deskripsi">Deskripsi</label>
+                <div class="form-group">
+                    @php
+                    $class = $errors->has('deskripsi') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('deskripsi') ? '<label class="error">' . $errors->first('deskripsi') . '</label>' : '';
+                    @endphp
+                    <div class="{{ $class }}">
+                        {!!
+                            Form::textarea(
+                                'deskripsi', 
+                                null, 
+                                [
+                                    'class'=> 'form-control', 
+                                    'id' => 'deskripsi', 
+                                    'placeholder'=>'Deskripsi',
+                                    'style'=>'resize: none;',
+                                ])
+                        !!}
+                    </div>
+                    {!! $message !!}
+                </div>
+
                 <button type="submit" class="btn btn-success waves-effect">SIMPAN</button>
                 <a href="{{ route('kost.index') }}" class="btn btn-primary waves-effect">BATAL</a>
 
@@ -243,6 +265,14 @@
 @endsection
 
 @section('js')
+{{-- onsubmit --}}
+<script type="text/javascript">
+  $("form").submit(function() {
+    $("#bulanan").val($("#bulanan").cleanVal());
+    $("#tahunan").val($("#tahunan").cleanVal());
+  });
+</script>
+
 {{-- onload --}}
 <script type="text/javascript">
 $(function() {
