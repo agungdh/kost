@@ -47,8 +47,8 @@
                         <td>{{ ucwords(strtolower($kost->nama_desa)) }}</td>
                         <td>{{ $kost->alamat }}</td>
                         <td>{{ $kost->tipe }}</td>
-                        <td>{{ $kost->bulanan }}</td>
-                        <td>{{ $kost->tahunan }}</td>
+                        <td>{{ $pustaka->rupiah($kost->bulanan) }}</td>
+                        <td>{{ $pustaka->rupiah($kost->tahunan) }}</td>
                         <td>{{ $kost->kamartersedia }}</td>
                           <td style="text-align: center;">
                             <a href="{{ route('dashboard') }}">
