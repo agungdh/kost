@@ -20,19 +20,18 @@ class KostController extends Controller
 
     public function create()
     {
-        $provinsis_raw = DB::table('prop')->get();
-
-        $provinsis = [];
-        foreach ($provinsis_raw as $value) {
-            $provinsis[$value->id] = $value->nama_prop; 
-        }
-
-        return view('backend.kost.create', compact('provinsis'));
+        return view('backend.kost.create');
     }
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'desa' => 'required',
+            'tipe' => 'required',
+            'kamartersedia' => 'required|numeric',
+        ]);
     }
 
     public function show($id)

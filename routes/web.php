@@ -1,18 +1,9 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+//root
 Route::get('/', 'MainController@index')->name('root');
 
+//log
 Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/login', 'AuthController@doLogin')->name('doLogin');
 Route::get('/logout', 'AuthController@doLogout')->name('doLogout');
@@ -26,8 +17,10 @@ Route::post('/forgetpassword', 'AuthController@doForgetPassword')->name('doForge
 Route::get('/forgetpasswordchpass', 'AuthController@forgetPasswordChPass')->name('forgetPasswordChPass');
 Route::post('/forgetpasswordchpass', 'AuthController@doForgetPasswordChPass')->name('doForgetPasswordChPass');
 
+//dashboard
 Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
 
+//admin
 Route::get('/profile', 'AdminController@profile')->name('profile');
 Route::put('/profile', 'AdminController@doProfile')->name('doProfile');
 Route::get('/chpass', 'AdminController@chpass')->name('chpass');
@@ -38,6 +31,13 @@ Route::get('/chemail', 'AdminController@chemail')->name('chemail');
 Route::put('/chemail', 'AdminController@doChemail')->name('doChemail');
 Route::get('/confirmchemail', 'AdminController@confirmChemail')->name('confirmChemail');
 
+//public ajaxs
+Route::post('/publicajax/prop', 'PublicAjaxController@prop')->name('publicAjax.prop');
+Route::post('/publicajax/kab', 'PublicAjaxController@kab')->name('publicAjax.kab');
+Route::post('/publicajax/kec', 'PublicAjaxController@kec')->name('publicAjax.kec');
+Route::post('/publicajax/desa', 'PublicAjaxController@desa')->name('publicAjax.desa');
+
+//resources
 Route::resources([
 	'/user' => 'UserController',
 	'/kost' => 'KostController',

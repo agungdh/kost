@@ -13,8 +13,7 @@
             </h2>
         </div>
         <div class="body">
-            {!! Form::open(['route' => 'doProfile']) !!}
-            @method('put')
+            {!! Form::open(['route' => 'kost.store']) !!}
 
                 <label for="nama">Nama</label>
                 <div class="form-group">
@@ -71,9 +70,8 @@
                             [],
                             null,
                             [
-                              'class'=> 'form-control show-tick',
+                              'class'=> 'form-control',
                               'id'=>'prop',
-                              'data-live-search' => 'true',
                             ])
                         !!}
                     </div>
@@ -93,9 +91,8 @@
                             [],
                             null,
                             [
-                              'class'=> 'form-control show-tick',
+                              'class'=> 'form-control',
                               'id'=>'kab',
-                              'data-live-search' => 'true',
                               'disabled' => 'true',
                             ])
                         !!}
@@ -116,9 +113,8 @@
                             [],
                             null,
                             [
-                              'class'=> 'form-control show-tick',
+                              'class'=> 'form-control',
                               'id'=>'kec',
-                              'data-live-search' => 'true',
                               'disabled' => 'true',
                             ])
                         !!}
@@ -139,9 +135,8 @@
                             [],
                             null,
                             [
-                              'class'=> 'form-control show-tick',
+                              'class'=> 'form-control',
                               'id'=>'desa',
-                              'data-live-search' => 'true',
                               'disabled' => 'true',
                             ])
                         !!}
@@ -149,6 +144,95 @@
                     {!! $message !!}
                 </div>
                 
+                <label for="tipe">Tipe</label>
+                <div class="form-group">
+                    @php
+                    $class = $errors->has('tipe') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('tipe') ? '<label class="error">' . $errors->first('tipe') . '</label>' : '';
+                    @endphp
+                    <div class="{{ $class }}">
+                        {!!
+                          Form::select(
+                            'tipe',
+                            [
+                              'l' => 'Laki - Laki',
+                              'p' => 'Perempuan',
+                              'c' => 'Campur',
+                            ],
+                            null,
+                            [
+                              'class'=> 'form-control select2',
+                              'id'=>'tipe',
+                              'placeholder' => 'Pilih Tipe',
+                            ])
+                        !!}
+                    </div>
+                    {!! $message !!}
+                </div>
+                
+                <label for="bulanan">Biaya Bulanan</label>
+                <div class="form-group">
+                    @php
+                    $class = $errors->has('bulanan') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('bulanan') ? '<label class="error">' . $errors->first('bulanan') . '</label>' : '';
+                    @endphp
+                    <div class="{{ $class }}">
+                        {!!
+                            Form::text(
+                                'bulanan', 
+                                null, 
+                                [
+                                    'class'=> 'form-control', 
+                                    'id' => 'bulanan', 
+                                    'placeholder'=>'Biaya Bulanan',
+                                ])
+                        !!}
+                    </div>
+                    {!! $message !!}
+                </div>
+
+                <label for="tahunan">Biaya Tahunan</label>
+                <div class="form-group">
+                    @php
+                    $class = $errors->has('tahunan') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('tahunan') ? '<label class="error">' . $errors->first('tahunan') . '</label>' : '';
+                    @endphp
+                    <div class="{{ $class }}">
+                        {!!
+                            Form::text(
+                                'tahunan', 
+                                null, 
+                                [
+                                    'class'=> 'form-control', 
+                                    'id' => 'tahunan', 
+                                    'placeholder'=>'Biaya Tahunan',
+                                ])
+                        !!}
+                    </div>
+                    {!! $message !!}
+                </div>
+
+                <label for="kamartersedia">Kamar Tersedia</label>
+                <div class="form-group">
+                    @php
+                    $class = $errors->has('kamartersedia') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('kamartersedia') ? '<label class="error">' . $errors->first('kamartersedia') . '</label>' : '';
+                    @endphp
+                    <div class="{{ $class }}">
+                        {!!
+                            Form::number(
+                                'kamartersedia', 
+                                null, 
+                                [
+                                    'class'=> 'form-control', 
+                                    'id' => 'kamartersedia', 
+                                    'placeholder'=>'Kamar Tersedia',
+                                ])
+                        !!}
+                    </div>
+                    {!! $message !!}
+                </div>
+
                 <button type="submit" class="btn btn-success waves-effect">SIMPAN</button>
                 <a href="{{ route('kost.index') }}" class="btn btn-primary waves-effect">BATAL</a>
 
@@ -161,13 +245,102 @@
 @section('js')
 {{-- onload --}}
 <script type="text/javascript">
-  
+$(function() {
+  $.ajax({
+    type: "POST",
+    url: "{{ route('publicAjax.prop') }}",
+    data: {
+      
+    },
+    success: function(response) {
+      $("#prop").html(response);
+
+      $("#prop").select2();
+    },
+    error: function(e) {
+      swal('ERROR !!!', 'See console!', 'error');
+
+      console.log(e);
+    }
+  });
+});  
 </script>
 
 {{-- funcions --}}
 <script type="text/javascript">
-  $("#prop").change(function() {
+$("#prop").change(function() {
+  $("#kab").prop('disabled', true);
+  $("#kec").prop('disabled', true);
+  $("#desa").prop('disabled', true);
 
+  $.ajax({
+    type: "POST",
+    url: "{{ route('publicAjax.kab') }}",
+    data: {
+      prop : $("#prop").val(),
+    },
+    success: function(response) {
+      $("#kab").html(response);
+
+      $("#kab").prop('disabled', false);
+
+      $("#kab").select2();
+    },
+    error: function(e) {
+      swal('ERROR !!!', 'See console!', 'error');
+
+      console.log(e);
+    }
   });
+});
+
+$("#kab").change(function() {
+  $("#kec").prop('disabled', true);
+  $("#desa").prop('disabled', true);
+
+  $.ajax({
+    type: "POST",
+    url: "{{ route('publicAjax.kec') }}",
+    data: {
+      kab : $("#kab").val(),
+    },
+    success: function(response) {
+      $("#kec").html(response);
+
+      $("#kec").prop('disabled', false);
+
+      $("#kec").select2();
+    },
+    error: function(e) {
+      swal('ERROR !!!', 'See console!', 'error');
+
+      console.log(e);
+    }
+  });
+});
+
+$("#kec").change(function() {
+  $("#desa").prop('disabled', true);
+
+  $.ajax({
+    type: "POST",
+    url: "{{ route('publicAjax.desa') }}",
+    data: {
+      kec : $("#kec").val(),
+    },
+    success: function(response) {
+      $("#desa").html(response);
+
+      $("#desa").prop('disabled', false);
+
+      $("#desa").select2();
+    },
+    error: function(e) {
+      swal('ERROR !!!', 'See console!', 'error');
+
+      console.log(e);
+    }
+  });
+});
 </script>
 @endsection

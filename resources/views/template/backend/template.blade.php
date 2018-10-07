@@ -32,8 +32,8 @@
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
-    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
-
+    <link href="{{ asset('assets') }}/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+    
     <!-- View Css -->
     @yield('css')
 </head>
@@ -143,9 +143,6 @@
     <!-- Bootstrap Core Js -->
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap/js/bootstrap.js"></script>
 
-    <!-- Select Plugin Js -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap-select/js/bootstrap-select.js"></script>
-
     <!-- Slimscroll Plugin Js -->
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
@@ -183,8 +180,11 @@
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/momentjs/moment.js"></script>
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap-select/js/bootstrap-select.js"></script>
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/chartjs/Chart.bundle.js"></script>
+    <script src="{{ asset('assets') }}/bower_components/select2/dist/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(".select2").select2();
+    </script>
 
     @if(session('alert'))
     <script type="text/javascript">
