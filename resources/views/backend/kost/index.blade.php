@@ -1,5 +1,9 @@
 @extends('template.backend.template')
 
+@section('nav')
+@include('backend.kost.nav')
+@endsection
+
 @section('content')
 <div class="row clearfix">
   <div class="card">
