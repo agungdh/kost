@@ -9,7 +9,7 @@
     <div class="card">
         <div class="header">
             <h2>
-                PROFIL
+                TAMBAH KOST
             </h2>
         </div>
         <div class="body">
@@ -372,5 +372,9 @@ $("#kec").change(function() {
     }
   });
 });
+</script>
+
+<script type="text/javascript">
+  console.log('{{ old('desa') }}');
 </script>
 @endsection

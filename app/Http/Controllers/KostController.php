@@ -30,6 +30,8 @@ class KostController extends Controller
             'alamat' => 'required',
             'desa' => 'required',
             'tipe' => 'required',
+            'bulanan' => 'required_without:tahunan',
+            'tahunan' => 'required_without:bulanan',
             'kamartersedia' => 'required|numeric',
             'deskripsi' => 'required',
         ]);
