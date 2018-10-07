@@ -2,7 +2,7 @@
 
 @section('nav')
 <li><a href="{{ route('dashboard') }}">Home</a></li>
-<li><a href="{{ route('chpass') }}">Ubah Password</a></li>
+<li><a href="{{ route('chemail') }}">Ubah Email</a></li>
 @endsection
 
 @section('content')
@@ -10,67 +10,28 @@
     <div class="card">
         <div class="header">
             <h2>
-                UBAH PASSWORD
+                UBAH EMAIL
             </h2>
         </div>
         <div class="body">
-            {!! Form::open(['route' => 'doChpass']) !!}
+            {!! Form::open(['route' => 'doChemail']) !!}
             @method('put')
 
-                <label for="oldpassword">Password Lama</label>
+                <label for="email">Email Baru</label>
                 <div class="form-group">
                     @php
-                    $class = $errors->has('oldpassword') ? 'form-line error focused' : 'form-line';
-                    $message = $errors->has('oldpassword') ? '<label class="error">' . $errors->first('oldpassword') . '</label>' : '';
+                    $class = $errors->has('email') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('email') ? '<label class="error">' . $errors->first('email') . '</label>' : '';
                     @endphp
                     <div class="{{ $class }}">
                         {!!
-                            Form::password(
-                                'oldpassword', 
+                            Form::text(
+                                'email',
+                                null, 
                                 [
                                     'class'=> 'form-control', 
-                                    'id' => 'oldpassword', 
-                                    'placeholder'=>'Password Lama',
-                                ])
-                        !!}
-                    </div>
-                    {!! $message !!}
-                </div>
-                
-                <label for="newpassword">Password Baru</label>
-                <div class="form-group">
-                    @php
-                    $class = $errors->has('newpassword') ? 'form-line error focused' : 'form-line';
-                    $message = $errors->has('newpassword') ? '<label class="error">' . $errors->first('newpassword') . '</label>' : '';
-                    @endphp
-                    <div class="{{ $class }}">
-                        {!!
-                            Form::password(
-                                'newpassword', 
-                                [
-                                    'class'=> 'form-control', 
-                                    'id' => 'newpassword', 
-                                    'placeholder'=>'Password Baru',
-                                ])
-                        !!}
-                    </div>
-                    {!! $message !!}
-                </div>
-
-                <label for="newpassword_confirmation">Ulangi Password Baru</label>
-                <div class="form-group">
-                    @php
-                    $class = $errors->has('newpassword') ? 'form-line error focused' : 'form-line';
-                    $message = $errors->has('newpassword') ? '<label class="error">' . $errors->first('newpassword') . '</label>' : '';
-                    @endphp
-                    <div class="{{ $class }}">
-                        {!!
-                            Form::password(
-                                'newpassword_confirmation', 
-                                [
-                                    'class'=> 'form-control', 
-                                    'id' => 'newpassword_confirmation', 
-                                    'placeholder'=>'Ulangi Password Baru',
+                                    'id' => 'email', 
+                                    'placeholder'=>'Email Baru',
                                 ])
                         !!}
                     </div>

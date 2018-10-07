@@ -36,6 +36,7 @@ Route::get('/foto', 'AdminController@foto')->name('foto');
 Route::put('/foto', 'AdminController@doFoto')->name('doFoto');
 Route::get('/chemail', 'AdminController@chemail')->name('chemail');
 Route::put('/chemail', 'AdminController@doChemail')->name('doChemail');
+Route::get('/confirmchemail', 'AdminController@confirmChemail')->name('confirmChemail');
 
 Route::resources([
 	'/user' => 'UserController',
