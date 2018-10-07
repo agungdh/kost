@@ -40,4 +40,5 @@ Route::get('/confirmchemail', 'AdminController@confirmChemail')->name('confirmCh
 
 Route::resources([
 	'/user' => 'UserController',
+	'/kost' => 'KostController',
 ]);
