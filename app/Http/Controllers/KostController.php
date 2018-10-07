@@ -28,6 +28,9 @@ class KostController extends Controller
         $request->validate([
             'nama' => 'required',
             'alamat' => 'required',
+            'prop' => 'required',
+            'kab' => 'required',
+            'kec' => 'required',
             'desa' => 'required',
             'tipe' => 'required',
             'bulanan' => 'required_without:tahunan',
