@@ -66,17 +66,8 @@ class PublicAjaxController extends Controller
 
     public function getDataDaerahByDesa(Request $request)
     {
-        $data = DB::select('SELECT de.id desa_id, de.kec_id, de.nama_desa, ke.kab_id, ke.nama_kec, ka.prop_id, ka.nama_kab, p.nama_prop
-                    FROM prop p, kab ka, kec ke, desa de
-                    WHERE de.kec_id = ke.id
-                    AND ke.kab_id = ka.id
-                    AND ka.prop_id = p.id
-                    AND de.id = ?', [$request->desa]);
+        $data = DB::table('v_daerah')->where('desa_id', $request->desa)->first();
 
-        if ($data) {
-            echo json_encode($data[0]);
-        } else {
-            echo json_encode(FALSE);
-        }
+        echo json_encode($data);
     }
 }

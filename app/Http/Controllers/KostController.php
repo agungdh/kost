@@ -15,7 +15,9 @@ class KostController extends Controller
 
     public function index()
     {
-        return view('backend.kost.index');
+        $kosts = DB::table('v_kos')->where('id_user', session('id'))->get();
+
+        return view('backend.kost.index', compact('kosts'));
     }
 
     public function create()

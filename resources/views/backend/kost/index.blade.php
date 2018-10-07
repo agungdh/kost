@@ -33,13 +33,23 @@
                           <th style="text-align: center;">Tipe</th>
                           <th style="text-align: center;">Bulanan</th>
                           <th style="text-align: center;">Tahunan</th>
-                          <th style="text-align: center;">Kosong</th>
+                          <th style="text-align: center;">Kamar Tersedia</th>
                           <th style="text-align: center;">Proses</th>
                       </tr>
                   </thead>
                   <tbody>
+                    @foreach($kosts as $kost)
                       <tr>
-                        <td>asfas</td>
+                        <td>{{ $kost->nama }}</td>
+                        <td>{{ ucwords(strtolower($kost->nama_prop)) }}</td>
+                        <td>{{ ucwords(strtolower($kost->nama_kab)) }}</td>
+                        <td>{{ ucwords(strtolower($kost->nama_kec)) }}</td>
+                        <td>{{ ucwords(strtolower($kost->nama_desa)) }}</td>
+                        <td>{{ $kost->alamat }}</td>
+                        <td>{{ $kost->tipe }}</td>
+                        <td>{{ $kost->bulanan }}</td>
+                        <td>{{ $kost->tahunan }}</td>
+                        <td>{{ $kost->kamartersedia }}</td>
                           <td style="text-align: center;">
                             <a href="{{ route('dashboard') }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Ubah">
@@ -53,6 +63,7 @@
                             </a>
                           </td>
                       </tr>
+                    @endforeach
                   </tbody>
               </table>
           </div>
