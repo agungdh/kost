@@ -74,9 +74,9 @@ class PublicAjaxController extends Controller
                     AND de.id = ?', [$request->desa]);
 
         if ($data) {
-            dd($data[0]);
+            echo json_encode($data[0]);
         } else {
-            echo 'noo';
+            echo json_encode(FALSE);
         }
     }
 }

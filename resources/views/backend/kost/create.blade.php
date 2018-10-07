@@ -157,7 +157,7 @@
                             [
                               'l' => 'Laki - Laki',
                               'p' => 'Perempuan',
-                              'c' => 'Campur',
+                              'lp' => 'Campur',
                             ],
                             null,
                             [
@@ -220,11 +220,11 @@
                     @endphp
                     <div class="{{ $class }}">
                         {!!
-                            Form::number(
+                            Form::text(
                                 'kamartersedia', 
                                 null, 
                                 [
-                                    'class'=> 'form-control', 
+                                    'class'=> 'form-control uang', 
                                     'id' => 'kamartersedia', 
                                     'placeholder'=>'Kamar Tersedia',
                                 ])
@@ -270,6 +270,7 @@
   $("form").submit(function() {
     $("#bulanan").val($("#bulanan").cleanVal());
     $("#tahunan").val($("#tahunan").cleanVal());
+    $("#kamartersedia").val($("#kamartersedia").cleanVal());
   });
 </script>
 

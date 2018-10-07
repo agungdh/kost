@@ -38,6 +38,18 @@ class KostController extends Controller
             'kamartersedia' => 'required|numeric',
             'deskripsi' => 'required',
         ]);
+
+        $data = $request->only('nama', 'alamat', 'tipe', 'bulanan', 'tahunan', 'kamartersedia', 'deskripsi');
+        $data['id_desa'] = $request->desa;
+        $data['id_user'] = session('id');
+
+        DB::table('kos')->insert($data);
+
+        return redirect()->route('kost.index')->with('alert', [
+                        'title' => 'BERHASIL !!!',
+                        'message' => 'Tambah Data Berhasil !!!',
+                        'class' => 'success',
+                    ]);
     }
 
     public function show($id)
