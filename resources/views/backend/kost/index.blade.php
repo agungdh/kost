@@ -46,7 +46,26 @@
                         <td>{{ ucwords(strtolower($kost->nama_kec)) }}</td>
                         <td>{{ ucwords(strtolower($kost->nama_desa)) }}</td>
                         <td>{{ $kost->alamat }}</td>
-                        <td>{{ $kost->tipe }}</td>
+                        @php
+                        switch ($kost->tipe) {
+                          case 'l':
+                            $tipe = 'Laki - Laki';
+                            break;
+                          
+                          case 'p':
+                            $tipe = 'Perempuan';
+                            break;
+                          
+                          case 'lp':
+                            $tipe = 'Campur';
+                            break;
+                          
+                          default:
+                            $tipe = 'ERROR !!!';
+                            break;
+                        }
+                        @endphp
+                        <td>{{ $tipe }}</td>
                         <td>{{ $pustaka->rupiah($kost->bulanan) }}</td>
                         <td>{{ $pustaka->rupiah($kost->tahunan) }}</td>
                         <td>{{ $kost->kamartersedia }}</td>
