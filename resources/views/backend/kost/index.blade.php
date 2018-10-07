@@ -21,7 +21,7 @@
             </a>
           </div>
           <div class="table-responsive">
-              <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+              <table class="table table-bordered table-striped table-hover datatable">
                   <thead>
                       <tr>
                           <th style="text-align: center;">Nama</th>
@@ -70,7 +70,7 @@
                         <td>{{ $pustaka->rupiah($kost->tahunan) }}</td>
                         <td>{{ $kost->kamartersedia }}</td>
                           <td style="text-align: center;">
-                            <a href="{{ route('dashboard') }}">
+                            <a href="{{ route('kost.edit', $kost->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Ubah">
                                 <i class="material-icons">edit</i>
                               </button>
@@ -93,12 +93,6 @@
 
 @section('js')
 <script type="text/javascript">
-$(function () {
-    $('.js-basic-example').DataTable({
-        responsive: true
-    });
-});
-
 function hapus(id) {
     swal({
         title: 'Apakah anda yakin?',
@@ -112,9 +106,5 @@ function hapus(id) {
         }
     });
 };
-
-$('[data-toggle="tooltip"]').tooltip({
-    container: 'body'
-});
 </script>
 @endsection

@@ -177,6 +177,11 @@
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-datatable/jquery.dataTables.js"></script>
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script type="text/javascript">
+        $('.datatable').DataTable({
+            responsive: true
+        });
+    </script>
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/momentjs/moment.js"></script>
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
@@ -191,7 +196,12 @@
             reverse: true
         });    
     </script>
-
+    <script type="text/javascript">
+        $('[data-toggle="tooltip"]').tooltip({
+            container: 'body'
+        });
+    </script>
+    
     @if(session('alert'))
     <script type="text/javascript">
         swal('{{ session('alert')['title'] }}', '{{ session('alert')['message'] }}', '{{ session('alert')['class'] }}');
