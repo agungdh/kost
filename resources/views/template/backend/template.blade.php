@@ -152,6 +152,27 @@
     <!-- Waves Effect Plugin Js -->
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/node-waves/waves.js"></script>
 
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-countto/jquery.countTo.js"></script>
+
+    <!-- Morris Plugin Js -->
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/raphael/raphael.min.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/morrisjs/morris.js"></script>
+
+    <!-- ChartJs -->
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/chartjs/Chart.bundle.js"></script>
+
+    <!-- Flot Charts Plugin Js -->
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/flot-charts/jquery.flot.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/flot-charts/jquery.flot.resize.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/flot-charts/jquery.flot.pie.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/flot-charts/jquery.flot.categories.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/flot-charts/jquery.flot.time.js"></script>
+
+    <!-- Sparkline Chart Plugin Js -->
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+
     <!-- Custom Js -->
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/js/admin.js"></script>
 
