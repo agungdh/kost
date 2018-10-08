@@ -58,6 +58,9 @@
                 </div>
                 
                 <label for="lat">Latitude</label>
+                <a href="javascript:void(0)" onclick="getLocation()">
+                  <i class="material-icons">my_location</i>
+                </a>
                 <div class="form-group">
                     @php
                     $class = $errors->has('lat') ? 'form-line error focused' : 'form-line';
@@ -79,6 +82,9 @@
                 </div>
                 
                 <label for="lng">Longitude</label>
+                <a href="javascript:void(0)" onclick="getLocation()">
+                  <i class="material-icons">my_location</i>
+                </a>
                 <div class="form-group">
                     @php
                     $class = $errors->has('lng') ? 'form-line error focused' : 'form-line';
