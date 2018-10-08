@@ -25,7 +25,7 @@
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/css/style.css" rel="stylesheet">
 
     <!-- Sweetalert Css -->
-    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/sweetalert/sweetalert.css" rel="stylesheet" 
+    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 
     @yield('css')
 </head>

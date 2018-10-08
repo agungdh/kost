@@ -124,6 +124,14 @@ class AdminController extends Controller
 
         $user = DB::table('user')->where('id', session('id'))->first();
 
+        if (!Hash::check($request->oldpassword, $user->password)) {
+            return redirect()->route('chemail')->with('alert', [
+                        'title' => 'ERROR !!!',
+                        'message' => 'Password salah !!!',
+                        'class' => 'error',
+                    ]);
+        }
+
         $html = view('template.email.gantiemail', compact('user'))->with('token', $data['token'])->with('temp_email', $data['temp_email'])->render();
 
         $this->mail($data['temp_email'], 'Ubah email akun', $html);

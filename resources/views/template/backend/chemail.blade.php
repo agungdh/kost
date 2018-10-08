@@ -17,6 +17,26 @@
             {!! Form::open(['route' => 'doChemail']) !!}
             @method('put')
 
+                <label for="oldpassword">Password</label>
+                <div class="form-group">
+                    @php
+                    $class = $errors->has('oldpassword') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('oldpassword') ? '<label class="error">' . $errors->first('oldpassword') . '</label>' : '';
+                    @endphp
+                    <div class="{{ $class }}">
+                        {!!
+                            Form::password(
+                                'oldpassword', 
+                                [
+                                    'class'=> 'form-control', 
+                                    'id' => 'oldpassword', 
+                                    'placeholder'=>'Password',
+                                ])
+                        !!}
+                    </div>
+                    {!! $message !!}
+                </div>
+                
                 <label for="email">Email Baru</label>
                 <div class="form-group">
                     @php

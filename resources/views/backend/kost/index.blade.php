@@ -34,8 +34,6 @@
                           <th style="text-align: center;">Bulanan</th>
                           <th style="text-align: center;">Tahunan</th>
                           <th style="text-align: center;">Kamar Tersedia</th>
-                          <th style="text-align: center;">Latitude</th>
-                          <th style="text-align: center;">Longitude</th>
                           <th style="text-align: center;">Proses</th>
                       </tr>
                   </thead>
@@ -68,11 +66,9 @@
                         }
                         @endphp
                         <td>{{ $tipe }}</td>
-                        <td>{{ $pustaka->rupiah($kost->bulanan) }}</td>
-                        <td>{{ $pustaka->rupiah($kost->tahunan) }}</td>
+                        <td>{{ $kost->bulanan != 0 ? $pustaka->rupiah($kost->bulanan) : '-' }}</td>
+                        <td>{{ $kost->tahunan != 0 ? $pustaka->rupiah($kost->tahunan) : '-' }}</td>
                         <td>{{ $kost->kamartersedia }}</td>
-                        <td>{{ $kost->latitude }}</td>
-                        <td>{{ $kost->longitude }}</td>
                           <td style="text-align: center;">
                             <a href="{{ route('kost.edit', $kost->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Ubah">

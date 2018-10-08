@@ -57,6 +57,48 @@
                     {!! $message !!}
                 </div>
                 
+                <label for="lat">Latitude</label>
+                <div class="form-group">
+                    @php
+                    $class = $errors->has('lat') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('lat') ? '<label class="error">' . $errors->first('lat') . '</label>' : '';
+                    @endphp
+                    <div class="{{ $class }}">
+                        {!!
+                            Form::text(
+                                'lat', 
+                                null, 
+                                [
+                                    'class'=> 'form-control', 
+                                    'id' => 'lat', 
+                                    'placeholder'=>'Latitude',
+                                ])
+                        !!}
+                    </div>
+                    {!! $message !!}
+                </div>
+                
+                <label for="lng">Longitude</label>
+                <div class="form-group">
+                    @php
+                    $class = $errors->has('lng') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('lng') ? '<label class="error">' . $errors->first('lng') . '</label>' : '';
+                    @endphp
+                    <div class="{{ $class }}">
+                        {!!
+                            Form::text(
+                                'lng', 
+                                null, 
+                                [
+                                    'class'=> 'form-control', 
+                                    'id' => 'lng', 
+                                    'placeholder'=>'Longitude',
+                                ])
+                        !!}
+                    </div>
+                    {!! $message !!}
+                </div>
+                
                 <label for="prop">Provinsi</label>
                 <div class="form-group">
                     @php
@@ -278,6 +320,8 @@
 {{-- onload --}}
 <script type="text/javascript">
 $(function() {
+  getLocation();
+
   $.ajax({
     type: "POST",
     url: "{{ route('publicAjax.prop') }}",

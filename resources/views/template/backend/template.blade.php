@@ -34,6 +34,39 @@
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
     <link href="{{ asset('assets') }}/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
     
+    <!-- geolocation -->
+    <script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else { 
+            swal('ERROR !!!', "Geolocation is not supported by this browser.", 'error');
+        }
+    }
+
+    function showPosition(position) {
+        $("#lat").val(position.coords.latitude);
+        $("#lng").val(position.coords.longitude);
+    }
+
+    function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                swal('ERROR !!!', "User denied the request for Geolocation.", 'error');
+                break;
+            case error.POSITION_UNAVAILABLE:
+                swal('ERROR !!!', "Location information is unavailable.", 'error');
+                break;
+            case error.TIMEOUT:
+                swal('ERROR !!!', "The request to get user location timed out.", 'error');
+                break;
+            case error.UNKNOWN_ERROR:
+                swal('ERROR !!!', "An unknown error occurred.", 'error');
+                break;
+        }
+    }
+    </script>
+
     <!-- View Css -->
     @yield('css')
 </head>
