@@ -22,6 +22,9 @@
                         $i = 1;
                         @endphp
                         @foreach($fotos as $item)
+
+                        {!! Form::hidden($i, $item->id) !!}
+
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             @php
                             if (file_exists(storage_path('app/public/foto/kos/' . $item->id))) {
@@ -34,19 +37,19 @@
                                 <img class="img-responsive thumbnail" src="{{ $url }}">
                             </a>
 
-                            <label for="foto_{{ $item->id }}">Foto {{ $i }}</label>
+                            <label for="foto_{{ $i }}">Foto {{ $i }}</label>
                             <div class="form-group">
                                 @php
-                                $class = $errors->has('foto_' . $item->id) ? 'form-line error focused' : 'form-line';
-                                $message = $errors->has('foto_' . $item->id) ? '<label class="error">' . $errors->first('foto_' . $item->id) . '</label>' : '';
+                                $class = $errors->has('foto_' . $i) ? 'form-line error focused' : 'form-line';
+                                $message = $errors->has('foto_' . $i) ? '<label class="error">' . $errors->first('foto_' . $i) . '</label>' : '';
                                 @endphp
                                 <div class="{{ $class }}">
                                     {!!
                                         Form::file(
-                                            'foto_' . $item->id,  
+                                            'foto_' . $i,  
                                             [
                                                 'class'=> 'form-control', 
-                                                'id' => 'foto_' . $item->id, 
+                                                'id' => 'foto_' . $i, 
                                                 'placeholder'=>'Foto ' . $i,
                                             ])
                                     !!}
@@ -54,20 +57,20 @@
                                 {!! $message !!}
                             </div>
 
-                            <label for="deskripsi_{{ $item->id }}">Deskripsi {{ $i }}</label>
+                            <label for="deskripsi_{{ $i }}">Deskripsi {{ $i }}</label>
                             <div class="form-group">
                                 @php
-                                $class = $errors->has('deskripsi_' . $item->id) ? 'form-line error focused' : 'form-line';
-                                $message = $errors->has('deskripsi_' . $item->id) ? '<label class="error">' . $errors->first('deskripsi_' . $item->id) . '</label>' : '';
+                                $class = $errors->has('deskripsi_' . $i) ? 'form-line error focused' : 'form-line';
+                                $message = $errors->has('deskripsi_' . $i) ? '<label class="error">' . $errors->first('deskripsi_' . $i) . '</label>' : '';
                                 @endphp
                                 <div class="{{ $class }}">
                                     {!!
                                         Form::text(
-                                            'deskripsi_' . $item->id, 
+                                            'deskripsi_' . $i, 
                                             null, 
                                             [
                                                 'class'=> 'form-control', 
-                                                'id' => 'deskripsi_' . $item->id, 
+                                                'id' => 'deskripsi_' . $i, 
                                                 'placeholder'=>'Deskripsi ' . $i,
                                             ])
                                     !!}

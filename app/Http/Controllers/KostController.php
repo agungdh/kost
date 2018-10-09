@@ -112,6 +112,12 @@ class KostController extends Controller
 
     public function doMediaLibrary(Request $request)
     {
-        dd($request->all());
+        $rules = [];
+
+        for ($i = 1; $i <= 6; $i++) { 
+            $rules['foto_' . $i] = 'image|max:2048';
+        }
+
+        $request->validate($rules);
     }
 }
