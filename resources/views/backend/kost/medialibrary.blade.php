@@ -17,14 +17,25 @@
 
                 <div class="body">
                     <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
+                        
+                        @php
+                        $i = 1;
+                        @endphp
 
                         @foreach($fotos as $item)
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <a href="../../images/image-gallery/1.jpg" data-sub-html="Demo Description">
-                                <img class="img-responsive thumbnail" src="../../images/image-gallery/thumb/thumb-1.jpg">
+                            @php
+                            if (file_exists(storage_path('app/public/foto/kos/' . $item->id))) {
+                                $url = asset('storage/foto/kos/' . $item->id);
+                            } else {
+                                $url = asset('assets/img/sorry-no-image-available.png');
+                            }
+                            @endphp
+                            <a href="{{ $url }}" data-sub-html="{{ $item->deskripsi }}">
+                                <img class="img-responsive thumbnail" src="{{ $url }}">
                             </a>
 
-                            <label for="foto">Foto</label>
+                            <label for="foto">Foto {{ $i }}</label>
                             <div class="form-group">
                                 @php
                                 $class = $errors->has('foto') ? 'form-line error focused' : 'form-line';
@@ -44,6 +55,9 @@
                                 {!! $message !!}
                             </div>
                         </div>
+                        @php
+                        $i++;
+                        @endphp
                         @endforeach
 
                     </div>

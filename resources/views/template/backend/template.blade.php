@@ -34,6 +34,9 @@
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
     <link href="{{ asset('assets') }}/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
     
+    <!-- Light Gallery Plugin Css -->
+    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/light-gallery/css/lightgallery.css" rel="stylesheet">
+
     <!-- geolocation -->
     <script>
     function getLocation() {
@@ -233,6 +236,15 @@
         $('[data-toggle="tooltip"]').tooltip({
             container: 'body'
         });
+    </script>
+
+    <!-- Light Gallery Plugin Js -->
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/light-gallery/js/lightgallery-all.js"></script>
+    <script type="text/javascript">
+    $('#aniimated-thumbnials').lightGallery({
+        thumbnail: true,
+        selector: 'a'
+    });
     </script>
     
     @if(session('alert'))
