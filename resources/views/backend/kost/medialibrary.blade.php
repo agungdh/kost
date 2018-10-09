@@ -21,7 +21,6 @@
                         @php
                         $i = 1;
                         @endphp
-
                         @foreach($fotos as $item)
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             @php
@@ -35,20 +34,41 @@
                                 <img class="img-responsive thumbnail" src="{{ $url }}">
                             </a>
 
-                            <label for="foto">Foto {{ $i }}</label>
+                            <label for="foto_{{ $i }}">Foto {{ $i }}</label>
                             <div class="form-group">
                                 @php
-                                $class = $errors->has('foto') ? 'form-line error focused' : 'form-line';
-                                $message = $errors->has('foto') ? '<label class="error">' . $errors->first('foto') . '</label>' : '';
+                                $class = $errors->has('foto_' . $i) ? 'form-line error focused' : 'form-line';
+                                $message = $errors->has('foto_' . $i) ? '<label class="error">' . $errors->first('foto_' . $i) . '</label>' : '';
                                 @endphp
                                 <div class="{{ $class }}">
                                     {!!
                                         Form::file(
-                                            'foto',  
+                                            'foto_' . $i,  
                                             [
                                                 'class'=> 'form-control', 
-                                                'id' => 'foto', 
-                                                'placeholder'=>'Foto',
+                                                'id' => 'foto_' . $i, 
+                                                'placeholder'=>'Foto ' . $i,
+                                            ])
+                                    !!}
+                                </div>
+                                {!! $message !!}
+                            </div>
+
+                            <label for="deskripsi_{{ $i }}">Deskripsi {{ $i }}</label>
+                            <div class="form-group">
+                                @php
+                                $class = $errors->has('deskripsi_' . $i) ? 'form-line error focused' : 'form-line';
+                                $message = $errors->has('deskripsi_' . $i) ? '<label class="error">' . $errors->first('deskripsi_' . $i) . '</label>' : '';
+                                @endphp
+                                <div class="{{ $class }}">
+                                    {!!
+                                        Form::text(
+                                            'deskripsi_' . $i, 
+                                            null, 
+                                            [
+                                                'class'=> 'form-control', 
+                                                'id' => 'deskripsi_' . $i, 
+                                                'placeholder'=>'Deskripsi ' . $i,
                                             ])
                                     !!}
                                 </div>
@@ -70,223 +90,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('js')
-{{-- onsubmit --}}
-<script type="text/javascript">
-  $("form").submit(function() {
-    $("#bulanan").val($("#bulanan").cleanVal());
-    $("#tahunan").val($("#tahunan").cleanVal());
-    $("#kamartersedia").val($("#kamartersedia").cleanVal());
-  });
-</script>
-
-@if(!(old('desa') || old('kec') || old('kab') || old('prop')))
-{{-- onload --}}
-<script type="text/javascript">
-$(function() {
-  getLocation();
-
-  $.ajax({
-    type: "POST",
-    url: "{{ route('publicAjax.prop') }}",
-    data: {
-      
-    },
-    success: function(response) {
-      $("#prop").html(response);
-
-      $("#prop").select2();
-    },
-    error: function(e) {
-      swal('ERROR !!!', 'See console!', 'error');
-
-      console.log(e);
-    }
-  });
-});  
-</script>
-@endif
-
-{{-- funcions --}}
-<script type="text/javascript">
-$("#prop").change(function() {
-  $("#kab").prop('disabled', true);
-  $("#kec").prop('disabled', true);
-  $("#desa").prop('disabled', true);
-
-  $.ajax({
-    type: "POST",
-    url: "{{ route('publicAjax.kab') }}",
-    data: {
-      prop : $("#prop").val(),
-    },
-    success: function(response) {
-      $("#kab").html(response);
-
-      $("#kab").prop('disabled', false);
-
-      $("#kab").select2();
-    },
-    error: function(e) {
-      swal('ERROR !!!', 'See console!', 'error');
-
-      console.log(e);
-    }
-  });
-});
-
-$("#kab").change(function() {
-  $("#kec").prop('disabled', true);
-  $("#desa").prop('disabled', true);
-
-  $.ajax({
-    type: "POST",
-    url: "{{ route('publicAjax.kec') }}",
-    data: {
-      kab : $("#kab").val(),
-    },
-    success: function(response) {
-      $("#kec").html(response);
-
-      $("#kec").prop('disabled', false);
-
-      $("#kec").select2();
-    },
-    error: function(e) {
-      swal('ERROR !!!', 'See console!', 'error');
-
-      console.log(e);
-    }
-  });
-});
-
-$("#kec").change(function() {
-  $("#desa").prop('disabled', true);
-
-  $.ajax({
-    type: "POST",
-    url: "{{ route('publicAjax.desa') }}",
-    data: {
-      kec : $("#kec").val(),
-    },
-    success: function(response) {
-      $("#desa").html(response);
-
-      $("#desa").prop('disabled', false);
-
-      $("#desa").select2();
-    },
-    error: function(e) {
-      swal('ERROR !!!', 'See console!', 'error');
-
-      console.log(e);
-    }
-  });
-});
-
-function initDaerah() {
-  $("#prop").prop('disabled', true);
-  $("#kab").prop('disabled', true);
-  $("#kec").prop('disabled', true);
-  $("#desa").prop('disabled', true);
-
-  $.ajax({
-    type: "POST",
-    url: "{{ route('publicAjax.prop') }}",
-    data: {
-      
-    },
-    success: function(response) {
-      $("#prop").html(response);
-
-      $("#prop").prop('disabled', false);
-
-      $("#prop").val('{{ old('prop') }}');
-
-      $("#prop").select2();
-
-      $.ajax({
-        type: "POST",
-        url: "{{ route('publicAjax.kab') }}",
-        data: {
-          prop : $("#prop").val(),
-        },
-        success: function(response) {
-          $("#kab").html(response);
-
-          $("#kab").prop('disabled', false);
-
-          $("#kab").val('{{ old('kab') }}');
-
-          $("#kab").select2();
-
-          $.ajax({
-            type: "POST",
-            url: "{{ route('publicAjax.kec') }}",
-            data: {
-              kab : $("#kab").val(),
-            },
-            success: function(response) {
-              $("#kec").html(response);
-
-              $("#kec").prop('disabled', false);
-
-              $("#kec").val('{{ old('kec') }}');
-
-              $("#kec").select2();
-
-              $.ajax({
-                type: "POST",
-                url: "{{ route('publicAjax.desa') }}",
-                data: {
-                  kec : $("#kec").val(),
-                },
-                success: function(response) {
-                  $("#desa").html(response);
-
-                  $("#desa").prop('disabled', false);
-
-                  $("#desa").val('{{ old('desa') }}');
-
-                  $("#desa").select2();
-                },
-                error: function(e) {
-                  swal('ERROR !!!', 'See console!', 'error');
-
-                  console.log(e);
-                }
-              });
-            },
-            error: function(e) {
-              swal('ERROR !!!', 'See console!', 'error');
-
-              console.log(e);
-            }
-          });
-        },
-        error: function(e) {
-          swal('ERROR !!!', 'See console!', 'error');
-
-          console.log(e);
-        }
-      });
-    },
-    error: function(e) {
-      swal('ERROR !!!', 'See console!', 'error');
-
-      console.log(e);
-    }
-  });
-}
-</script>
-
-{{-- old desa --}}
-@if(old('desa') || old('kec') || old('kab') || old('prop'))
-<script type="text/javascript">
-  initDaerah();
-</script>
-@endif
-
 @endsection
