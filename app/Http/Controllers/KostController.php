@@ -100,7 +100,29 @@ class KostController extends Controller
 
     public function destroy($id)
     {
-        //
+        $foto = DB::table('foto')
+                        ->where('id_kos', $id)
+                        ->get();
+
+        foreach ($foto as $item) {
+            if (file_exists(storage_path('app/public/foto/kos/' . $item->id))) {
+                unlink(storage_path('app/public/foto/kos/' . $item->id));
+            }
+        }
+
+        DB::table('foto')
+                ->where('id_kos', $id)
+                ->delete();
+
+        DB::table('kos')
+                ->where('id', $id)
+                ->delete();
+
+        return redirect()->route('kost.index')->with('alert', [
+                        'title' => 'BERHASIL !!!',
+                        'message' => 'Hapus Data Berhasil !!!',
+                        'class' => 'success',
+                    ]);
     }
 
     public function mediaLibrary($id)

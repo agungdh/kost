@@ -70,26 +70,31 @@
                         <td>{{ $kost->tahunan != 0 ? $pustaka->rupiah($kost->tahunan) : '-' }}</td>
                         <td>{{ $kost->kamartersedia }}</td>
                           <td style="text-align: center;">
+                            
                             <a href="{{ route('kost.mediaLibrary', $kost->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Media Library">
                                 <i class="material-icons">photo_library</i>
                               </button>
                             </a>
+                            
                             <a target="_blank" href="https://www.google.com/maps/search/{{ $kost->latitude }},{{ $kost->longitude }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Google Maps">
                                 <i class="material-icons">place</i>
                               </button>
                             </a>
+                            
                             <a href="{{ route('kost.edit', $kost->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Ubah">
                                 <i class="material-icons">edit</i>
                               </button>
                             </a>
-                            <a href="javascript:void(0)">
-                              <button type="button" class="btn bg-red waves-effect" onclick="hapus()" data-toggle="tooltip" data-placement="top" title="Hapus">
+
+                            {!! Form::open(['id' => 'formHapus' . $kost->id, 'route' => ['kost.destroy', $kost->id], 'method' => 'delete']) !!}
+                            <button type="button" class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="hapus('{{ $kost->id }}')">
                                 <i class="material-icons">delete</i>
                               </button>
-                            </a>
+                            {!! Form::close() !!}
+
                           </td>
                       </tr>
                     @endforeach
@@ -103,18 +108,19 @@
 
 @section('js')
 <script type="text/javascript">
-function hapus(id) {
+  function hapus(id) {
     swal({
-        title: 'Apakah anda yakin?',
-        text: "Data akan dihapus!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Hapus!'
-    }, function(result) {
-        if (result) {
-            window.location = "";
-        }
+      title: "Yakin Hapus?",
+      text: "Setelah dihapus data tidak dapt dikembalikan!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal',
+      closeOnConfirm: false
+    }, function () {
+      $("#formHapus" + id).submit();
     });
-};
+  }
 </script>
 @endsection
