@@ -14,8 +14,7 @@
             </h2>
         </div>
         <div class="body">
-            {!! Form::model($user, ['route' => 'doProfile']) !!}
-            @method('put')
+            {!! Form::model($user, ['route' => 'doProfile', 'method' => 'put']) !!}
 
                 <label for="nama">Nama</label>
                 <div class="form-group">

@@ -14,8 +14,7 @@
             </h2>
         </div>
         <div class="body">
-            {!! Form::open(['route' => 'doFoto', 'files' => true]) !!}
-            @method('put')
+            {!! Form::open(['route' => 'doFoto', 'files' => true, 'method' => 'put']) !!}
 
                 <label for="foto">Foto</label>
                 <div class="form-group">

@@ -14,8 +14,7 @@
             </h2>
         </div>
         <div class="body">
-            {!! Form::open(['route' => 'doChpass']) !!}
-            @method('put')
+            {!! Form::open(['route' => 'doChpass', 'method' => 'put']) !!}
 
                 <label for="oldpassword">Password Lama</label>
                 <div class="form-group">
