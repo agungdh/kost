@@ -52,7 +52,28 @@ class KostController extends Controller
         $data['latitude'] = $request->lat;
         $data['longitude'] = $request->lng;
 
-        DB::table('kos')->insert($data);
+        $insertId = DB::table('kos')->insertGetId($data);
+
+        DB::table('foto')->insert([
+                                    [
+                                        'id_kos' => $insertId,
+                                    ],
+                                    [
+                                        'id_kos' => $insertId,
+                                    ],
+                                    [
+                                        'id_kos' => $insertId,
+                                    ],
+                                    [
+                                        'id_kos' => $insertId,
+                                    ],
+                                    [
+                                        'id_kos' => $insertId,
+                                    ],
+                                    [
+                                        'id_kos' => $insertId,
+                                    ],
+                                ]);
 
         return redirect()->route('kost.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
@@ -79,5 +100,18 @@ class KostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function mediaLibrary($id)
+    {
+        $kos = DB::table('kos')->where('id', $id)->first();
+        $fotos = DB::table('foto')->where('id_kos', $id)->get();
+
+        return view('backend.kost.medialibrary', compact('id', 'kos', 'fotos'));
+    }
+
+    public function doMediaLibrary()
+    {
+
     }
 }

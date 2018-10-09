@@ -70,8 +70,8 @@
                         <td>{{ $kost->tahunan != 0 ? $pustaka->rupiah($kost->tahunan) : '-' }}</td>
                         <td>{{ $kost->kamartersedia }}</td>
                           <td style="text-align: center;">
-                            <a target="_blank" href="https://www.google.com/maps/search/{{ $kost->latitude }},{{ $kost->longitude }}">
-                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Foto">
+                            <a href="{{ route('kost.mediaLibrary', $kost->id) }}">
+                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Media Library">
                                 <i class="material-icons">photo_library</i>
                               </button>
                             </a>

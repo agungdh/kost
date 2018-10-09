@@ -43,3 +43,7 @@ Route::resources([
 	'/user' => 'UserController',
 	'/kost' => 'KostController',
 ]);
+
+// kost
+Route::get('/kost/{id}/medialibrary', 'KostController@mediaLibrary')->name('kost.mediaLibrary');
+Route::put('/kost/{id}/domedialibrary', 'KostController@doMediaLibrary')->name('kost.doMediaLibrary');
