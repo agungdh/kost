@@ -67,7 +67,7 @@
                                     {!!
                                         Form::text(
                                             'deskripsi_' . $i, 
-                                            null, 
+                                            $item->deskripsi, 
                                             [
                                                 'class'=> 'form-control', 
                                                 'id' => 'deskripsi_' . $i, 

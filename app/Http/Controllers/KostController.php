@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use DB;
+use Storage;
 use agungdh\Pustaka;
 
 class KostController extends Controller
@@ -105,12 +106,12 @@ class KostController extends Controller
     public function mediaLibrary($id)
     {
         $kos = DB::table('kos')->where('id', $id)->first();
-        $fotos = DB::table('foto')->where('id_kos', $id)->get();
+        $fotos = DB::table('foto')->where('id_kos', $id)->orderBy('id', 'asc')->get();
 
         return view('backend.kost.medialibrary', compact('id', 'kos', 'fotos'));
     }
 
-    public function doMediaLibrary(Request $request)
+    public function doMediaLibrary(Request $request, $id)
     {
         $rules = [];
 
@@ -119,5 +120,21 @@ class KostController extends Controller
         }
 
         $request->validate($rules);
+
+        for ($i = 1; $i <= 6; $i++) { 
+            $photoId = $request->input($i);
+
+            if ($request->file('foto_' . $i)) {
+                Storage::putFileAs('public/foto/kos', $request->file('foto_' . $i), $photoId);
+            }
+
+            DB::table('foto')->where('id', $photoId)->update(['deskripsi' => $request->input('deskripsi_' . $i)]);
+        }
+
+        return redirect()->route('kost.mediaLibrary', $id)->with('alert', [
+                        'title' => 'BERHASIL !!!',
+                        'message' => 'Update Media Library Berhasil !!!',
+                        'class' => 'success',
+                    ]);        
     }
 }
