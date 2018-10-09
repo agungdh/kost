@@ -110,8 +110,8 @@ class KostController extends Controller
         return view('backend.kost.medialibrary', compact('id', 'kos', 'fotos'));
     }
 
-    public function doMediaLibrary()
+    public function doMediaLibrary(Request $request)
     {
-
+        dd($request->all());
     }
 }

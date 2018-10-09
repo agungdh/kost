@@ -34,19 +34,19 @@
                                 <img class="img-responsive thumbnail" src="{{ $url }}">
                             </a>
 
-                            <label for="foto_{{ $i }}">Foto {{ $i }}</label>
+                            <label for="foto_{{ $item->id }}">Foto {{ $i }}</label>
                             <div class="form-group">
                                 @php
-                                $class = $errors->has('foto_' . $i) ? 'form-line error focused' : 'form-line';
-                                $message = $errors->has('foto_' . $i) ? '<label class="error">' . $errors->first('foto_' . $i) . '</label>' : '';
+                                $class = $errors->has('foto_' . $item->id) ? 'form-line error focused' : 'form-line';
+                                $message = $errors->has('foto_' . $item->id) ? '<label class="error">' . $errors->first('foto_' . $item->id) . '</label>' : '';
                                 @endphp
                                 <div class="{{ $class }}">
                                     {!!
                                         Form::file(
-                                            'foto_' . $i,  
+                                            'foto_' . $item->id,  
                                             [
                                                 'class'=> 'form-control', 
-                                                'id' => 'foto_' . $i, 
+                                                'id' => 'foto_' . $item->id, 
                                                 'placeholder'=>'Foto ' . $i,
                                             ])
                                     !!}
@@ -54,20 +54,20 @@
                                 {!! $message !!}
                             </div>
 
-                            <label for="deskripsi_{{ $i }}">Deskripsi {{ $i }}</label>
+                            <label for="deskripsi_{{ $item->id }}">Deskripsi {{ $i }}</label>
                             <div class="form-group">
                                 @php
-                                $class = $errors->has('deskripsi_' . $i) ? 'form-line error focused' : 'form-line';
-                                $message = $errors->has('deskripsi_' . $i) ? '<label class="error">' . $errors->first('deskripsi_' . $i) . '</label>' : '';
+                                $class = $errors->has('deskripsi_' . $item->id) ? 'form-line error focused' : 'form-line';
+                                $message = $errors->has('deskripsi_' . $item->id) ? '<label class="error">' . $errors->first('deskripsi_' . $item->id) . '</label>' : '';
                                 @endphp
                                 <div class="{{ $class }}">
                                     {!!
                                         Form::text(
-                                            'deskripsi_' . $i, 
+                                            'deskripsi_' . $item->id, 
                                             null, 
                                             [
                                                 'class'=> 'form-control', 
-                                                'id' => 'deskripsi_' . $i, 
+                                                'id' => 'deskripsi_' . $item->id, 
                                                 'placeholder'=>'Deskripsi ' . $i,
                                             ])
                                     !!}
