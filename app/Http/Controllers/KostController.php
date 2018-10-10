@@ -41,8 +41,8 @@ class KostController extends Controller
             'kec' => 'required',
             'desa' => 'required',
             'tipe' => 'required',
-            'bulanan' => 'required_without:tahunan',
-            'tahunan' => 'required_without:bulanan',
+            'bulanan' => 'required_without:tahunan|numeric',
+            'tahunan' => 'required_without:bulanan|numeric',
             'kamartersedia' => 'required|numeric',
             'deskripsi' => 'required',
         ]);
@@ -85,17 +85,55 @@ class KostController extends Controller
 
     public function show($id)
     {
-        //
+        return redirect()->route('kost.edit', $id);
     }
 
     public function edit($id)
     {
-        //
+        $kost = DB::table('kos')->where('id', $id)->first();
+
+        $desa = DB::table('desa')->where('id', $kost->id_desa)->first();
+        $kec = DB::table('kec')->where('id', $desa->kec_id)->first();
+        $kab = DB::table('kab')->where('id', $kec->kab_id)->first();
+        $prop = DB::table('prop')->where('id', $kab->prop_id)->first();
+
+        $kost->prop = $prop->id;
+        $kost->kab = $kab->id;
+        $kost->kec = $kec->id;
+        $kost->desa = $desa->id;
+
+        return view('backend.kost.edit', compact('kost'));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'prop' => 'required',
+            'kab' => 'required',
+            'kec' => 'required',
+            'desa' => 'required',
+            'tipe' => 'required',
+            'bulanan' => 'required_without:tahunan|numeric',
+            'tahunan' => 'required_without:bulanan|numeric',
+            'kamartersedia' => 'required|numeric',
+            'deskripsi' => 'required',
+        ]);
+
+        $data = $request->only('nama', 'alamat', 'tipe', 'bulanan', 'tahunan', 'kamartersedia', 'deskripsi');
+        $data['id_desa'] = $request->desa;
+        $data['id_user'] = session('id');
+        $data['latitude'] = $request->lat;
+        $data['longitude'] = $request->lng;
+
+        DB::table('kos')->where('id', $id)->update($data);
+
+        return redirect()->route('kost.index')->with('alert', [
+                        'title' => 'BERHASIL !!!',
+                        'message' => 'Ubah Data Berhasil !!!',
+                        'class' => 'success',
+                    ]);
     }
 
     public function destroy($id)
