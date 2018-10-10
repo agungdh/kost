@@ -52,6 +52,10 @@ class UserController extends Controller
             unlink(storage_path('app/public/profilephoto/' . $id));
         }
 
+        DB::table('user')
+                    ->where('id', $id)
+                    ->delete();        
+
         return redirect()->route('user.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
                         'message' => 'Hapus User Berhasil !!!',
