@@ -20,7 +20,7 @@ class AdminController extends Controller
 
 	public function dashboard()
 	{   
-        return view('template.dashboard.dashboard');
+        return view('backend.dashboard');
     }
 
     public function profile()

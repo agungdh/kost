@@ -8,7 +8,7 @@ class MainController extends Controller
 {
     public function index()
     {
-    	return view('template.dashboard.dashboard');	
+    	return view('frontend.dashboard');	
     }
 
 }
