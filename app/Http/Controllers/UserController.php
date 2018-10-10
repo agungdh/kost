@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use DB;
 use Hash;
+use Storage;
 
 class UserController extends Controller
 {
@@ -33,7 +34,29 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+        $kosts = DB::table('kos')
+                        ->where('id_user', $id)
+                        ->get();
 
+        foreach ($kosts as $kos) {
+            DB::table('foto')
+                    ->where('id_kos', $kos->id)
+                    ->delete();
+        }
+
+        DB::table('kos')
+                    ->where('id_user', $id)
+                    ->delete();
+
+        if (file_exists(storage_path('app/public/profilephoto/' . $id))) {
+            unlink(storage_path('app/public/profilephoto/' . $id));
+        }
+
+        return redirect()->route('user.index')->with('alert', [
+                        'title' => 'BERHASIL !!!',
+                        'message' => 'Hapus User Berhasil !!!',
+                        'class' => 'success',
+                    ]);
     }
 
     public function profile($id)
@@ -94,18 +117,22 @@ class UserController extends Controller
 
     public function foto($id)
     {
-        return view('backend.user.foto');
+        $user = DB::table('user')
+                ->where('id', $id)
+                ->first();
+
+        return view('backend.user.foto', compact(['user']));
     }
 
-    public function doFoto(Request $request)
+    public function doFoto(Request $request, $id)
     {
         $request->validate([
             'foto' => 'required|max:1024|image',
         ]);
 
-        Storage::putFileAs('public/profilephoto', $request->file('foto'), session('id'));
+        Storage::putFileAs('public/profilephoto', $request->file('foto'), $id);
 
-        return redirect()->route('foto')->with('alert', [
+        return redirect()->route('user.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
                         'message' => 'Ubah Foto Berhasil !!!',
                         'class' => 'success',

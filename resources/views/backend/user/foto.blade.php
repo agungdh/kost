@@ -1,8 +1,8 @@
 @extends('template.backend.template')
 
 @section('nav')
-<li><a href="{{ route('dashboard') }}">Home</a></li>
-<li><a href="{{ route('foto') }}">Foto</a></li>
+@include('backend.user.nav')
+<li><a href="{{ route('user.foto', $user->id) }}">Foto</a></li>
 @endsection
 
 @section('content')
@@ -14,7 +14,66 @@
             </h2>
         </div>
         <div class="body">
-            {!! Form::open(['route' => 'doFoto', 'files' => true, 'method' => 'put']) !!}
+            {!! Form::model($user, ['route' => ['user.doFoto', $user->id], 'files' => true, 'method' => 'put']) !!}
+
+                <label for="nama">Nama</label>
+                <div class="form-group">
+                    @php
+                    $class = $errors->has('nama') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('nama') ? '<label class="error">' . $errors->first('nama') . '</label>' : '';
+                    @endphp
+                    <div class="{{ $class }}">
+                        {!!
+                            Form::text(
+                                'nama', 
+                                null, 
+                                [
+                                    'class'=> 'form-control', 
+                                    'id' => 'nama', 
+                                    'placeholder'=>'Nama',
+                                    'disabled'=>'true',
+                                ])
+                        !!}
+                    </div>
+                    {!! $message !!}
+                </div>
+
+                <label for="email">Email</label>
+                <div class="form-group">
+                    @php
+                    $class = $errors->has('email') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('email') ? '<label class="error">' . $errors->first('email') . '</label>' : '';
+                    @endphp
+                    <div class="{{ $class }}">
+                        {!!
+                            Form::text(
+                                'email', 
+                                null, 
+                                [
+                                    'class'=> 'form-control', 
+                                    'id' => 'email', 
+                                    'placeholder'=>'Email',
+                                    'disabled'=>'true',
+                                ])
+                        !!}
+                    </div>
+                    {!! $message !!}
+                </div>
+
+                @php
+                if (file_exists(storage_path('app/public/profilephoto/' . $user->id))) {
+                    $url = asset('storage/profilephoto/' . $user->id);
+                } else {
+                    $url = asset('assets/img/sorry-no-image-available.png');
+                }
+                @endphp
+                <div class="user-info">
+                    <div class="image">
+                        <a href="{{ $url }}" target="_blank">
+                            <img src="{{ $url }}" width="48" height="48">
+                        </a>
+                    </div>
+                </div>
 
                 <label for="foto">Foto</label>
                 <div class="form-group">

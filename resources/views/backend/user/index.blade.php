@@ -90,7 +90,7 @@
   function hapus(id) {
     swal({
       title: "Yakin Hapus?",
-      text: "Setelah dihapus data tidak dapt dikembalikan!",
+      text: "Setelah dihapus data tidak dapat dikembalikan!",
       type: "warning",
       showCancelButton: true,
       confirmButtonClass: "btn-danger",
