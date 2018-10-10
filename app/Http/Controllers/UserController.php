@@ -114,37 +114,26 @@ class UserController extends Controller
 
     public function chemail($id)
     {
-        return view('backend.user.chemail');
+        $user = DB::table('user')
+                ->where('id', $id)
+                ->first();
+
+        return view('backend.user.chemail', compact(['user']));
     }
 
-    public function doChemail(Request $request)
+    public function doChemail(Request $request, $id)
     {
         $request->validate([
-            'email' => 'required|email|unique:user,email',
+            'newemail' => 'required|email|unique:user,email',
         ]);
 
-        $data['token'] = bin2hex(random_bytes(16));
-        $data['temp_email'] = $request->email;
+        DB::table('user')->where('id', $id)->update([
+                                                        'email' => $request->newemail,
+                                                    ]);
 
-        DB::table('user')->where('id', session('id'))->update($data);
-
-        $user = DB::table('user')->where('id', session('id'))->first();
-
-        if (!Hash::check($request->oldpassword, $user->password)) {
-            return redirect()->route('chemail')->with('alert', [
-                        'title' => 'ERROR !!!',
-                        'message' => 'Password salah !!!',
-                        'class' => 'error',
-                    ]);
-        }
-
-        $html = view('template.email.gantiemail', compact('user'))->with('token', $data['token'])->with('temp_email', $data['temp_email'])->render();
-
-        $this->mail($data['temp_email'], 'Ubah email akun', $html);
-
-        return redirect()->route('chemail')->with('alert', [
+        return redirect()->route('user.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
-                        'message' => 'Silakan cek email baru untuk konfirmasi',
+                        'message' => 'Ubah Email Berhasil !!!',
                         'class' => 'success',
                     ]);
     }
