@@ -222,6 +222,21 @@ class KostController extends Controller
                     ]);        
     }
 
+    public function doDeletePhoto(Request $request)
+    {
+        $id_kos = DB::table('foto')->where('id', $request->id)->first()->id_kos;
+        
+        if (file_exists(storage_path('app/public/foto/kos/' . $request->id))) {
+            unlink(storage_path('app/public/foto/kos/' . $request->id));
+        }
+
+        return redirect()->route('kost.mediaLibrary', $id_kos)->with('alert', [
+                        'title' => 'BERHASIL !!!',
+                        'message' => 'Hapus Foto Berhasil !!!',
+                        'class' => 'success',
+                    ]); 
+    }
+
     private function checkAuthorization($id_kos, $id_user)
     {
         return DB::table('kos')

@@ -38,12 +38,13 @@ Route::post('/publicajax/kec', 'PublicAjaxController@kec')->name('publicAjax.kec
 Route::post('/publicajax/desa', 'PublicAjaxController@desa')->name('publicAjax.desa');
 Route::post('/publicajax/getdatadaerahbydesa', 'PublicAjaxController@getDataDaerahByDesa')->name('publicAjax.getDataDaerahByDesa');
 
+// kost
+Route::get('/kost/{id}/medialibrary', 'KostController@mediaLibrary')->name('kost.mediaLibrary');
+Route::put('/kost/{id}/domedialibrary', 'KostController@doMediaLibrary')->name('kost.doMediaLibrary');
+Route::get('/kost/dodeletephoto', 'KostController@doDeletePhoto')->name('kost.doDeletePhoto');
+
 //resources
 Route::resources([
 	'/user' => 'UserController',
 	'/kost' => 'KostController',
 ]);
-
-// kost
-Route::get('/kost/{id}/medialibrary', 'KostController@mediaLibrary')->name('kost.mediaLibrary');
-Route::put('/kost/{id}/domedialibrary', 'KostController@doMediaLibrary')->name('kost.doMediaLibrary');

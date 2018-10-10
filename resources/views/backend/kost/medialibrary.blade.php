@@ -25,7 +25,7 @@
 
                         {!! Form::hidden($i, $item->id) !!}
 
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-md-12">
                             @php
                             if (file_exists(storage_path('app/public/foto/kos/' . $item->id))) {
                                 $url = asset('storage/foto/kos/' . $item->id);
@@ -36,6 +36,12 @@
                             <a href="{{ $url }}" data-sub-html="{{ $item->deskripsi }}">
                                 <img class="img-responsive thumbnail" src="{{ $url }}">
                             </a>
+
+                            <div class="form-group">
+                                <button type="button" class="btn btn-xs bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="hapus('{{ $item->id }}')">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </div>
 
                             <label for="foto_{{ $i }}">Foto {{ $i }}</label>
                             <div class="form-group">
@@ -93,4 +99,23 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script type="text/javascript">
+  function hapus(id) {
+    swal({
+      title: "Yakin Hapus?",
+      text: "Setelah dihapus data tidak dapt dikembalikan!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal',
+      closeOnConfirm: false
+    }, function () {
+      window.location = "{{ route('kost.doDeletePhoto') }}?id=" + id;
+    });
+  }
+</script>
 @endsection
