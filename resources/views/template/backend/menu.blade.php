@@ -14,7 +14,7 @@
 
 @if(session('level') == 'a')
 <li>
-    <a href="aa">
+    <a href="{{ route('user.index') }}">
         <i class="material-icons">people</i>
         <span>User</span>
     </a>
