@@ -35,41 +35,41 @@ class UserController extends Controller
 
     }
 
-    public function profile()
+    public function profile($id)
     {
         $user = DB::table('user')
-                        ->where('id', session('id'))
+                        ->where('id', $id)
                         ->first();
 
-        return view('template.backend.profile', compact('user'));
+        return view('backend.user.profile', compact('user'));
     }
 
-    public function doProfile(Request $request)
+    public function doProfile(Request $request, $id)
     {
         $request->validate([
             'nama' => 'required',
             'alamat' => 'required',
             'nohp' => 'required',
+            'level' => 'required',
+            'active' => 'required',
         ]);
 
-        $user = $request->only('nama', 'alamat', 'nohp');
+        $user = $request->only('nama', 'alamat', 'nohp', 'level', 'active');
 
         DB::table('user')
-                ->where('id', session('id'))
+                ->where('id', $id)
                 ->update($user);
 
-        session($user);
-
-        return redirect()->route('profile')->with('alert', [
+        return redirect()->route('user.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
                         'message' => 'Ubah Profil Berhasil !!!',
                         'class' => 'success',
                     ]);
     }
 
-    public function chpass()
+    public function chpass($id)
     {
-        return view('template.backend.chpass');
+        return view('backend.user.chpass');
     }
 
     public function doChpass(Request $request)
@@ -98,9 +98,9 @@ class UserController extends Controller
                     ]);
     }
 
-    public function foto()
+    public function foto($id)
     {
-        return view('template.backend.foto');
+        return view('backend.user.foto');
     }
 
     public function doFoto(Request $request)
@@ -118,9 +118,9 @@ class UserController extends Controller
                     ]);
     }
 
-    public function chemail()
+    public function chemail($id)
     {
-        return view('template.backend.chemail');
+        return view('backend.user.chemail');
     }
 
     public function doChemail(Request $request)
