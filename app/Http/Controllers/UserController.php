@@ -69,33 +69,27 @@ class UserController extends Controller
 
     public function chpass($id)
     {
-        return view('backend.user.chpass');
+        $user = DB::table('user')
+                        ->where('id', $id)
+                        ->first();
+
+        return view('backend.user.chpass', compact('user'));
     }
 
-    public function doChpass(Request $request)
+    public function doChpass(Request $request, $id)
     {
         $request->validate([
             'oldpassword' => 'required',
             'newpassword' => 'required|confirmed',
         ]);
 
-        $user = DB::table('user')->where('id', session('id'))->first();
+        DB::table('user')->where('id', $id)->update(['password' => Hash::make($request->newpassword)]);
 
-        if (Hash::check($request->oldpassword, $user->password)) {
-            DB::table('user')->where('id', session('id'))->update(['password' => Hash::make($request->newpassword)]);
-
-            return redirect()->route('chpass')->with('alert', [
-                        'title' => 'BERHASIL !!!',
-                        'message' => 'Ubah Password Berhasil !!!',
-                        'class' => 'success',
-                    ]);
-        } 
-
-        return redirect()->route('chpass')->with('alert', [
-                        'title' => 'ERROR !!!',
-                        'message' => 'Password Salah !!!',
-                        'class' => 'error',
-                    ]);
+        return redirect()->route('user.index')->with('alert', [
+                    'title' => 'BERHASIL !!!',
+                    'message' => 'Ubah Password Berhasil !!!',
+                    'class' => 'success',
+                ]);
     }
 
     public function foto($id)

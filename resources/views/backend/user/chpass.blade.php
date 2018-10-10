@@ -1,8 +1,8 @@
 @extends('template.backend.template')
 
 @section('nav')
-<li><a href="{{ route('dashboard') }}">Home</a></li>
-<li><a href="{{ route('chpass') }}">Ubah Password</a></li>
+@include('backend.user.nav')
+<li><a href="{{ route('user.chpass', $user->id) }}">Ubah Password</a></li>
 @endsection
 
 @section('content')
@@ -14,28 +14,52 @@
             </h2>
         </div>
         <div class="body">
-            {!! Form::open(['route' => 'doChpass', 'method' => 'put']) !!}
+            {!! Form::model($user, ['route' => ['user.doChpass', $user->id], 'method' => 'put']) !!}
 
-                <label for="oldpassword">Password Lama</label>
+                <label for="nama">Nama</label>
                 <div class="form-group">
                     @php
-                    $class = $errors->has('oldpassword') ? 'form-line error focused' : 'form-line';
-                    $message = $errors->has('oldpassword') ? '<label class="error">' . $errors->first('oldpassword') . '</label>' : '';
+                    $class = $errors->has('nama') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('nama') ? '<label class="error">' . $errors->first('nama') . '</label>' : '';
                     @endphp
                     <div class="{{ $class }}">
                         {!!
-                            Form::password(
-                                'oldpassword', 
+                            Form::text(
+                                'nama', 
+                                null, 
                                 [
                                     'class'=> 'form-control', 
-                                    'id' => 'oldpassword', 
-                                    'placeholder'=>'Password Lama',
+                                    'id' => 'nama', 
+                                    'placeholder'=>'Nama',
+                                    'disabled'=>'true',
                                 ])
                         !!}
                     </div>
                     {!! $message !!}
                 </div>
-                
+
+                <label for="email">Email</label>
+                <div class="form-group">
+                    @php
+                    $class = $errors->has('email') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('email') ? '<label class="error">' . $errors->first('email') . '</label>' : '';
+                    @endphp
+                    <div class="{{ $class }}">
+                        {!!
+                            Form::text(
+                                'email', 
+                                null, 
+                                [
+                                    'class'=> 'form-control', 
+                                    'id' => 'email', 
+                                    'placeholder'=>'Email',
+                                    'disabled'=>'true',
+                                ])
+                        !!}
+                    </div>
+                    {!! $message !!}
+                </div>
+
                 <label for="newpassword">Password Baru</label>
                 <div class="form-group">
                     @php
@@ -77,7 +101,7 @@
                 </div>
                 
                 <button type="submit" class="btn btn-success waves-effect">SIMPAN</button>
-                <a href="{{ route('dashboard') }}" class="btn btn-primary waves-effect">BATAL</a>
+                <a href="{{ route('user.index') }}" class="btn btn-primary waves-effect">BATAL</a>
 
             {!! Form::close() !!}
         </div>
