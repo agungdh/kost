@@ -85,11 +85,19 @@ class KostController extends Controller
 
     public function show($id)
     {
+        if (!$this->checkAuthorization($id, session('id'))) {
+            return redirect()->route('kost.index');
+        }
+
         return redirect()->route('kost.edit', $id);
     }
 
     public function edit($id)
     {
+        if (!$this->checkAuthorization($id, session('id'))) {
+            return redirect()->route('kost.index');
+        }
+
         $kost = DB::table('kos')->where('id', $id)->first();
 
         $desa = DB::table('desa')->where('id', $kost->id_desa)->first();
@@ -107,6 +115,10 @@ class KostController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (!$this->checkAuthorization($id, session('id'))) {
+            return redirect()->route('kost.index');
+        }
+        
         $request->validate([
             'nama' => 'required',
             'alamat' => 'required',
@@ -138,6 +150,10 @@ class KostController extends Controller
 
     public function destroy($id)
     {
+        if (!$this->checkAuthorization($id, session('id'))) {
+            return redirect()->route('kost.index');
+        }
+        
         $foto = DB::table('foto')
                         ->where('id_kos', $id)
                         ->get();
@@ -165,6 +181,10 @@ class KostController extends Controller
 
     public function mediaLibrary($id)
     {
+        if (!$this->checkAuthorization($id, session('id'))) {
+            return redirect()->route('kost.index');
+        }
+        
         $kos = DB::table('kos')->where('id', $id)->first();
         $fotos = DB::table('foto')->where('id_kos', $id)->orderBy('id', 'asc')->get();
 
@@ -173,6 +193,10 @@ class KostController extends Controller
 
     public function doMediaLibrary(Request $request, $id)
     {
+        if (!$this->checkAuthorization($id, session('id'))) {
+            return redirect()->route('kost.index');
+        }
+        
         $rules = [];
 
         for ($i = 1; $i <= 6; $i++) { 
@@ -196,5 +220,13 @@ class KostController extends Controller
                         'message' => 'Update Media Library Berhasil !!!',
                         'class' => 'success',
                     ]);        
+    }
+
+    private function checkAuthorization($id_kos, $id_user)
+    {
+        return DB::table('kos')
+                ->where('id_user', $id_user)
+                ->where('id', $id_kos)
+                ->first();
     }
 }
