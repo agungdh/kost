@@ -24,12 +24,31 @@ class UserController extends Controller
 
     public function create()
     {
-        
+        return view('backend.user.create');
     }
 
     public function store(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email|unique:user,email',
+            'password' => 'required|confirmed',
+            'nama' => 'required',
+            'alamat' => 'required',
+            'nohp' => 'required',
+            'level' => 'required',
+            'active' => 'required',
+        ]);
 
+        $data = $request->only('email', 'nama', 'alamat', 'nohp', 'level', 'active');
+        $data['password'] = Hash::make($request->password);
+
+        DB::table('user')->insert($data);
+
+        return redirect()->route('user.index')->with('alert', [
+                        'title' => 'BERHASIL !!!',
+                        'message' => 'Tambah User Berhasil !!!',
+                        'class' => 'success',
+                    ]);
     }
 
     public function destroy($id)
