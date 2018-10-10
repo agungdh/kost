@@ -44,25 +44,25 @@
                         <td>{{ $user->active == 'y' ? 'Aktif' : 'Belum Aktif' }}</td>
                           <td style="text-align: center;">
                                                         
-                            <a href="{{ route('user.edit', $user->id) }}">
+                            <a href="{{ route('user.profile', $user->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Profil">
                                 <i class="material-icons">person</i>
                               </button>
                             </a>
 
-                            <a href="{{ route('user.edit', $user->id) }}">
+                            <a href="{{ route('user.chpass', $user->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Ubah Password">
                                 <i class="material-icons">lock</i>
                               </button>
                             </a>
 
-                            <a href="{{ route('user.edit', $user->id) }}">
+                            <a href="{{ route('user.chemail', $user->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Ubah Email">
                                 <i class="material-icons">mail</i>
                               </button>
                             </a>
 
-                            <a href="{{ route('user.edit', $user->id) }}">
+                            <a href="{{ route('user.foto', $user->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Ubah Foto">
                                 <i class="material-icons">image</i>
                               </button>

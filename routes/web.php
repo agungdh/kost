@@ -53,6 +53,9 @@ Route::get('/user/{id}/foto', 'UserController@foto')->name('user.foto');
 Route::put('/user/{id}/foto', 'UserController@doFoto')->name('user.doFoto');
 Route::get('/user/{id}/chemail', 'UserController@chemail')->name('user.chemail');
 Route::put('/user/{id}/chemail', 'UserController@doChemail')->name('user.doChemail');
+Route::get('/user/create', 'UserController@create')->name('user.create');
+Route::post('/user', 'UserController@store')->name('user.store');
+Route::post('/user/{id}', 'UserController@destroy')->name('user.destroy');
 
 // resources
 Route::resources([
