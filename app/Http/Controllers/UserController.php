@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use DB;
+use Hash;
 
 class UserController extends Controller
 {
@@ -79,7 +80,6 @@ class UserController extends Controller
     public function doChpass(Request $request, $id)
     {
         $request->validate([
-            'oldpassword' => 'required',
             'newpassword' => 'required|confirmed',
         ]);
 
