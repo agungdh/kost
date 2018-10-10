@@ -1,9 +1,9 @@
 <?php
 
-//root
+// root
 Route::get('/', 'MainController@index')->name('root');
 
-//log
+// log
 Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/login', 'AuthController@doLogin')->name('doLogin');
 Route::get('/logout', 'AuthController@doLogout')->name('doLogout');
@@ -17,10 +17,10 @@ Route::post('/forgetpassword', 'AuthController@doForgetPassword')->name('doForge
 Route::get('/forgetpasswordchpass', 'AuthController@forgetPasswordChPass')->name('forgetPasswordChPass');
 Route::post('/forgetpasswordchpass', 'AuthController@doForgetPasswordChPass')->name('doForgetPasswordChPass');
 
-//dashboard
+// dashboard
 Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
 
-//admin
+// admin
 Route::get('/profile', 'AdminController@profile')->name('profile');
 Route::put('/profile', 'AdminController@doProfile')->name('doProfile');
 Route::get('/chpass', 'AdminController@chpass')->name('chpass');
@@ -31,7 +31,7 @@ Route::get('/chemail', 'AdminController@chemail')->name('chemail');
 Route::put('/chemail', 'AdminController@doChemail')->name('doChemail');
 Route::get('/confirmchemail', 'AdminController@confirmChemail')->name('confirmChemail');
 
-//public ajaxs
+// public ajaxs
 Route::post('/publicajax/prop', 'PublicAjaxController@prop')->name('publicAjax.prop');
 Route::post('/publicajax/kab', 'PublicAjaxController@kab')->name('publicAjax.kab');
 Route::post('/publicajax/kec', 'PublicAjaxController@kec')->name('publicAjax.kec');
@@ -43,8 +43,18 @@ Route::get('/kost/{id}/medialibrary', 'KostController@mediaLibrary')->name('kost
 Route::put('/kost/{id}/domedialibrary', 'KostController@doMediaLibrary')->name('kost.doMediaLibrary');
 Route::get('/kost/dodeletephoto', 'KostController@doDeletePhoto')->name('kost.doDeletePhoto');
 
-//resources
+// user
+Route::get('/user', 'UserController@index')->name('user.index');
+Route::get('/user/{id}/profile', 'UserController@profile')->name('user.profile');
+Route::put('/user/{id}/profile', 'UserController@doProfile')->name('user.doProfile');
+Route::get('/user/{id}/chpass', 'UserController@chpass')->name('user.chpass');
+Route::put('/user/{id}/chpass', 'UserController@doChpass')->name('user.doChpass');
+Route::get('/user/{id}/foto', 'UserController@foto')->name('user.foto');
+Route::put('/user/{id}/foto', 'UserController@doFoto')->name('user.doFoto');
+Route::get('/user/{id}/chemail', 'UserController@chemail')->name('user.chemail');
+Route::put('/user/{id}/chemail', 'UserController@doChemail')->name('user.doChemail');
+
+// resources
 Route::resources([
-	'/user' => 'UserController',
 	'/kost' => 'KostController',
 ]);
