@@ -9,7 +9,7 @@ class CustomAuth
     public function handle($request, Closure $next, ...$accepts)
     {
         if (!in_array(session('level'), $accepts)) {
-            return redirect(route('login'));
+            return redirect(route('dashboard'));
         } else {
             return $next($request);
         }
