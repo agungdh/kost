@@ -18,7 +18,7 @@ Route::get('/forgetpasswordchpass', 'AuthController@forgetPasswordChPass')->name
 Route::post('/forgetpasswordchpass', 'AuthController@doForgetPasswordChPass')->name('doForgetPasswordChPass');
 
 // dashboard
-Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
+Route::get('/dashboard', 'MainController@dashboard')->name('dashboard');
 
 // admin
 Route::get('/profile', 'AdminController@profile')->name('profile');
@@ -56,6 +56,12 @@ Route::put('/user/{id}/chemail', 'UserController@doChemail')->name('user.doChema
 Route::get('/user/create', 'UserController@create')->name('user.create');
 Route::post('/user', 'UserController@store')->name('user.store');
 Route::delete('/user/{id}', 'UserController@destroy')->name('user.destroy');
+
+Route::get('/kos', 'KosController@index')->name('kos.index');
+Route::get('/kos/{id}/medialibrary', 'KosController@mediaLibrary')->name('kos.mediaLibrary');
+Route::get('/kos/{id}/edit', 'KosController@edit')->name('kos.edit');
+Route::put('/kos/{id}', 'KosController@update')->name('kos.update');
+Route::delete('/kos/{id}', 'KosController@destroy')->name('kos.destroy');
 
 // resources
 Route::resources([
