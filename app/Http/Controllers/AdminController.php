@@ -18,11 +18,6 @@ class AdminController extends Controller
 		$this->middleware('CustomAuth:a,p');
 	}
 
-	public function dashboard()
-	{   
-        return view('backend.dashboard');
-    }
-
     public function profile()
     {
         $user = DB::table('user')

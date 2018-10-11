@@ -11,4 +11,13 @@ class MainController extends Controller
     	return view('frontend.dashboard');	
     }
 
+	public function dashboard()
+	{   
+		if (!in_array(session('level'), ['a', 'p'])) {
+            return redirect(route('login'));
+        } else {
+        	return view('backend.dashboard');
+        }
+    }
+
 }
