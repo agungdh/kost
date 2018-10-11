@@ -34,6 +34,7 @@
                           <th style="text-align: center;">Bulanan</th>
                           <th style="text-align: center;">Tahunan</th>
                           <th style="text-align: center;">Kamar Tersedia</th>
+                          <th style="text-align: center;">Deskripsi</th>
                           <th style="text-align: center;">Proses</th>
                       </tr>
                   </thead>
@@ -41,11 +42,20 @@
                     @foreach($kosts as $kost)
                       <tr>
                         <td>{{ $kost->nama }}</td>
+                        @php
+                        if($kost->verified_alamat == 'y') {
+                          $title = 'Verified';
+                          $icon = '&#10003;';
+                        } else {
+                          $title = 'Unverified';
+                          $icon = '?';
+                        }
+                        @endphp
+                        <td>{{ $kost->alamat }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
                         <td>{{ ucwords(strtolower($kost->nama_prop)) }}</td>
                         <td>{{ ucwords(strtolower($kost->nama_kab)) }}</td>
                         <td>{{ ucwords(strtolower($kost->nama_kec)) }}</td>
                         <td>{{ ucwords(strtolower($kost->nama_desa)) }}</td>
-                        <td>{{ $kost->alamat }}</td>
                         @php
                         switch ($kost->tipe) {
                           case 'l':
@@ -69,6 +79,7 @@
                         <td>{{ $kost->bulanan != 0 ? $pustaka->rupiah($kost->bulanan) : '-' }}</td>
                         <td>{{ $kost->tahunan != 0 ? $pustaka->rupiah($kost->tahunan) : '-' }}</td>
                         <td>{{ $kost->kamartersedia }}</td>
+                        <td>{{ $kost->deskripsi }}</td>
                           <td style="text-align: center;">
                             
                             <a href="{{ route('kost.mediaLibrary', $kost->id) }}">
