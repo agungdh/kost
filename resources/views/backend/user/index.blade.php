@@ -39,7 +39,16 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->nama }}</td>
                         <td>{{ $user->alamat }}</td>
-                        <td>{{ $user->nohp }}</td>
+                        @php
+                        if($user->verified_nohp == 'y') {
+                          $title = 'Verified';
+                          $icon = '&#10003;';
+                        } else {
+                          $title = 'Unverified';
+                          $icon = '?';
+                        }
+                        @endphp
+                        <td>{{ $user->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
                         <td>{{ $user->level == 'a' ? 'Admin' : 'Pemilik Kos' }}</td>
                         <td>{{ $user->active == 'y' ? 'Aktif' : 'Belum Aktif' }}</td>
                           <td style="text-align: center;">

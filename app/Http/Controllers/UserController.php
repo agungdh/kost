@@ -99,9 +99,10 @@ class UserController extends Controller
             'nohp' => 'required',
             'level' => 'required',
             'active' => 'required',
+            'verified_nohp' => 'required',
         ]);
 
-        $user = $request->only('nama', 'alamat', 'nohp', 'level', 'active');
+        $user = $request->only('nama', 'alamat', 'nohp', 'level', 'active', 'verified_nohp');
 
         DB::table('user')
                 ->where('id', $id)

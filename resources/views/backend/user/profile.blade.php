@@ -79,6 +79,31 @@
                     {!! $message !!}
                 </div>
 
+                <label for="verified_nohp">Verifikasi No HP</label>
+                <div class="form-group">
+                    @php
+                    $class = $errors->has('verified_nohp') ? 'form-line error focused' : 'form-line';
+                    $message = $errors->has('verified_nohp') ? '<label class="error">' . $errors->first('verified_nohp') . '</label>' : '';
+                    @endphp
+                    <div class="{{ $class }}">
+                        {!!
+                          Form::select(
+                            'verified_nohp',
+                            [
+                                'y' => 'Terverifikasi',
+                                'n' => 'Belum Terverifikasi',
+                            ],
+                            null,
+                            [
+                              'class'=> 'form-control',
+                              'id'=>'verified_nohp',
+                              'placeholder' => 'Pilih Verifikasi No HP',
+                            ])
+                        !!}
+                    </div>
+                    {!! $message !!}
+                </div>
+                
                 <label for="level">Level</label>
                 <div class="form-group">
                     @php
@@ -136,4 +161,12 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script type="text/javascript">
+    $("#verified_nohp").select2();
+    $("#level").select2();
+    $("#active").select2();
+</script>
 @endsection
