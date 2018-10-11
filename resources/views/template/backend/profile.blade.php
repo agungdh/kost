@@ -58,7 +58,16 @@
                     {!! $message !!}
                 </div>
                 
-                <label for="nohp">No HP</label>
+                @php
+                if($user->verified_nohp == 'y') {
+                  $title = 'Verified';
+                  $icon = '&#10003;';
+                } else {
+                  $title = 'Unverified';
+                  $icon = '?';
+                }
+                @endphp
+                <label for="nohp">No HP<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></label>
                 <div class="form-group">
                     @php
                     $class = $errors->has('nohp') ? 'form-line error focused' : 'form-line';

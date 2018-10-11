@@ -42,6 +42,12 @@ class AdminController extends Controller
 
         $user = $request->only('nama', 'alamat', 'nohp');
 
+        $oldUser = DB::table('user')->where('id', session('id'))->first();
+
+        if($oldUser->nohp != $user['nohp']) {
+            $user['verified_nohp'] = 'n';
+        }
+
         DB::table('user')
                 ->where('id', session('id'))
                 ->update($user);
