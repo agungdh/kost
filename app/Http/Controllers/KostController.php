@@ -14,7 +14,7 @@ class KostController extends Controller
 
     public function __construct()
     {
-        $this->middleware('CustomAuth:a,p');
+        $this->middleware('CustomAuth:p');
 
         $this->pustaka = new Pustaka();
     }
