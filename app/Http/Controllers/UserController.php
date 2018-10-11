@@ -41,6 +41,7 @@ class UserController extends Controller
 
         $data = $request->only('email', 'nama', 'alamat', 'nohp', 'level', 'active');
         $data['password'] = Hash::make($request->password);
+        $data['verified_nohp'] = 'y';
 
         DB::table('user')->insert($data);
 
