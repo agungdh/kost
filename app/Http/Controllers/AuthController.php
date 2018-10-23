@@ -9,6 +9,8 @@ use Hash;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+use Mailgun\Mailgun;
+
 class AuthController extends Controller
 {
     public function login()
@@ -270,6 +272,8 @@ class AuthController extends Controller
             $this->sendMail($toEmail, $subject, $body, $html);
         } elseif ($config->type == 'smtp') {
             $this->sendSMTPMail($toEmail, $subject, $body, $html);
+        } elseif ($config->type == 'mailgun') {
+            $this->mailgun($toEmail, $subject, $body);
         } else {
             echo 'Fatal Error !!!';
             die;
@@ -354,4 +358,17 @@ class AuthController extends Controller
         return $data;
     }
 
+    public function mailgun($toEmail, $subject, $body)
+    {
+        $mgClient = new Mailgun(env('MAILGUN_API_KEY'));
+        $domain = "mailgun.server1agungdh.site";
+
+        $result = $mgClient->sendMessage($domain, [
+            'from'    => 'NO REPLY <noreply@mailgun.server1agungdh.site>',
+            'to'      => $toEmail,
+            'subject' => $subject,
+            'html'    => $body
+        ]);
+
+    }
 }
