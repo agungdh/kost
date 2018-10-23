@@ -81,6 +81,7 @@ class AuthController extends Controller
         $data['level'] = 'p';
         $data['active'] = 'n';
         $data['token'] = bin2hex(random_bytes(16));
+        $data['verified_nohp'] = 'n';
 
         $insertId = DB::table('user')
             ->insertGetId($data);
