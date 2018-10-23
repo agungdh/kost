@@ -164,31 +164,6 @@
                     {!! $message !!}
                 </div>
                 
-                <label for="active">Status</label>
-                <div class="form-group">
-                    @php
-                    $class = $errors->has('active') ? 'form-line error focused' : 'form-line';
-                    $message = $errors->has('active') ? '<label class="error">' . $errors->first('active') . '</label>' : '';
-                    @endphp
-                    <div class="{{ $class }}">
-                        {!!
-                          Form::select(
-                            'active',
-                            [
-                                'y' => 'Aktif',
-                                'n' => 'Belum Aktif',
-                            ],
-                            null,
-                            [
-                              'class'=> 'form-control',
-                              'id'=>'active',
-                              'placeholder' => 'Pilih Status',
-                            ])
-                        !!}
-                    </div>
-                    {!! $message !!}
-                </div>
-                
                 <button type="submit" class="btn btn-success waves-effect">SIMPAN</button>
                 <a href="{{ route('user.index') }}" class="btn btn-primary waves-effect">BATAL</a>
 
