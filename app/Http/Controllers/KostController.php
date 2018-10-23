@@ -52,6 +52,7 @@ class KostController extends Controller
         $data['id_user'] = session('id');
         $data['latitude'] = $request->lat;
         $data['longitude'] = $request->lng;
+        $data['verified_alamat'] = 'n';
 
         $insertId = DB::table('kos')->insertGetId($data);
 
