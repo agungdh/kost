@@ -40,8 +40,6 @@
 {{-- onload --}}
 <script type="text/javascript">
 $(function() {
-  getLocation();
-
   initDaerahEdit();
 });  
 </script>
