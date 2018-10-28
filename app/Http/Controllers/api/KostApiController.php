@@ -13,11 +13,13 @@ class KostApiController extends \App\Http\Controllers\Controller
         
     }
 
-    public function index()
+    public function index(Request $request)
     {
     	$kosts = DB::table('v_kos')->get();
+        $requestData = $request->all();
+        $requestHeader = [$request->header('username'), $request->header('password')];
 
-        return json_encode($kosts);
+        return json_encode([$kosts, $requestData, $requestHeader]);
     }
 
 }
