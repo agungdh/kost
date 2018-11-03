@@ -1,0 +1,1 @@
+[16-Oct-2018 01:46:58 UTC] PHP Fatal error:  Out of memory (allocated 428875776) (tried to allocate 4096 bytes) in phar:///opt/cpanel/composer/bin/composer/src/Composer/DependencyResolver/RuleWatchGraph.php on line 52

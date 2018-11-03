@@ -52,6 +52,7 @@ class KostController extends Controller
         $data['id_user'] = session('id');
         $data['latitude'] = $request->lat;
         $data['longitude'] = $request->lng;
+        $data['verified_alamat'] = 'n';
 
         $insertId = DB::table('kos')->insertGetId($data);
 
@@ -110,6 +111,9 @@ class KostController extends Controller
         $kost->kec = $kec->id;
         $kost->desa = $desa->id;
 
+        $kost->lat = $kost->latitude;
+        $kost->lng = $kost->longitude;
+
         return view('backend.kost.edit', compact('kost'));
     }
 
@@ -138,6 +142,16 @@ class KostController extends Controller
         $data['id_user'] = session('id');
         $data['latitude'] = $request->lat;
         $data['longitude'] = $request->lng;
+
+        $oldKost = DB::table('kos')->where('id', $id)->first();
+
+        if(    $oldKost->alamat != $data['alamat']
+            || $oldKost->id_desa != $data['id_desa']
+            || $oldKost->latitude !== $data['latitude']
+            || $oldKost->longitude !== $data['longitude']) 
+        {
+            $data['verified_alamat'] = 'n';
+        }
 
         DB::table('kos')->where('id', $id)->update($data);
 

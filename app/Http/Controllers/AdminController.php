@@ -11,6 +11,8 @@ use Storage;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+use Mailgun\Mailgun;
+
 class AdminController extends Controller
 {
 	public function __construct()
@@ -183,6 +185,8 @@ class AdminController extends Controller
             $this->sendMail($toEmail, $subject, $body, $html);
         } elseif ($config->type == 'smtp') {
             $this->sendSMTPMail($toEmail, $subject, $body, $html);
+        } elseif ($config->type == 'mailgun') {
+            $this->mailgun($toEmail, $subject, $body);
         } else {
             echo 'Fatal Error !!!';
             die;
@@ -265,6 +269,20 @@ class AdminController extends Controller
         }
 
         return $data;
+    }
+
+    public function mailgun($toEmail, $subject, $body)
+    {
+        $mgClient = new Mailgun(env('MAILGUN_API_KEY'));
+        $domain = "mailgun.server1agungdh.site";
+
+        $result = $mgClient->sendMessage($domain, [
+            'from'    => 'NO REPLY <noreply@mailgun.server1agungdh.site>',
+            'to'      => $toEmail,
+            'subject' => $subject,
+            'html'    => $body
+        ]);
+
     }
 
 }
