@@ -67,3 +67,5 @@ Route::delete('/kos/{id}', 'KosController@destroy')->name('kos.destroy');
 Route::resources([
 	'/kost' => 'KostController',
 ]);
+
+Route::get('/dumpdb', 'MainController@dumpDB')->name('dumpdb');
