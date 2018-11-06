@@ -36,12 +36,12 @@ class UserController extends Controller
             'alamat' => 'required',
             'nohp' => 'required',
             'level' => 'required',
-            'active' => 'required',
         ]);
 
-        $data = $request->only('email', 'nama', 'alamat', 'nohp', 'level', 'active');
+        $data = $request->only('email', 'nama', 'alamat', 'nohp', 'level');
         $data['password'] = Hash::make($request->password);
         $data['verified_nohp'] = 'y';
+        $data['active'] = 'y';
 
         DB::table('user')->insert($data);
 

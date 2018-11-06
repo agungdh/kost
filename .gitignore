@@ -18,3 +18,7 @@ private/config/smtpemail\.json
 sftp-config\.json
 
 private/config/email\.json
+
+private/config/emailprovider\.json
+
+sftp-config\.json\.bak
