@@ -22,3 +22,5 @@ private/config/email\.json
 private/config/emailprovider\.json
 
 sftp-config\.json\.bak
+
+*error_log
