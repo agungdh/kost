@@ -68,4 +68,8 @@ Route::resources([
 	'/kost' => 'KostController',
 ]);
 
+// dump db
 Route::get('/dumpdb', 'MainController@dumpDB')->name('dumpdb');
+
+// dummy
+Route::any('/dummy/testxhr', 'DummyController@testxhr')->name('dummy.testxhr');
