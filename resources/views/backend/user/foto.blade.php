@@ -96,7 +96,7 @@
                 </div>
                  
                 <button type="submit" class="btn btn-success waves-effect">SIMPAN</button>
-                <a href="{{ route('dashboard') }}" class="btn btn-primary waves-effect">BATAL</a>
+                <a href="{{ route('user.index') }}" class="btn btn-primary waves-effect">BATAL</a>
 
             {!! Form::close() !!}
         </div>

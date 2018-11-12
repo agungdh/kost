@@ -69,6 +69,7 @@ class AuthController extends Controller
     public function doRegister(Request $request)
     {
     	$request->validate([
+            'tipe' => 'required',
             'email' => 'required|unique:user,email|email',
             'password' => 'required|confirmed',
             'nama' => 'required',
@@ -77,6 +78,7 @@ class AuthController extends Controller
         ]);
 
         $data = $request->only('email','password','nama','alamat','nohp');
+        $data['level'] = $request->tipe;
         $data['password'] = Hash::make($data['password']);
         $data['level'] = 'p';
         $data['active'] = 'n';

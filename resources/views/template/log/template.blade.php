@@ -27,6 +27,8 @@
     <!-- Sweetalert Css -->
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 
+    <link href="{{ asset('assets') }}/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+    
     @yield('css')
 </head>
 
@@ -59,6 +61,8 @@
     
     <!-- SweetAlert Plugin Js -->
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <script src="{{ asset('assets') }}/bower_components/select2/dist/js/select2.min.js"></script>
 
     @yield('js')
 </body>

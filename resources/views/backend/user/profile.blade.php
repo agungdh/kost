@@ -104,31 +104,6 @@
                     {!! $message !!}
                 </div>
                 
-                <label for="level">Level</label>
-                <div class="form-group">
-                    @php
-                    $class = $errors->has('level') ? 'form-line error focused' : 'form-line';
-                    $message = $errors->has('level') ? '<label class="error">' . $errors->first('level') . '</label>' : '';
-                    @endphp
-                    <div class="{{ $class }}">
-                        {!!
-                          Form::select(
-                            'level',
-                            [
-                                'a' => 'Admin',
-                                'p' => 'Pemilik Kos',
-                            ],
-                            null,
-                            [
-                              'class'=> 'form-control',
-                              'id'=>'level',
-                              'placeholder' => 'Pilih Level',
-                            ])
-                        !!}
-                    </div>
-                    {!! $message !!}
-                </div>
-                
                 <label for="active">Status</label>
                 <div class="form-group">
                     @php

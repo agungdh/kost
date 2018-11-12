@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1	Database: serverag_kost
 -- ------------------------------------------------------
 -- Server version 	10.2.18-MariaDB-cll-lve
--- Date: Mon, 12 Nov 2018 02:56:54 +0000
+-- Date: Mon, 12 Nov 2018 14:36:42 +0000
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -57,7 +57,7 @@ CREATE TABLE `foto` (
   PRIMARY KEY (`id`),
   KEY `id_kos` (`id_kos`),
   CONSTRAINT `foto_ibfk_1` FOREIGN KEY (`id_kos`) REFERENCES `kos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `foto` (
 LOCK TABLES `foto` WRITE;
 /*!40000 ALTER TABLE `foto` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `foto` VALUES (19,4,NULL),(20,4,NULL),(21,4,NULL),(22,4,NULL),(23,4,NULL),(24,4,NULL);
+INSERT INTO `foto` VALUES (31,6,NULL),(32,6,NULL),(33,6,NULL),(34,6,NULL),(35,6,NULL),(36,6,NULL);
 /*!40000 ALTER TABLE `foto` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -147,7 +147,7 @@ CREATE TABLE `kos` (
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`),
   CONSTRAINT `kos_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +157,7 @@ CREATE TABLE `kos` (
 LOCK TABLES `kos` WRITE;
 /*!40000 ALTER TABLE `kos` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `kos` VALUES (4,36,'Kost Keren 12345','Bandar Lampung 123','1403010004','lp',500000,5000000,'Enak banget',30,'-5.391155221','105.2622847999999911111','n');
+INSERT INTO `kos` VALUES (6,38,'Kost Manjiw','Nunggalrejo, Punggur, Lampung Tengah','1302012004','l',100000,1000000,'Kost Manjiw',20,'-5.3927936','105.263104','n');
 /*!40000 ALTER TABLE `kos` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -200,14 +200,14 @@ CREATE TABLE `user` (
   `nama` varchar(191) DEFAULT NULL,
   `alamat` varchar(191) DEFAULT NULL,
   `nohp` varchar(191) DEFAULT NULL,
-  `level` enum('a','p') NOT NULL,
+  `level` enum('a','p','u') NOT NULL,
   `active` enum('y','n') NOT NULL,
   `token` varchar(32) DEFAULT NULL,
   `temp_email` varchar(191) DEFAULT NULL,
   `verified_nohp` enum('y','n') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +217,7 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `user` VALUES (2,'admin@email.com','$2y$10$WwAZ2IliBuDLWwX1JiwcWuBe5c8t.KckyQf6siSS5Ea1cKRwZUe2K','Administrator','Someplace','1234567890','a','y',NULL,NULL,'y'),(36,'agungdh@live.com','$2y$10$QeQKE0hEKbPbI.XGhLEm5OLuEH49M.kNwMNGTXKQ8H6pd8/2QNzqm','Agung Sapto Margono Dh','Nunggalrejo, Punggur, Lampung Tengah','085368530235','p','y',NULL,NULL,'n'),(37,'anggia5197@gmail.com','$2y$10$eEzTiQCDlXnM.k5YS1S7Vut9Niety1c5JHAedgTy6U5MPcUssU30u','Putri Anggiria','Rajabasa','0895357754418','p','y',NULL,NULL,'n');
+INSERT INTO `user` VALUES (2,'admin@email.com','$2y$10$WwAZ2IliBuDLWwX1JiwcWuBe5c8t.KckyQf6siSS5Ea1cKRwZUe2K','Administrator','Someplace','1234567890','a','y',NULL,NULL,'y'),(37,'anggia5197@gmail.com','$2y$10$eEzTiQCDlXnM.k5YS1S7Vut9Niety1c5JHAedgTy6U5MPcUssU30u','Putri Anggiria','Rajabasa','0895357754418','p','y',NULL,NULL,'n'),(38,'agungdh@live.com','$2y$10$m.v.l6OfSEPNEIX9Cnsfb.BXFf9iMrW0gXdar066LyU6KW3HgGLuy','Agung Live','NGR','085323423','p','y',NULL,NULL,'y'),(39,'agunggantengdh@gmail.com','$2y$10$4t/1pEPzqo3F7i5WM0Rm0.YgtmJ5uPUFjpnPNNXtVkyUATYrOgoUe','Agung Gmail','NGR City','0123123','p','y',NULL,NULL,'n');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -266,7 +266,7 @@ CREATE TABLE IF NOT EXISTS `v_kos` (
 ,`nama_user` varchar(191)
 ,`alamat_user` varchar(191)
 ,`nohp` varchar(191)
-,`level` enum('a','p')
+,`level` enum('a','p','u')
 ,`active` enum('y','n')
 ,`token` varchar(32)
 ,`temp_email` varchar(191)
@@ -301,4 +301,4 @@ DROP TABLE IF EXISTS `v_kos`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Mon, 12 Nov 2018 02:56:55 +0000
+-- Dump completed on: Mon, 12 Nov 2018 14:36:44 +0000

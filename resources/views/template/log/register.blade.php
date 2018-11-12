@@ -9,6 +9,33 @@
             <i class="material-icons">email</i>
         </span>
         @php
+        $class = $errors->has('tipe') ? 'form-line error focused' : 'form-line';
+        $message = $errors->has('tipe') ? '<label class="error">' . $errors->first('tipe') . '</label>' : '';
+        @endphp
+        <div class="{{ $class }}">
+            {!!
+                Form::select(
+                    'tipe', 
+                    [
+                        'p' => 'Pemilik Kos',
+                        'u' => 'Pencari Kos',
+                    ],
+                    session('tipe'), 
+                    [
+                        'class'=> 'form-control', 
+                        'id' => 'tipe', 
+                        'placeholder'=>'Tipe',
+                    ])
+            !!}
+        </div>
+        {!! $message !!}
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-addon">
+            <i class="material-icons">email</i>
+        </span>
+        @php
         $class = $errors->has('email') ? 'form-line error focused' : 'form-line';
         $message = $errors->has('email') ? '<label class="error">' . $errors->first('email') . '</label>' : '';
         @endphp
@@ -163,4 +190,10 @@
     swal('{{ session('alert')['title'] }}', '{{ session('alert')['message'] }}', '{{ session('alert')['class'] }}');
 </script>
 @endif
+
+<script type="text/javascript">
+    $("#tipe").select2();
+</script>
+
+
 @endsection
