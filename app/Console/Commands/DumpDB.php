@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Ifsnop\Mysqldump as IMysqldump;
 
 class DumpDB extends Command
 {
@@ -37,10 +38,32 @@ class DumpDB extends Command
      */
     public function handle()
     {
-        $this->line("Some text");
-        $this->info("Hey, watch this !");
-        $this->comment("Just a comment passing by");
-        $this->question("Why did you do that?");
-        $this->error("Ops, that should not happen.");
+        $this->comment("Preparing ...\n");
+        $database = env('DB_DATABASE');
+        $user = env('DB_USERNAME');
+        $pass = env('DB_PASSWORD');
+        $host = env('DB_HOST');
+     
+        $this->info(
+            "Host\t\t: " . $host . "\n" . 
+            "Database\t: " . $database . "\n" . 
+            "Username\t: " . $user . "\n" . 
+            "Password\t: " . $pass . "\n"
+        );
+
+        $path = base_path('private/db/dump.sql');
+        $this->comment("Set dumping path to " . $path . "\n");
+        
+        $this->comment("Dumping the database\n");
+        try {
+            $dump = new IMysqldump\Mysqldump("mysql:host={$host};dbname={$database}", "{$user}", "{$pass}");
+
+            $dump->start($path);
+
+            $this->info("Done ...");
+        } catch (\Exception $e) {
+            $this->comment("An error occurred !!!");
+            $this->error($e->getMessage());
+        }
     }
 }
