@@ -19,7 +19,7 @@ class DummyController extends Controller
         $obj = new \stdClass();
 
         $obj->httpMethod = $this->httpMethod;
-        $obj->request = $request->except('_method', '_token');
+        $obj->request = $request->all();
 
         echo json_encode($obj);
     }
