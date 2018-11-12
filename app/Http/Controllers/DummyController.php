@@ -14,13 +14,18 @@ class DummyController extends Controller
         $this->httpMethod = $request->method();
     }
 
-    public function testxhr(Request $request)
+    public function testXhr(Request $request)
     {
-    	$obj = new \stdClass();
+        $obj = new \stdClass();
 
         $obj->httpMethod = $this->httpMethod;
-        $obj->request = $request->all();
+        $obj->request = $request->except('_method', '_token');
 
         echo json_encode($obj);
+    }
+
+    public function clientTestXhr(Request $request)
+    {
+        return view('dummy.clienttestxhr');
     }
 }

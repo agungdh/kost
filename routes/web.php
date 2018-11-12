@@ -72,4 +72,5 @@ Route::resources([
 Route::get('/dumpdb', 'MainController@dumpDB')->name('dumpdb');
 
 // dummy
-Route::any('/dummy/testxhr', 'DummyController@testxhr')->name('dummy.testxhr');
+Route::any('/dummy/testxhr', 'DummyController@testXhr')->name('dummy.testXhr');
+Route::any('/dummy/clienttestxhr', 'DummyController@clientTestXhr')->name('dummy.clientTestXhr');
