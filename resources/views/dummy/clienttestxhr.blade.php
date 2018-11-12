@@ -9,7 +9,7 @@
 
 <script src="{{ asset('assets') }}/axios/axios.min.js"></script>
 <script>
-axios.post("{{ route('dummy.testXhr') }}", {
+axios.patch("{{ route('dummy.testXhr') }}", {
 	nama : 'AgungDH',
 	nama2 : 'AgungDH2',
 	nama3 : 'AgungDH3',
