@@ -109,6 +109,7 @@
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
+            @if(session('login') == true)
             <div class="user-info">
                 <div class="image">
                     @php
@@ -136,12 +137,30 @@
                     </div>
                 </div>
             </div>
+            @endif
             <!-- #User Info -->
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
                     <li class="active"></li>
+                    <li>
+                        <a href="{{ route('root') }}">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('dashboard') }}">
+                            <i class="material-icons">dashboard</i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    @if(isset($frontend))
+                    @include('template.frontend.menu')
+                    @else
                     @include('template.backend.menu')
+                    @endif
                 </ul>
             </div>
             <!-- #Menu -->

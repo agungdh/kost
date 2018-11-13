@@ -1,10 +1,3 @@
-<li>
-    <a href="{{ route('dashboard') }}">
-        <i class="material-icons">home</i>
-        <span>Dashboard</span>
-    </a>
-</li>
-
 @if(session('level') == 'p')
 <li>
     <a href="{{ route('kost.index') }}">

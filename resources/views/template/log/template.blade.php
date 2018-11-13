@@ -35,7 +35,7 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);"><b>{{ $judul }}</b></a>
+            <a href="{{ route('root') }}"><b>{{ $judul }}</b></a>
         </div>
         <div class="card">
             <div class="body">
