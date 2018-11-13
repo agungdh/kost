@@ -16,6 +16,12 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share([
             'judul' => 'Aplikasi Gak Tau',    
+            'bank' => [
+                'namaBank' => 'MBOH',
+                'kodeBank' => '020',
+                'noRek' => '12345678',
+                'atasNama' => 'Agung DH',
+            ],
         ]);
     }
 

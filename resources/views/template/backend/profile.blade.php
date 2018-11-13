@@ -1,7 +1,7 @@
 @extends('template.backend.template')
 
 @section('nav')
-<li><a href="{{ route('dashboard') }}">Home</a></li>
+<li><a href="{{ route('dashboard') }}">Dashboard</a></li>
 <li><a href="{{ route('profile') }}">Profil</a></li>
 @endsection
 

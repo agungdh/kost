@@ -45,4 +45,19 @@ class MainController extends Controller
         }
     }
 
+    public function tentangKami()
+    {
+        return view('template.tentangkami');  
+    }
+
+    public function hubungiKami()
+    {
+        return view('template.hubungikami');  
+    }
+
+    public function metodePembayaran()
+    {
+        return view('template.metodepembayaran');  
+    }
+
 }

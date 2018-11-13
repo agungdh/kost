@@ -142,7 +142,9 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
+                    
                     <li class="active"></li>
+                    
                     <li>
                         <a href="{{ route('root') }}">
                             <i class="material-icons">home</i>
@@ -156,11 +158,32 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    @if(isset($frontend))
-                    @include('template.frontend.menu')
-                    @else
+                    
+                    @if(session('login') == true)
                     @include('template.backend.menu')
                     @endif
+
+                    <li>
+                        <a href="{{ route('metodePembayaran') }}">
+                            <i class="material-icons">home</i>
+                            <span>Metode Pembayaran</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('hubungiKami') }}">
+                            <i class="material-icons">home</i>
+                            <span>Hubungi Kami</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('tentangKami') }}">
+                            <i class="material-icons">home</i>
+                            <span>Tentang Kami</span>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
             <!-- #Menu -->

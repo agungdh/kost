@@ -63,6 +63,11 @@ Route::get('/kos/{id}/edit', 'KosController@edit')->name('kos.edit');
 Route::put('/kos/{id}', 'KosController@update')->name('kos.update');
 Route::delete('/kos/{id}', 'KosController@destroy')->name('kos.destroy');
 
+// tambahan
+Route::get('/tentangkami', 'MainController@tentangKami')->name('tentangKami');
+Route::get('/hubungikami', 'MainController@hubungiKami')->name('hubungiKami');
+Route::get('/metodepembayaran', 'MainController@metodePembayaran')->name('metodePembayaran');
+
 // resources
 Route::resources([
 	'/kost' => 'KostController',
