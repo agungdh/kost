@@ -1,4 +1,6 @@
+@if($hasLabel)
 {!! Form::label($name, $title) !!}
+@endif
 <div class="form-group">
     @php
     $class = $errors->has($name) ? 'form-line error focused' : 'form-line';

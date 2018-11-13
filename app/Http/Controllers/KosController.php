@@ -72,7 +72,6 @@ class KosController extends Controller
 
         $data = $request->only('nama', 'alamat', 'tipe', 'bulanan', 'tahunan', 'kamartersedia', 'deskripsi');
         $data['id_desa'] = $request->desa;
-        $data['id_user'] = session('id');
         $data['latitude'] = $request->lat;
         $data['longitude'] = $request->lng;
 

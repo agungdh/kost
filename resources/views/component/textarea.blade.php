@@ -8,7 +8,7 @@
     @endphp
     <div class="{{ $class }}">
         {!!
-          Form::text(
+          Form::textarea(
             $name,
             $value,
             array_merge(
@@ -16,6 +16,7 @@
                 'class'=> 'form-control',
                 'id'=>$name,
                 'placeholder' => $title,
+                'style'=>'resize: none;',
               ],
               $attributes
             )
