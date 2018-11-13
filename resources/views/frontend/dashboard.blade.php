@@ -9,7 +9,7 @@
   <div class="card">
       <div class="header">
           <h2>
-              HUBUNGI KAMI
+              HOME
           </h2>
       </div>
       <div class="body">
