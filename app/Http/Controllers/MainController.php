@@ -10,9 +10,11 @@ use Apfelbox\FileDownload\FileDownload;
 
 class MainController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-    	return view('frontend.dashboard');	
+        $inputs = $request->all();
+
+    	return view('frontend.dashboard', compact('inputs'));	
     }
 
 	public function dashboard()
