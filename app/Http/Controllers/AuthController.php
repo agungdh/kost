@@ -80,7 +80,6 @@ class AuthController extends Controller
         $data = $request->only('email','password','nama','alamat','nohp');
         $data['level'] = $request->tipe;
         $data['password'] = Hash::make($data['password']);
-        $data['level'] = 'p';
         $data['active'] = 'n';
         $data['token'] = bin2hex(random_bytes(16));
         $data['verified_nohp'] = 'n';

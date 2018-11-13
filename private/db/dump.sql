@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1	Database: serverag_kost
 -- ------------------------------------------------------
 -- Server version 	10.2.18-MariaDB-cll-lve
--- Date: Mon, 12 Nov 2018 14:36:42 +0000
+-- Date: Tue, 13 Nov 2018 13:53:58 +0000
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -57,7 +57,7 @@ CREATE TABLE `foto` (
   PRIMARY KEY (`id`),
   KEY `id_kos` (`id_kos`),
   CONSTRAINT `foto_ibfk_1` FOREIGN KEY (`id_kos`) REFERENCES `kos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `foto` (
 LOCK TABLES `foto` WRITE;
 /*!40000 ALTER TABLE `foto` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `foto` VALUES (31,6,NULL),(32,6,NULL),(33,6,NULL),(34,6,NULL),(35,6,NULL),(36,6,NULL);
+INSERT INTO `foto` VALUES (37,7,NULL),(38,7,NULL),(39,7,NULL),(40,7,NULL),(41,7,NULL),(42,7,NULL);
 /*!40000 ALTER TABLE `foto` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -147,7 +147,7 @@ CREATE TABLE `kos` (
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`),
   CONSTRAINT `kos_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +157,7 @@ CREATE TABLE `kos` (
 LOCK TABLES `kos` WRITE;
 /*!40000 ALTER TABLE `kos` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `kos` VALUES (6,38,'Kost Manjiw','Nunggalrejo, Punggur, Lampung Tengah','1302012004','l',100000,1000000,'Kost Manjiw',20,'-5.3927936','105.263104','n');
+INSERT INTO `kos` VALUES (7,2,'Kost Keren 12345 6','NGRs 7','1102011003','p',2000001,10000002,'Kost Manjiw 4',203,'-5.39688968','105.26228479','y');
 /*!40000 ALTER TABLE `kos` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -207,7 +207,7 @@ CREATE TABLE `user` (
   `verified_nohp` enum('y','n') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +217,7 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `user` VALUES (2,'admin@email.com','$2y$10$WwAZ2IliBuDLWwX1JiwcWuBe5c8t.KckyQf6siSS5Ea1cKRwZUe2K','Administrator','Someplace','1234567890','a','y',NULL,NULL,'y'),(37,'anggia5197@gmail.com','$2y$10$eEzTiQCDlXnM.k5YS1S7Vut9Niety1c5JHAedgTy6U5MPcUssU30u','Putri Anggiria','Rajabasa','0895357754418','p','y',NULL,NULL,'n'),(38,'agungdh@live.com','$2y$10$m.v.l6OfSEPNEIX9Cnsfb.BXFf9iMrW0gXdar066LyU6KW3HgGLuy','Agung Live','NGR','085323423','p','y',NULL,NULL,'y'),(39,'agunggantengdh@gmail.com','$2y$10$4t/1pEPzqo3F7i5WM0Rm0.YgtmJ5uPUFjpnPNNXtVkyUATYrOgoUe','Agung Gmail','NGR City','0123123','p','y',NULL,NULL,'n');
+INSERT INTO `user` VALUES (2,'admin@email.com','$2y$10$WwAZ2IliBuDLWwX1JiwcWuBe5c8t.KckyQf6siSS5Ea1cKRwZUe2K','Administrator','Someplace','1234567890','a','y',NULL,NULL,'y'),(37,'anggia5197@gmail.com','$2y$10$eEzTiQCDlXnM.k5YS1S7Vut9Niety1c5JHAedgTy6U5MPcUssU30u','Putri Anggiria','Rajabasa','0895357754418','p','y',NULL,NULL,'n'),(38,'agungdh@live.com','$2y$10$m.v.l6OfSEPNEIX9Cnsfb.BXFf9iMrW0gXdar066LyU6KW3HgGLuy','Agung Live','NGR','085323423','p','y',NULL,NULL,'y'),(42,'agunggantengdh@gmail.com','$2y$10$P4nlk.br4fKFo8EDSm/IJugWBCb2FPrglAVqO7x/4bnNzeDFnoJfe','Agung Gmail','NGR gm','12124124','u','y',NULL,NULL,'n');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -301,4 +301,4 @@ DROP TABLE IF EXISTS `v_kos`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Mon, 12 Nov 2018 14:36:44 +0000
+-- Dump completed on: Tue, 13 Nov 2018 13:53:59 +0000

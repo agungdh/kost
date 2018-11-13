@@ -1,7 +1,7 @@
 @extends('template.backend.template')
 
 @section('nav')
-@include('backend.kost.nav')
+@include('backend.kos.nav')
 @endsection
 
 @section('content')
@@ -13,12 +13,12 @@
             </h2>
         </div>
         <div class="body">
-            {!! Form::model($kost, ['route' => ['kost.update',$kost->id], 'method' => 'put']) !!}
+            {!! Form::model($kost, ['route' => ['kos.update',$kost->id], 'method' => 'put']) !!}
 
-                @include('backend.kost.form')
+                @include('backend.kos.form')
 
                 <button type="submit" class="btn btn-success waves-effect">SIMPAN</button>
-                <a href="{{ route('kost.index') }}" class="btn btn-primary waves-effect">BATAL</a>
+                <a href="{{ route('kos.index') }}" class="btn btn-primary waves-effect">BATAL</a>
 
             {!! Form::close() !!}
         </div>
