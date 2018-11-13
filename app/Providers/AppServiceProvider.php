@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
         ]);
 
         \Collective\Html\FormFacade::component('adhSelect2', 'component.select2', ['title', 'name', 'data', 'value', 'attributes']);
+        
+        \Collective\Html\FormFacade::component('adhText', 'component.text', ['title', 'name', 'value', 'attributes']);
     }
 
     /**
