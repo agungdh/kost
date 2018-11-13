@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
                 'atasNama' => 'Agung DH',
             ],
         ]);
+
+        \Collective\Html\FormFacade::component('adhSelect2', 'component.select2', ['title', 'name', 'data', 'value', 'attributes']);
     }
 
     /**

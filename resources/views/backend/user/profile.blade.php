@@ -79,55 +79,31 @@
                     {!! $message !!}
                 </div>
 
-                <label for="verified_nohp">Verifikasi No HP</label>
-                <div class="form-group">
-                    @php
-                    $class = $errors->has('verified_nohp') ? 'form-line error focused' : 'form-line';
-                    $message = $errors->has('verified_nohp') ? '<label class="error">' . $errors->first('verified_nohp') . '</label>' : '';
-                    @endphp
-                    <div class="{{ $class }}">
-                        {!!
-                          Form::select(
-                            'verified_nohp',
-                            [
-                                'y' => 'Terverifikasi',
-                                'n' => 'Belum Terverifikasi',
-                            ],
-                            null,
-                            [
-                              'class'=> 'form-control',
-                              'id'=>'verified_nohp',
-                              'placeholder' => 'Pilih Verifikasi No HP',
-                            ])
-                        !!}
-                    </div>
-                    {!! $message !!}
-                </div>
-                
-                <label for="active">Status</label>
-                <div class="form-group">
-                    @php
-                    $class = $errors->has('active') ? 'form-line error focused' : 'form-line';
-                    $message = $errors->has('active') ? '<label class="error">' . $errors->first('active') . '</label>' : '';
-                    @endphp
-                    <div class="{{ $class }}">
-                        {!!
-                          Form::select(
-                            'active',
-                            [
-                                'y' => 'Aktif',
-                                'n' => 'Belum Aktif',
-                            ],
-                            null,
-                            [
-                              'class'=> 'form-control',
-                              'id'=>'active',
-                              'placeholder' => 'Pilih Status',
-                            ])
-                        !!}
-                    </div>
-                    {!! $message !!}
-                </div>
+                {!!
+                    Form::adhSelect2(
+                        'Verifikasi No HP',
+                        'verified_nohp', 
+                        [
+                            'y' => 'Terverifikasi',
+                            'n' => 'Belum Terverifikasi',
+                        ], 
+                        null, 
+                        []
+                    )
+                !!}
+
+                {!!
+                    Form::adhSelect2(
+                        'Status',
+                        'active', 
+                        [
+                            'y' => 'Aktif',
+                            'n' => 'Belum Aktif',
+                        ], 
+                        null, 
+                        []
+                    )
+                !!}
                 
                 <button type="submit" class="btn btn-success waves-effect">SIMPAN</button>
                 <a href="{{ route('user.index') }}" class="btn btn-primary waves-effect">BATAL</a>

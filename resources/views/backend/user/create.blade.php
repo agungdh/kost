@@ -139,30 +139,19 @@
                     {!! $message !!}
                 </div>
 
-                <label for="level">Level</label>
-                <div class="form-group">
-                    @php
-                    $class = $errors->has('level') ? 'form-line error focused' : 'form-line';
-                    $message = $errors->has('level') ? '<label class="error">' . $errors->first('level') . '</label>' : '';
-                    @endphp
-                    <div class="{{ $class }}">
-                        {!!
-                          Form::select(
-                            'level',
-                            [
-                                'a' => 'Admin',
-                                'p' => 'Pemilik Kos',
-                            ],
-                            null,
-                            [
-                              'class'=> 'form-control',
-                              'id'=>'level',
-                              'placeholder' => 'Pilih Level',
-                            ])
-                        !!}
-                    </div>
-                    {!! $message !!}
-                </div>
+                {!!
+                    Form::adhSelect2(
+                        'Level',
+                        'level', 
+                        [
+                            'a' => 'Admin',
+                            'p' => 'Pemilik Kos',
+                            'u' => 'Pencari Kos',
+                        ], 
+                        null, 
+                        []
+                    )
+                !!}
                 
                 <button type="submit" class="btn btn-success waves-effect">SIMPAN</button>
                 <a href="{{ route('user.index') }}" class="btn btn-primary waves-effect">BATAL</a>

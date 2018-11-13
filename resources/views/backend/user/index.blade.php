@@ -49,7 +49,26 @@
                         }
                         @endphp
                         <td>{{ $user->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
-                        <td>{{ $user->level == 'a' ? 'Admin' : 'Pemilik Kos' }}</td>
+                        @php
+                        switch ($user->level) {
+                          case 'a':
+                            $level = 'Admin';
+                            break;
+                          
+                          case 'p':
+                            $level = 'Pemilik Kos';
+                            break;
+                          
+                          case 'u':
+                            $level = 'Pencari Kos';
+                            break;
+                          
+                          default:
+                            $level = null;
+                            break;
+                        }
+                        @endphp
+                        <td>{{ $level }}</td>
                         <td>{{ $user->active == 'y' ? 'Aktif' : 'Belum Aktif' }}</td>
                           <td style="text-align: center;">
                                                         
