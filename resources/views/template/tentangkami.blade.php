@@ -27,22 +27,3 @@
   </div>
 </div>
 @endsection
-
-@section('js')
-<script type="text/javascript">
-  function hapus(id) {
-    swal({
-      title: "Yakin Hapus?",
-      text: "Setelah dihapus data tidak dapat dikembalikan!",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonClass: "btn-danger",
-      confirmButtonText: 'Ya, hapus!',
-      cancelButtonText: 'Batal',
-      closeOnConfirm: false
-    }, function () {
-      $("#formHapus" + id).submit();
-    });
-  }
-</script>
-@endsection
