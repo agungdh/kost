@@ -28,4 +28,14 @@ class DummyController extends Controller
     {
         return view('dummy.clienttestxhr');
     }
+
+    public function generateQRCode()
+    {
+        $qrCode = new \Endroid\QrCode\QrCode('Life is too short to be generating QR codes');
+
+        return response($qrCode->writeString())
+            ->withHeaders([
+                'Content-Type' => $qrCode->getContentType(),
+            ]);
+    }
 }

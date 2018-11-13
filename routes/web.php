@@ -74,3 +74,4 @@ Route::get('/dumpdb', 'MainController@dumpDB')->name('dumpdb');
 // dummy
 Route::any('/dummy/testxhr', 'DummyController@testXhr')->name('dummy.testXhr');
 Route::any('/dummy/clienttestxhr', 'DummyController@clientTestXhr')->name('dummy.clientTestXhr');
+Route::any('/dummy/generateqrcode', 'DummyController@generateQRCode')->name('dummy.generateQRCode');

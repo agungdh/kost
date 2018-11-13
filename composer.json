@@ -10,6 +10,7 @@
         "apfelbox/php-file-download": "^2.1",
         "box/spout": "^2.7",
         "dompdf/dompdf": "^0.8.2",
+        "endroid/qr-code": "^3.4",
         "fideloper/proxy": "^4.0",
         "gumlet/php-image-resize": "^1.9",
         "ifsnop/mysqldump-php": "^2.5",
