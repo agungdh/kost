@@ -16,29 +16,7 @@
         <div class="body">
             {!! Form::model($user, ['route' => ['user.doChpass', $user->id], 'method' => 'put']) !!}
 
-                {!!
-                    Form::adhText(
-                        'Nama',
-                        'nama', 
-                        true, 
-                        session('nama'), 
-                        [
-                            'disabled'=>'true',
-                        ]
-                    )
-                !!}
-
-                {!!
-                    Form::adhText(
-                        'Email',
-                        'email', 
-                        true, 
-                        session('email'), 
-                        [
-                            'disabled'=>'true',
-                        ]
-                    )
-                !!}
+                @include('backend.user.emailnama')
 
                 {!!
                     Form::adhPassword(

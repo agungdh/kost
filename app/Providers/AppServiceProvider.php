@@ -71,6 +71,17 @@ class AppServiceProvider extends ServiceProvider
                 'attributes' => [],
             ]
         );
+
+        \Collective\Html\FormFacade::component(
+            'adhFile', 
+            'component.file', 
+            [
+                'title', 
+                'name', 
+                'hasLabel' => true, 
+                'attributes' => [],
+            ]
+        );
     }
 
     /**

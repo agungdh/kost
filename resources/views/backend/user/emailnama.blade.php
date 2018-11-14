@@ -1,0 +1,23 @@
+{!!
+    Form::adhText(
+        'Nama',
+        'nama', 
+        true, 
+        $user->nama, 
+        [
+            'disabled'=>'true',
+        ]
+    )
+!!}
+
+{!!
+    Form::adhText(
+        'Email',
+        'email', 
+        true,  
+        $user->email, 
+        [
+            'disabled'=>'true',
+        ]
+    )
+!!}
