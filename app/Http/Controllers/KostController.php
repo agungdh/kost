@@ -6,24 +6,19 @@ use Illuminate\Http\Request;
 
 use DB;
 use Storage;
-use agungdh\Pustaka;
 
 class KostController extends Controller
 {
-    public $pustaka;
-
     public function __construct()
     {
         $this->middleware('CustomAuth:p');
-
-        $this->pustaka = new Pustaka();
     }
 
     public function index()
     {
         $kosts = DB::table('v_kos')->where('id_user', session('id'))->get();
 
-        return view('backend.kost.index', compact('kosts'))->with('pustaka', $this->pustaka);
+        return view('backend.kost.index', compact('kosts'))->with('pustaka', new \agungdh\Pustaka());
     }
 
     public function create()

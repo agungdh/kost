@@ -6,24 +6,19 @@ use Illuminate\Http\Request;
 
 use DB;
 use Storage;
-use agungdh\Pustaka;
 
 class KosController extends Controller
 {
-    public $pustaka;
-
     public function __construct()
     {
         $this->middleware('CustomAuth:a');
-
-        $this->pustaka = new Pustaka();
     }
 
     public function index()
     {
     	$kosts = DB::table('v_kos')->get();
 
-        return view('backend.kos.index', compact('kosts'))->with('pustaka', $this->pustaka);
+        return view('backend.kos.index', compact('kosts'))->with('pustaka', new \agungdh\Pustaka());
     }
 
     public function mediaLibrary($id)
