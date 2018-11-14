@@ -50,6 +50,17 @@ class AppServiceProvider extends ServiceProvider
         );
         
         \Collective\Html\FormFacade::component(
+            'adhPassword', 
+            'component.password', 
+            [
+                'title', 
+                'name', 
+                'hasLabel' => true, 
+                'attributes' => [],
+            ]
+        );
+        
+        \Collective\Html\FormFacade::component(
             'adhTextArea', 
             'component.textarea', 
             [

@@ -19,8 +19,9 @@
                 {!!
                     Form::adhText(
                         'Nama',
-                        'nama',  
-                        null, 
+                        'nama', 
+                        true, 
+                        session('nama'), 
                         [
                             'disabled'=>'true',
                         ]
@@ -30,8 +31,9 @@
                {!!
                     Form::adhText(
                         'Email',
-                        'email',  
-                        null, 
+                        'email', 
+                        true,  
+                        session('email'), 
                         [
                             'disabled'=>'true',
                         ]
@@ -42,6 +44,7 @@
                     Form::adhText(
                         'Email Baru',
                         'newemail',  
+                        true, 
                         null, 
                         []
                     )
