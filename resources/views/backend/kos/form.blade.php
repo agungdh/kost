@@ -12,10 +12,13 @@
     )
 !!}
 
-<label for="lat">Latitude</label>
-<a href="javascript:void(0)" onclick="getLocation()">
-  <i class="material-icons">my_location</i>
-</a>
+@adhLabel([
+    'for' => 'lat',
+    'title' => 'Latitude',
+])
+@endadhLabel
+@adhaGetLocation()
+@endadhaGetLocation
 {!!
     Form::adhText(
         'Latitude',
@@ -24,10 +27,13 @@
     )
 !!}
 
-<label for="lng">Longitude</label>
-<a href="javascript:void(0)" onclick="getLocation()">
-  <i class="material-icons">my_location</i>
-</a>
+@adhLabel([
+    'for' => 'lng',
+    'title' => 'Longitude',
+])
+@endadhLabel
+@adhaGetLocation()
+@endadhaGetLocation
 {!!
     Form::adhText(
         'Longitude',

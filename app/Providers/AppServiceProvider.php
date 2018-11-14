@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Blade;
+use Collective\Html\FormFacade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,9 +26,9 @@ class AppServiceProvider extends ServiceProvider
             ],
         ]);
 
-        \Collective\Html\FormFacade::component(
+        FormFacade::component(
             'adhSelect2', 
-            'component.select2', 
+            'component.collective.select2', 
             [
                 'title', 
                 'name', 
@@ -37,9 +39,9 @@ class AppServiceProvider extends ServiceProvider
             ]
         );
         
-        \Collective\Html\FormFacade::component(
+        FormFacade::component(
             'adhText', 
-            'component.text', 
+            'component.collective.text', 
             [
                 'title', 
                 'name', 
@@ -49,9 +51,9 @@ class AppServiceProvider extends ServiceProvider
             ]
         );
         
-        \Collective\Html\FormFacade::component(
+        FormFacade::component(
             'adhPassword', 
-            'component.password', 
+            'component.collective.password', 
             [
                 'title', 
                 'name', 
@@ -60,9 +62,9 @@ class AppServiceProvider extends ServiceProvider
             ]
         );
         
-        \Collective\Html\FormFacade::component(
+        FormFacade::component(
             'adhTextArea', 
-            'component.textarea', 
+            'component.collective.textarea', 
             [
                 'title', 
                 'name', 
@@ -72,9 +74,9 @@ class AppServiceProvider extends ServiceProvider
             ]
         );
 
-        \Collective\Html\FormFacade::component(
+        FormFacade::component(
             'adhFile', 
-            'component.file', 
+            'component.collective.file', 
             [
                 'title', 
                 'name', 
@@ -82,6 +84,9 @@ class AppServiceProvider extends ServiceProvider
                 'attributes' => [],
             ]
         );
+
+        Blade::component('component.blade.label', 'adhLabel');
+        Blade::component('component.blade.agetlocation', 'adhaGetLocation');
     }
 
     /**
