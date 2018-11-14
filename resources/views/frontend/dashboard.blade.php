@@ -19,13 +19,12 @@
                 Form::adhSelect2(
                     'Tipe',
                     'tipe', 
+                    true,
                     [
                       'l' => 'Laki - Laki',
                       'p' => 'Perempuan',
                       'lp' => 'Campur',
-                    ], 
-                    null, 
-                    []
+                    ]
                 )
             !!}
             
@@ -33,12 +32,11 @@
                 Form::adhSelect2(
                     'Bulanan / Tahunan',
                     'waktupembayaran', 
+                    true,
                     [
                       'b' => 'Bulanan',
                       't' => 'Tahunan',
-                    ], 
-                    null, 
-                    []
+                    ]
                 )
             !!}
 
@@ -46,12 +44,11 @@
                 Form::adhSelect2(
                     'Ketersediaan Kamar',
                     'kamartersedia', 
+                    true,
                     [
                       'y' => 'Tersedia',
                       'n' => 'Tidak Tersedia',
-                    ], 
-                    null, 
-                    []
+                    ]
                 )
             !!}
 
@@ -59,19 +56,19 @@
                 Form::adhSelect2(
                     'Alamat Terverifikasi ?',
                     'alamatverifikasi', 
+                    true,
                     [
                       'y' => 'Ya',
                       'n' => 'Tidak',
-                    ], 
-                    null, 
-                    []
+                    ]
                 )
             !!}
 
             {!!
                 Form::adhText(
                     'Biaya Minimum (Bulanan)',
-                    'bulanmin',  
+                    'bulanmin',
+                    true,  
                     null, 
                     [
                       'class' => 'form-control uang',
@@ -82,7 +79,8 @@
             {!!
                 Form::adhText(
                     'Biaya Maximum (Bulanan)',
-                    'bulanmax',  
+                    'bulanmax',
+                    true,  
                     null, 
                     [
                       'class' => 'form-control uang',
@@ -93,7 +91,8 @@
             {!!
                 Form::adhText(
                     'Biaya Minimum (Tahunan)',
-                    'tahunmin',  
+                    'tahunmin',
+                    true,  
                     null, 
                     [
                       'class' => 'form-control uang',
@@ -104,7 +103,8 @@
             {!!
                 Form::adhText(
                     'Biaya Maximum (Tahunan)',
-                    'tahunmax',  
+                    'tahunmax',
+                    true,  
                     null, 
                     [
                       'class' => 'form-control uang',
