@@ -7,11 +7,10 @@
 @section('content')
 <div class="row clearfix">
   <div class="card">
-      <div class="header">
-          <h2>
-              DATA KOST
-          </h2>
-      </div>
+      @adhheader([
+          'title' => 'DATA KOST',
+        ])
+      @endadhheader
       <div class="body">
           <div class="button-demo">
             <a href="{{ route('kost.create') }}">

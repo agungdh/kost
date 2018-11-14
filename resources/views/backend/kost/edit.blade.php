@@ -7,11 +7,10 @@
 @section('content')
 <div class="row clearfix">
     <div class="card">
-        <div class="header">
-            <h2>
-                UBAH KOST
-            </h2>
-        </div>
+        @adhheader([
+            'title' => 'UBAH KOST',
+          ])
+        @endadhheader
         <div class="body">
             {!! Form::model($kost, ['route' => ['kost.update',$kost->id], 'method' => 'put']) !!}
 

@@ -12,6 +12,10 @@
                 TAMBAH KOST
             </h2>
         </div>
+        @adhheader([
+            'title' => 'null',
+          ])
+        @endadhheader
         <div class="body">
             {!! Form::open(['route' => 'kost.store']) !!}
 

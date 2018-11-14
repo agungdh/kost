@@ -7,11 +7,10 @@
 @section('content')
 <div class="row clearfix">
     <div class="card">
-        <div class="header">
-            <h2>
-                TAMBAH KOST
-            </h2>
-        </div>
+        @adhheader([
+            'title' => 'TAMBAH KOST',
+          ])
+        @endadhheader
         <div class="body">
             {!! Form::open(['route' => 'kost.store']) !!}
 

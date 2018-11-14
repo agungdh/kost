@@ -87,6 +87,7 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::component('component.blade.label', 'adhLabel');
         Blade::component('component.blade.agetlocation', 'adhaGetLocation');
+        Blade::component('component.blade.header', 'adhheader');
     }
 
     /**
