@@ -69,10 +69,12 @@ class PublicAjaxController extends Controller
         }
     }
 
-    public function getDataDaerahByDesa(Request $request)
+    public function getDataDaerahByDesa($id)
     {
-        $data = DB::table('v_daerah')->where('desa_id', $request->desa)->first();
+        $desa = Kelurahan::find($id);
+        
+        $desa->kecamatan->kabupaten->provinsi;
 
-        echo json_encode($data);
+        echo $desa->toJson();
     }
 }

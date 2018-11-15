@@ -36,7 +36,7 @@ Route::post('/publicajax/prop', 'PublicAjaxController@prop')->name('publicAjax.p
 Route::post('/publicajax/kab', 'PublicAjaxController@kab')->name('publicAjax.kab');
 Route::post('/publicajax/kec', 'PublicAjaxController@kec')->name('publicAjax.kec');
 Route::post('/publicajax/desa', 'PublicAjaxController@desa')->name('publicAjax.desa');
-Route::post('/publicajax/getdatadaerahbydesa', 'PublicAjaxController@getDataDaerahByDesa')->name('publicAjax.getDataDaerahByDesa');
+Route::get('/publicajax/getdatadaerahbydesa/{id}', 'PublicAjaxController@getDataDaerahByDesa')->name('publicAjax.getDataDaerahByDesa');
 
 // kost
 Route::get('/kost/{id}/medialibrary', 'KostController@mediaLibrary')->name('kost.mediaLibrary');
