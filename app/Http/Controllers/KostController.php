@@ -185,8 +185,8 @@ class KostController extends Controller
             return redirect()->route('kost.index');
         }
         
-        $kos = DB::table('kos')->where('id', $id)->first();
-        $fotos = DB::table('foto')->where('id_kos', $id)->orderBy('id', 'asc')->get();
+        $kos = Kos::find($id);
+        $fotos = Foto::where('id_kos', $id)->orderBy('id', 'asc')->get();
 
         return view('backend.kost.medialibrary', compact('id', 'kos', 'fotos'));
     }
@@ -212,7 +212,7 @@ class KostController extends Controller
                 Storage::putFileAs('public/foto/kos', $request->file('foto_' . $i), $photoId);
             }
 
-            DB::table('foto')->where('id', $photoId)->update(['deskripsi' => $request->input('deskripsi_' . $i)]);
+            Foto::where('id', $photoId)->update(['deskripsi' => $request->input('deskripsi_' . $i)]);
         }
 
         return redirect()->route('kost.mediaLibrary', $id)->with('alert', [
@@ -224,7 +224,7 @@ class KostController extends Controller
 
     public function doDeletePhoto(Request $request)
     {
-        $id_kos = DB::table('foto')->where('id', $request->id)->first()->id_kos;
+        $id_kos = Foto::where('id', $request->id)->first()->id_kos;
         
         if (file_exists(storage_path('app/public/foto/kos/' . $request->id))) {
             unlink(storage_path('app/public/foto/kos/' . $request->id));

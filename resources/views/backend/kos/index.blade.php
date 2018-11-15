@@ -36,10 +36,10 @@
                   <tbody>
                     @foreach($kosts as $kost)
                       <tr>
-                        <td>{{ $kost->email }}</td>
-                        <td>{{ $kost->nama_user }}</td>
+                        <td>{{ $kost->user->email }}</td>
+                        <td>{{ $kost->user->nama }}</td>
                         @php
-                        if($kost->verified_nohp == 'y') {
+                        if($kost->user->verified_nohp == 'y') {
                           $title = 'Verified';
                           $icon = '&#10003;';
                         } else {
@@ -47,7 +47,7 @@
                           $icon = '?';
                         }
                         @endphp
-                        <td>{{ $kost->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
+                        <td>{{ $kost->user->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
                         <td>{{ $kost->nama }}</td>
                         @php
                         if($kost->verified_alamat == 'y') {
@@ -59,10 +59,10 @@
                         }
                         @endphp
                         <td>{{ $kost->alamat }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
-                        <td>{{ ucwords(strtolower($kost->nama_prop)) }}</td>
-                        <td>{{ ucwords(strtolower($kost->nama_kab)) }}</td>
-                        <td>{{ ucwords(strtolower($kost->nama_kec)) }}</td>
-                        <td>{{ ucwords(strtolower($kost->nama_desa)) }}</td>
+                        <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->kabupaten->provinsi->nama_prop)) }}</td>
+                        <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->kabupaten->nama_kab)) }}</td>
+                        <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->nama_kec)) }}</td>
+                        <td>{{ ucwords(strtolower($kost->kelurahan->nama_desa)) }}</td>
                         @php
                         switch ($kost->tipe) {
                           case 'l':

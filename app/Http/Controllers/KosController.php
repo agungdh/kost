@@ -8,6 +8,7 @@ use DB;
 use Storage;
 
 use App\Kos;
+use App\Foto;
 
 class KosController extends Controller
 {
@@ -18,32 +19,27 @@ class KosController extends Controller
 
     public function index()
     {
-    	$kosts = DB::table('v_kos')->get();
+        $kosts = Kos::all();
 
         return view('backend.kos.index', compact('kosts'))->with('pustaka', new \agungdh\Pustaka());
     }
 
     public function mediaLibrary($id)
     {
-        $kos = DB::table('kos')->where('id', $id)->first();
-        $fotos = DB::table('foto')->where('id_kos', $id)->orderBy('id', 'asc')->get();
+        $kos = Kos::find($id);
+        $fotos = Foto::where('id_kos', $id)->orderBy('id', 'asc')->get();
 
         return view('backend.kos.medialibrary', compact('id', 'kos', 'fotos'));
     }
 
     public function edit($id)
     {
-        $kost = DB::table('kos')->where('id', $id)->first();
-
-        $desa = DB::table('desa')->where('id', $kost->id_desa)->first();
-        $kec = DB::table('kec')->where('id', $desa->kec_id)->first();
-        $kab = DB::table('kab')->where('id', $kec->kab_id)->first();
-        $prop = DB::table('prop')->where('id', $kab->prop_id)->first();
-
-        $kost->prop = $prop->id;
-        $kost->kab = $kab->id;
-        $kost->kec = $kec->id;
-        $kost->desa = $desa->id;
+        $kost = Kos::find($id);
+        
+        $kost->desa = $kost->kelurahan->id;
+        $kost->kec = $kost->kelurahan->kecamatan->id;
+        $kost->kab = $kost->kelurahan->kecamatan->kabupaten->id;
+        $kost->prop = $kost->kelurahan->kecamatan->kabupaten->provinsi->id;
 
         $kost->lat = $kost->latitude;
         $kost->lng = $kost->longitude;
@@ -72,7 +68,7 @@ class KosController extends Controller
         $data['latitude'] = $request->lat;
         $data['longitude'] = $request->lng;
 
-        DB::table('kos')->where('id', $id)->update($data);
+        Kos::where('id', $id)->update($data);
 
         return redirect()->route('kos.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
@@ -83,9 +79,7 @@ class KosController extends Controller
 
     public function destroy($id)
     {        
-        $foto = DB::table('foto')
-                        ->where('id_kos', $id)
-                        ->get();
+        $foto = Foto::where('id_kos', $id)->get();
 
         foreach ($foto as $item) {
             if (file_exists(storage_path('app/public/foto/kos/' . $item->id))) {
@@ -97,9 +91,7 @@ class KosController extends Controller
                 ->where('id_kos', $id)
                 ->delete();
 
-        DB::table('kos')
-                ->where('id', $id)
-                ->delete();
+        Kos::destroy($id);
 
         return redirect()->route('kos.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
