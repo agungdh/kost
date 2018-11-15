@@ -87,9 +87,7 @@ class KosController extends Controller
             }
         }
 
-        DB::table('foto')
-                ->where('id_kos', $id)
-                ->delete();
+        Foto::where('id_kos', $id)->delete();
 
         Kos::destroy($id);
 

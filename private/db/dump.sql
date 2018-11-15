@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1	Database: serverag_kost
 -- ------------------------------------------------------
 -- Server version 	10.2.18-MariaDB-cll-lve
--- Date: Thu, 15 Nov 2018 18:13:48 +0000
+-- Date: Thu, 15 Nov 2018 18:21:06 +0000
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -57,7 +57,7 @@ CREATE TABLE `foto` (
   PRIMARY KEY (`id`),
   KEY `id_kos` (`id_kos`),
   CONSTRAINT `foto_ibfk_1` FOREIGN KEY (`id_kos`) REFERENCES `kos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,7 +146,7 @@ CREATE TABLE `kos` (
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`),
   CONSTRAINT `kos_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -337,4 +337,4 @@ DROP TABLE IF EXISTS `v_kos`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Thu, 15 Nov 2018 18:13:50 +0000
+-- Dump completed on: Thu, 15 Nov 2018 18:21:07 +0000

@@ -239,9 +239,6 @@ class KostController extends Controller
 
     private function checkAuthorization($id_kos, $id_user)
     {
-        return DB::table('kos')
-                ->where('id_user', $id_user)
-                ->where('id', $id_kos)
-                ->first();
+        return Kos::where('id_user', $id_user)->where('id', $id_kos)->first();
     }
 }
