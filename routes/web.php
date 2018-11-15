@@ -77,6 +77,7 @@ Route::resources([
 Route::get('/dumpdb', 'MainController@dumpDB')->name('dumpdb');
 
 // dummy
+Route::get('/dummy/temp', 'DummyController@temp')->name('dummy.temp');
 Route::get('/dummy/testmodelprovinsi/{id}', 'DummyController@testModelProvinsi')->name('dummy.testModelProvinsi');
 Route::get('/dummy/testmodelkabupaten/{id}', 'DummyController@testModelKabupaten')->name('dummy.testModelKabupaten');
 Route::get('/dummy/testmodelkecamatan/{id}', 'DummyController@testModelKecamatan')->name('dummy.testModelKecamatan');

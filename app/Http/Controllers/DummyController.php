@@ -19,6 +19,14 @@ class DummyController extends Controller
         $this->httpMethod = $request->method();
     }
 
+    public function temp()
+    {
+        Provinsi::create([
+            'id' => '01',
+            'nama_prop' => 'GG WP',
+        ]);
+    }
+
     public function testModelProvinsi($id)
     {
         $provinsi = Provinsi::find($id);
