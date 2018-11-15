@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use Storage;
 use App\Kos;
+use App\Foto;
 
 class KostController extends Controller
 {
@@ -50,28 +51,28 @@ class KostController extends Controller
         $data['longitude'] = $request->lng;
         $data['verified_alamat'] = 'n';
 
-        $insertId = DB::table('kos')->insertGetId($data);
+        $kos = Kos::create($data);
 
-        DB::table('foto')->insert([
-                                    [
-                                        'id_kos' => $insertId,
-                                    ],
-                                    [
-                                        'id_kos' => $insertId,
-                                    ],
-                                    [
-                                        'id_kos' => $insertId,
-                                    ],
-                                    [
-                                        'id_kos' => $insertId,
-                                    ],
-                                    [
-                                        'id_kos' => $insertId,
-                                    ],
-                                    [
-                                        'id_kos' => $insertId,
-                                    ],
-                                ]);
+        Foto::insert([
+                        [
+                            'id_kos' => $kos->id,
+                        ],
+                        [
+                            'id_kos' => $kos->id,
+                        ],
+                        [
+                            'id_kos' => $kos->id,
+                        ],
+                        [
+                            'id_kos' => $kos->id,
+                        ],
+                        [
+                            'id_kos' => $kos->id,
+                        ],
+                        [
+                            'id_kos' => $kos->id,
+                        ],
+                    ]);
 
         return redirect()->route('kost.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
