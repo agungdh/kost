@@ -6,11 +6,16 @@ use Illuminate\Http\Request;
 
 use DB;
 
+use App\Provinsi;
+use App\Kabupaten;
+use App\Kecamatan;
+use App\Kelurahan;
+
 class PublicAjaxController extends Controller
 {
     public function prop()
     {
-    	$props_raw = DB::table('prop')->get();
+    	$props_raw = Provinsi::all();
 
     	?>
     	<option value="">Pilih Provinsi</option>
@@ -24,7 +29,7 @@ class PublicAjaxController extends Controller
 
     public function kab(Request $request)
     {
-    	$kabs_raw = DB::table('kab')->where('prop_id', $request->prop)->get();
+    	$kabs_raw = Kabupaten::where('prop_id', $request->prop)->get();
 
     	?>
     	<option value="">Pilih Kabupaten</option>
@@ -38,7 +43,7 @@ class PublicAjaxController extends Controller
 
     public function kec(Request $request)
     {
-    	$kecs_raw = DB::table('kec')->where('kab_id', $request->kab)->get();
+    	$kecs_raw = Kecamatan::where('kab_id', $request->kab)->get();
 
     	?>
     	<option value="">Pilih Kecamatan</option>
@@ -52,7 +57,7 @@ class PublicAjaxController extends Controller
 
     public function desa(Request $request)
     {
-    	$desas_raw = DB::table('desa')->where('kec_id', $request->kec)->get();
+    	$desas_raw = Kelurahan::where('kec_id', $request->kec)->get();
 
     	?>
     	<option value="">Pilih Kelurahan</option>
