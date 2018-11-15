@@ -6,12 +6,21 @@ use Illuminate\Http\Request;
 
 use DB;
 
+use App\Provinsi;
+
 class DummyController extends Controller
 {
     var $httpMethod;
 
     public function __construct(Request $request) {
         $this->httpMethod = $request->method();
+    }
+
+    public function testModelProvinsi($id)
+    {
+        $provinsi = Provinsi::find($id);
+
+        return view('dummy.testmodelprovinsi', compact('provinsi'));
     }
 
     public function testXhr(Request $request)
