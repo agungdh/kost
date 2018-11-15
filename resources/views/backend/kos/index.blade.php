@@ -7,11 +7,10 @@
 @section('content')
 <div class="row clearfix">
   <div class="card">
-      <div class="header">
-          <h2>
-              DATA KOST
-          </h2>
-      </div>
+      @adhHeader([
+          'title' => 'DATA KOST',
+        ])
+      @endadhHeader
       <div class="body">
           <div class="table-responsive">
               <table class="table table-bordered table-striped table-hover datatable">

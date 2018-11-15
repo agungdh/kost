@@ -8,11 +8,10 @@
 @section('content')
 <div class="row clearfix">
     <div class="card">
-        <div class="header">
-            <h2>
-                PROFIL
-            </h2>
-        </div>
+        @adhHeader([
+            'title' => 'PROFIL',
+          ])
+        @endadhHeader
         <div class="body">
             {!! Form::model($user, ['route' => ['user.doProfile', $user->id], 'method' => 'put']) !!}
 

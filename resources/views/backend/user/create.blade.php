@@ -7,11 +7,10 @@
 @section('content')
 <div class="row clearfix">
     <div class="card">
-        <div class="header">
-            <h2>
-                TAMBAH USER
-            </h2>
-        </div>
+        @adhHeader([
+            'title' => 'TAMBAH USER',
+          ])
+        @endadhHeader
         <div class="body">
             {!! Form::open(['route' => 'user.store']) !!}
 

@@ -7,11 +7,10 @@
 @section('content')
 <div class="row clearfix">
   <div class="card">
-      <div class="header">
-          <h2>
-              DATA USER
-          </h2>
-      </div>
+      @adhHeader([
+          'title' => 'DATA USER',
+        ])
+      @endadhHeader
       <div class="body">
           <div class="button-demo">
             <a href="{{ route('user.create') }}">

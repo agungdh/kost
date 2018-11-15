@@ -7,11 +7,10 @@
 @section('content')
 <div class="row clearfix">
     <div class="card">
-        <div class="header">
-            <h2>
-                MEDIA LIBRARY
-            </h2>
-        </div>
+        @adhHeader([
+            'title' => 'MEDIA LIBRARY',
+          ])
+        @endadhHeader
         <div class="body">
             {!! Form::open(['route' => ['kost.doMediaLibrary', $id], 'files' => true, 'method' => 'put']) !!}
 

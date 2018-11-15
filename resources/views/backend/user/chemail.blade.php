@@ -8,11 +8,10 @@
 @section('content')
 <div class="row clearfix">
     <div class="card">
-        <div class="header">
-            <h2>
-                UBAH EMAIL
-            </h2>
-        </div>
+        @adhHeader([
+            'title' => 'UBAH EMAIL',
+          ])
+        @endadhHeader
         <div class="body">
             {!! Form::model($user, ['route' => ['user.doChemail', $user->id], 'method' => 'put']) !!}
 
