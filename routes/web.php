@@ -78,6 +78,9 @@ Route::get('/dumpdb', 'MainController@dumpDB')->name('dumpdb');
 
 // dummy
 Route::get('/dummy/testmodelprovinsi/{id}', 'DummyController@testModelProvinsi')->name('dummy.testModelProvinsi');
+Route::get('/dummy/testmodelkabupaten/{id}', 'DummyController@testModelKabupaten')->name('dummy.testModelKabupaten');
+Route::get('/dummy/testmodelkecamatan/{id}', 'DummyController@testModelKecamatan')->name('dummy.testModelKecamatan');
+Route::get('/dummy/testmodelkelurahan/{id}', 'DummyController@testModelKelurahan')->name('dummy.testModelKelurahan');
 Route::get('/dummy/testxhr', 'DummyController@testXhr')->name('dummy.testXhr');
 Route::any('/dummy/clienttestxhr', 'DummyController@clientTestXhr')->name('dummy.clientTestXhr');
 Route::any('/dummy/generateqrcode', 'DummyController@generateQRCode')->name('dummy.generateQRCode');

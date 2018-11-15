@@ -12,7 +12,7 @@ class Kabupaten extends Model
 
     public function provinsi()
     {
-        return $this->belongsTo('App\Provinsi');
+        return $this->belongsTo('App\Provinsi', 'prop_id');
     }
 
     public function kecamatans()

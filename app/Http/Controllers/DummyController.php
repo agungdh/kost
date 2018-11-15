@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use DB;
 
 use App\Provinsi;
+use App\Kabupaten;
+use App\Kecamatan;
+use App\Kelurahan;
 
 class DummyController extends Controller
 {
@@ -21,6 +24,27 @@ class DummyController extends Controller
         $provinsi = Provinsi::find($id);
 
         return view('dummy.testmodelprovinsi', compact('provinsi'));
+    }
+
+    public function testModelKabupaten($id)
+    {
+        $kabupaten = Kabupaten::find($id);
+        
+        return view('dummy.testmodelkabupaten', compact('kabupaten'));
+    }
+
+    public function testModelKecamatan($id)
+    {
+        $kecamatan = Kecamatan::find($id);
+
+        return view('dummy.testmodelkecamatan', compact('kecamatan'));
+    }
+
+    public function testModelKelurahan($id)
+    {
+        $kelurahan = Kelurahan::find($id);
+
+        return view('dummy.testmodelkelurahan', compact('kelurahan'));
     }
 
     public function testXhr(Request $request)

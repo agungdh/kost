@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Test Model</title>
+	<title>Test Model Provinsi</title>
 </head>
 <body>
 	<table border="1">
@@ -30,7 +30,7 @@
 					<td>{{ $kelurahan->id }}</td>
 					<td>{{ ucwords(strtolower($kelurahan->nama_desa)) }}</td>
 				</tr>
-			@endforeach
+				@endforeach
 			@endforeach
 		@endforeach
 	</table>

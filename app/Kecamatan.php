@@ -12,7 +12,7 @@ class Kecamatan extends Model
 
     public function kabupaten()
     {
-        return $this->belongsTo('App\Kabupaten');
+        return $this->belongsTo('App\Kabupaten', 'kab_id');
     }
 
     public function kelurahans()
