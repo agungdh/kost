@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use DB;
 use Storage;
+use App\Kos;
 
 class KostController extends Controller
 {
@@ -15,10 +16,10 @@ class KostController extends Controller
     }
 
     public function index()
-    {
-        $kosts = DB::table('v_kos')->where('id_user', session('id'))->get();
+    {  
+        $kosses = Kos::where('id_user', session('id'))->get();
 
-        return view('backend.kost.index', compact('kosts'))->with('pustaka', new \agungdh\Pustaka());
+        return view('backend.kost.index', compact('kosses'))->with('pustaka', new \agungdh\Pustaka());
     }
 
     public function create()

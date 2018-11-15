@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use DB;
 use Storage;
 
+use App\Kos;
+
 class KosController extends Controller
 {
     public function __construct()

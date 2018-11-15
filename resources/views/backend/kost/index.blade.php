@@ -38,11 +38,11 @@
                       </tr>
                   </thead>
                   <tbody>
-                    @foreach($kosts as $kost)
+                    @foreach($kosses as $kos)
                       <tr>
-                        <td>{{ $kost->nama }}</td>
+                        <td>{{ $kos->nama }}</td>
                         @php
-                        if($kost->verified_alamat == 'y') {
+                        if($kos->verified_alamat == 'y') {
                           $title = 'Verified';
                           $icon = '&#10003;';
                         } else {
@@ -50,13 +50,13 @@
                           $icon = '?';
                         }
                         @endphp
-                        <td>{{ $kost->alamat }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
-                        <td>{{ ucwords(strtolower($kost->nama_prop)) }}</td>
-                        <td>{{ ucwords(strtolower($kost->nama_kab)) }}</td>
-                        <td>{{ ucwords(strtolower($kost->nama_kec)) }}</td>
-                        <td>{{ ucwords(strtolower($kost->nama_desa)) }}</td>
+                        <td>{{ $kos->alamat }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
+                        <td>{{ ucwords(strtolower($kos->kelurahan->kecamatan->kabupaten->provinsi->nama_prop)) }}</td>
+                        <td>{{ ucwords(strtolower($kos->kelurahan->kecamatan->kabupaten->nama_kab)) }}</td>
+                        <td>{{ ucwords(strtolower($kos->kelurahan->kecamatan->nama_kec)) }}</td>
+                        <td>{{ ucwords(strtolower($kos->kelurahan->nama_desa)) }}</td>
                         @php
-                        switch ($kost->tipe) {
+                        switch ($kos->tipe) {
                           case 'l':
                             $tipe = 'Laki - Laki';
                             break;
@@ -75,32 +75,32 @@
                         }
                         @endphp
                         <td>{{ $tipe }}</td>
-                        <td>{{ $kost->bulanan != 0 ? $pustaka->rupiah($kost->bulanan) : '-' }}</td>
-                        <td>{{ $kost->tahunan != 0 ? $pustaka->rupiah($kost->tahunan) : '-' }}</td>
-                        <td>{{ $kost->kamartersedia }}</td>
-                        <td>{{ $kost->deskripsi }}</td>
+                        <td>{{ $kos->bulanan != 0 ? $pustaka->rupiah($kos->bulanan) : '-' }}</td>
+                        <td>{{ $kos->tahunan != 0 ? $pustaka->rupiah($kos->tahunan) : '-' }}</td>
+                        <td>{{ $kos->kamartersedia }}</td>
+                        <td>{{ $kos->deskripsi }}</td>
                           <td style="text-align: center;">
                             
-                            <a href="{{ route('kost.mediaLibrary', $kost->id) }}">
+                            <a href="{{ route('kost.mediaLibrary', $kos->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Media Library">
                                 <i class="material-icons">photo_library</i>
                               </button>
                             </a>
                             
-                            <a target="_blank" href="https://www.google.com/maps/search/{{ $kost->latitude }},{{ $kost->longitude }}">
+                            <a target="_blank" href="https://www.google.com/maps/search/{{ $kos->latitude }},{{ $kos->longitude }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Google Maps">
                                 <i class="material-icons">place</i>
                               </button>
                             </a>
                             
-                            <a href="{{ route('kost.edit', $kost->id) }}">
+                            <a href="{{ route('kost.edit', $kos->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Ubah">
                                 <i class="material-icons">edit</i>
                               </button>
                             </a>
 
-                            {!! Form::open(['id' => 'formHapus' . $kost->id, 'route' => ['kost.destroy', $kost->id], 'method' => 'delete']) !!}
-                            <button type="button" class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="hapus('{{ $kost->id }}')">
+                            {!! Form::open(['id' => 'formHapus' . $kos->id, 'route' => ['kost.destroy', $kos->id], 'method' => 'delete']) !!}
+                            <button type="button" class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="hapus('{{ $kos->id }}')">
                                 <i class="material-icons">delete</i>
                               </button>
                             {!! Form::close() !!}
