@@ -38,7 +38,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                    @foreach($kosses as $kos)
+                    @foreach($kosts as $kos)
                       <tr>
                         <td>{{ $kos->nama }}</td>
                         @php

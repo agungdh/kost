@@ -18,9 +18,9 @@ class KostController extends Controller
 
     public function index()
     {  
-        $kosses = Kos::where('id_user', session('id'))->get();
+        $kosts = Kos::where('id_user', session('id'))->get();
 
-        return view('backend.kost.index', compact('kosses'))->with('pustaka', new \agungdh\Pustaka());
+        return view('backend.kost.index', compact('kosts'))->with('pustaka', new \agungdh\Pustaka());
     }
 
     public function create()
@@ -96,17 +96,12 @@ class KostController extends Controller
             return redirect()->route('kost.index');
         }
 
-        $kost = DB::table('kos')->where('id', $id)->first();
-
-        $desa = DB::table('desa')->where('id', $kost->id_desa)->first();
-        $kec = DB::table('kec')->where('id', $desa->kec_id)->first();
-        $kab = DB::table('kab')->where('id', $kec->kab_id)->first();
-        $prop = DB::table('prop')->where('id', $kab->prop_id)->first();
-
-        $kost->prop = $prop->id;
-        $kost->kab = $kab->id;
-        $kost->kec = $kec->id;
-        $kost->desa = $desa->id;
+        $kost = Kos::find($id);
+        
+        $kost->desa = $kost->kelurahan->id;
+        $kost->kec = $kost->kelurahan->kecamatan->id;
+        $kost->kab = $kost->kelurahan->kecamatan->kabupaten->id;
+        $kost->prop = $kost->kelurahan->kecamatan->kabupaten->provinsi->id;
 
         $kost->lat = $kost->latitude;
         $kost->lng = $kost->longitude;
@@ -140,7 +135,7 @@ class KostController extends Controller
         $data['latitude'] = $request->lat;
         $data['longitude'] = $request->lng;
 
-        $oldKost = DB::table('kos')->where('id', $id)->first();
+        $oldKost = Kos::find($id);
 
         if(    $oldKost->alamat != $data['alamat']
             || $oldKost->id_desa != $data['id_desa']
@@ -150,7 +145,7 @@ class KostController extends Controller
             $data['verified_alamat'] = 'n';
         }
 
-        DB::table('kos')->where('id', $id)->update($data);
+        Kos::where('id', $id)->update($data);
 
         return redirect()->route('kost.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
@@ -164,10 +159,9 @@ class KostController extends Controller
         if (!$this->checkAuthorization($id, session('id'))) {
             return redirect()->route('kost.index');
         }
-        
-        $foto = DB::table('foto')
-                        ->where('id_kos', $id)
-                        ->get();
+        $kost = Kos::find($id);
+
+        $foto = Foto::where('id_kos', $id)->get();
 
         foreach ($foto as $item) {
             if (file_exists(storage_path('app/public/foto/kos/' . $item->id))) {
@@ -175,13 +169,8 @@ class KostController extends Controller
             }
         }
 
-        DB::table('foto')
-                ->where('id_kos', $id)
-                ->delete();
-
-        DB::table('kos')
-                ->where('id', $id)
-                ->delete();
+        Foto::where('id_kos', $id)->delete();
+        $kost->delete();
 
         return redirect()->route('kost.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
