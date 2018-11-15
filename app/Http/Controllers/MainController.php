@@ -19,7 +19,7 @@ class MainController extends Controller
 
 	public function dashboard()
 	{   
-		if (!in_array(session('level'), ['a', 'p'])) {
+		if (!in_array(session('level'), ['a', 'p', 'u'])) {
             return redirect(route('login'));
         } else {
         	return view('backend.dashboard');
