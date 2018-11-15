@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1	Database: serverag_kost
 -- ------------------------------------------------------
 -- Server version 	10.2.18-MariaDB-cll-lve
--- Date: Thu, 15 Nov 2018 14:43:27 +0000
+-- Date: Thu, 15 Nov 2018 18:13:48 +0000
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -57,7 +57,7 @@ CREATE TABLE `foto` (
   PRIMARY KEY (`id`),
   KEY `id_kos` (`id_kos`),
   CONSTRAINT `foto_ibfk_1` FOREIGN KEY (`id_kos`) REFERENCES `kos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,6 @@ CREATE TABLE `foto` (
 LOCK TABLES `foto` WRITE;
 /*!40000 ALTER TABLE `foto` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `foto` VALUES (37,7,NULL),(38,7,NULL),(39,7,NULL),(40,7,NULL),(41,7,NULL),(42,7,NULL),(43,8,NULL),(44,8,NULL),(45,8,NULL),(46,8,NULL),(47,8,NULL),(48,8,NULL),(49,9,NULL),(50,9,NULL),(51,9,NULL),(52,9,NULL),(53,9,NULL),(54,9,NULL);
 /*!40000 ALTER TABLE `foto` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -147,7 +146,7 @@ CREATE TABLE `kos` (
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`),
   CONSTRAINT `kos_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +156,6 @@ CREATE TABLE `kos` (
 LOCK TABLES `kos` WRITE;
 /*!40000 ALTER TABLE `kos` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `kos` VALUES (7,38,'Kost Keren 12345 6','NGRs 7','1102011003','p',2000001,10000002,'Kost Manjiw 4',203,'-5.39688968','105.26228479','y'),(8,43,'ini kost terbaru','di mana aja','1204020006','l',200000,3000000,'wr wrewr wqerw eq',123,'-5.3968896','105.26228479999999','n'),(9,38,'Test','123','1104020012','lp',12414,352534535,'124r ewfdgsdfg dsfg',124124,'-5.3968896','105.26228479999999','n');
 /*!40000 ALTER TABLE `kos` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -245,7 +243,7 @@ CREATE TABLE `user` (
   `verified_nohp` enum('y','n') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -339,4 +337,4 @@ DROP TABLE IF EXISTS `v_kos`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Thu, 15 Nov 2018 14:43:28 +0000
+-- Dump completed on: Thu, 15 Nov 2018 18:13:50 +0000

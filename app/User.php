@@ -11,7 +11,16 @@ class User extends Model
     public $timestamps = false;
 
     protected $fillable = [
-    						
+                            'email',
+                            'password',
+                            'nama',
+                            'alamat',
+                            'nohp',
+                            'level',
+                            'active',
+                            'token',
+                            'temp_email',
+                            'verified_nohp',
     					];
 
     public function kosses()

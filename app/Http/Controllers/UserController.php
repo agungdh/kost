@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use DB;
 use Hash;
 use Storage;
-
+use App\User;
+use App\Kos;
+use App\Foto;
 class UserController extends Controller
 {
     public function __construct()
@@ -17,7 +19,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = DB::table('user')->where('id', '<>',session('id'))->get();
+        $users = User::where('id', '<>',session('id'))->get();
 
         return view('backend.user.index', compact('users'));
     }
@@ -43,7 +45,7 @@ class UserController extends Controller
         $data['verified_nohp'] = 'y';
         $data['active'] = 'y';
 
-        DB::table('user')->insert($data);
+        User::create($data);
 
         return redirect()->route('user.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
@@ -54,27 +56,24 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $kosts = DB::table('kos')
-                        ->where('id_user', $id)
-                        ->get();
+        $kosts = Kos::where('id_user', $id)->get();
 
         foreach ($kosts as $kos) {
-            DB::table('foto')
-                    ->where('id_kos', $kos->id)
-                    ->delete();
+            foreach ($kos->fotos as $item) {
+                if (file_exists(storage_path('app/public/foto/kos/' . $item->id))) {
+                    unlink(storage_path('app/public/foto/kos/' . $item->id));
+                }
+            }
+            Foto::where('id_kos', $kos->id)->delete();
         }
 
-        DB::table('kos')
-                    ->where('id_user', $id)
-                    ->delete();
+        Kos::where('id_user', $id)->delete();
 
         if (file_exists(storage_path('app/public/profilephoto/' . $id))) {
             unlink(storage_path('app/public/profilephoto/' . $id));
         }
 
-        DB::table('user')
-                    ->where('id', $id)
-                    ->delete();        
+        User::destroy($id);
 
         return redirect()->route('user.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
@@ -85,9 +84,7 @@ class UserController extends Controller
 
     public function profile($id)
     {
-        $user = DB::table('user')
-                        ->where('id', $id)
-                        ->first();
+        $user = User::find($id);
 
         return view('backend.user.profile', compact('user'));
     }
@@ -104,9 +101,7 @@ class UserController extends Controller
 
         $user = $request->only('nama', 'alamat', 'nohp', 'active', 'verified_nohp');
 
-        DB::table('user')
-                ->where('id', $id)
-                ->update($user);
+        User::where('id', $id)->update($user);
 
         return redirect()->route('user.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
@@ -117,10 +112,8 @@ class UserController extends Controller
 
     public function chpass($id)
     {
-        $user = DB::table('user')
-                        ->where('id', $id)
-                        ->first();
-
+        $user = User::find($id);
+     
         return view('backend.user.chpass', compact('user'));
     }
 
@@ -130,7 +123,7 @@ class UserController extends Controller
             'newpassword' => 'required|confirmed',
         ]);
 
-        DB::table('user')->where('id', $id)->update(['password' => Hash::make($request->newpassword)]);
+        User::where('id', $id)->update(['password' => Hash::make($request->newpassword)]);
 
         return redirect()->route('user.index')->with('alert', [
                     'title' => 'BERHASIL !!!',
@@ -141,10 +134,8 @@ class UserController extends Controller
 
     public function foto($id)
     {
-        $user = DB::table('user')
-                ->where('id', $id)
-                ->first();
-
+        $user = User::find($id);
+        
         return view('backend.user.foto', compact(['user']));
     }
 
@@ -165,9 +156,7 @@ class UserController extends Controller
 
     public function chemail($id)
     {
-        $user = DB::table('user')
-                ->where('id', $id)
-                ->first();
+        $user = User::find($id);
 
         return view('backend.user.chemail', compact(['user']));
     }
@@ -178,7 +167,7 @@ class UserController extends Controller
             'newemail' => 'required|email|unique:user,email',
         ]);
 
-        DB::table('user')->where('id', $id)->update([
+        User::where('id', $id)->update([
                                                         'email' => $request->newemail,
                                                     ]);
 
