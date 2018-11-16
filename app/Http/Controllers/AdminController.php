@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use Hash;
 use Storage;
+use App\User;
 
 use App\Helpers\adhMail;
 
@@ -23,9 +24,7 @@ class AdminController extends Controller
 
     public function profile()
     {
-        $user = DB::table('user')
-                        ->where('id', session('id'))
-                        ->first();
+        $user = User::find(session('id'));
 
         return view('template.backend.profile', compact('user'));
     }
@@ -40,15 +39,13 @@ class AdminController extends Controller
 
         $user = $request->only('nama', 'alamat', 'nohp');
 
-        $oldUser = DB::table('user')->where('id', session('id'))->first();
+        $oldUser = User::find(session('id'));
 
         if($oldUser->nohp != $user['nohp']) {
             $user['verified_nohp'] = 'n';
         }
 
-        DB::table('user')
-                ->where('id', session('id'))
-                ->update($user);
+        User::where('id', session('id'))->update($user);
 
         session($user);
 
@@ -71,10 +68,10 @@ class AdminController extends Controller
             'newpassword' => 'required|confirmed',
         ]);
 
-        $user = DB::table('user')->where('id', session('id'))->first();
+        $user = User::find(session('id'));
 
         if (Hash::check($request->oldpassword, $user->password)) {
-            DB::table('user')->where('id', session('id'))->update(['password' => Hash::make($request->newpassword)]);
+            User::where('id', session('id'))->update(['password' => Hash::make($request->newpassword)]);
 
             return redirect()->route('chpass')->with('alert', [
                         'title' => 'BERHASIL !!!',
@@ -124,9 +121,9 @@ class AdminController extends Controller
         $data['token'] = bin2hex(random_bytes(16));
         $data['temp_email'] = $request->email;
 
-        DB::table('user')->where('id', session('id'))->update($data);
+        User::where('id', session('id'))->update($data);
 
-        $user = DB::table('user')->where('id', session('id'))->first();
+        $user = User::find(session('id'));
 
         if (!Hash::check($request->oldpassword, $user->password)) {
             return redirect()->route('chemail')->with('alert', [
@@ -149,13 +146,11 @@ class AdminController extends Controller
 
     public function confirmChemail(Request $request)
     {
-        $user = DB::table('user')
-                ->where('token', $request->token)
-                ->first();
+        $user = User::where('token', $request->token)->first();
 
         if ($user) {
             if (md5($user->id) == $request->head && md5($user->email) == $request->body && md5($user->temp_email) == $request->key) {
-                DB::table('user')->where('id', $user->id)->update(['email' => $user->temp_email, 'temp_email' => null, 'token' => null]);
+                User::where('id', $user->id)->update(['email' => $user->temp_email, 'temp_email' => null, 'token' => null]);
 
                 return redirect()
                         ->route('login')
