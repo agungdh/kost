@@ -8,6 +8,7 @@ use Hash;
 
 use App\Helpers\adhMail;
 
+use App\User;
 class AuthController extends Controller
 {
     var $adhMail;
@@ -29,9 +30,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-    	$user = DB::table('user')
-			    		->where('email', $request->email)
-			    		->first();
+    	$user = User::where('email', $request->email)->first();
 
 		if ($user != null) {
 			if (Hash::check($request->password, $user->password)) {
@@ -88,11 +87,10 @@ class AuthController extends Controller
         $data['token'] = bin2hex(random_bytes(16));
         $data['verified_nohp'] = 'n';
 
-        $insertId = DB::table('user')
-            ->insertGetId($data);
+        $user = User::create($data);
 
         $html = view('template.email.aktivasi', [
-                                            'id' => md5($insertId),
+                                            'id' => md5($user->id),
                                             'email' => md5($data['email']),
                                             'token' => $data['token'],
                                         ])->render();
@@ -110,14 +108,11 @@ class AuthController extends Controller
 
     public function activate(Request $request)
     {
-        $user = DB::table('user')
-                ->where('token', $request->token)
-                ->first();
+        $user = User::where('token', $request->token)->first();
 
         if ($user) {
             if (md5($user->id) == $request->head && md5($user->email) == $request->body) {
-                DB::table('user')
-                    ->where('id', $user->id)
+                User::where('id', $user->id)
                     ->update([
                         'active' => 'y',
                         'token' => null,
@@ -171,9 +166,7 @@ class AuthController extends Controller
             'email' => 'required|email',
         ]);
 
-        $user = DB::table('user')
-                    ->where('email', $request->email)
-                    ->first();
+        $user = User::where('email', $request->email)->first();
 
         if (!$user) {
             return redirect()->route('root');   
@@ -181,9 +174,7 @@ class AuthController extends Controller
 
         $token = bin2hex(random_bytes(16));
 
-        DB::table('user')
-                ->where('id', $user->id)
-                ->update([
+        User::where('id', $user->id)->update([
                     'token' => $token,
                 ]);
 
@@ -205,9 +196,7 @@ class AuthController extends Controller
 
     public function forgetPasswordChPass(Request $request)
     {
-        $user = DB::table('user')
-                ->where('token', $request->token)
-                ->first();
+        $user = User::where('token', $request->token)->first();
 
         if ($user) {
             if (md5($user->id) == $request->head && md5($user->email) == $request->body) {
@@ -228,15 +217,12 @@ class AuthController extends Controller
             'password' => 'required|confirmed',
         ]);
 
-        $user = DB::table('user')
-                ->where('token', $request->token)
+        $user = User::where('token', $request->token)
                 ->first();
 
         if ($user) {
             if (md5($user->id) == $request->head && md5($user->email) == $request->body) {
-                DB::table('user')
-                    ->where('id', $user->id)
-                    ->update([
+                User::where('id', $user->id)->update([
                         'password' => Hash::make($request->password),
                         'active' => 'y',
                         'token' => null,

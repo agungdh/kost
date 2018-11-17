@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1	Database: serverag_kost
 -- ------------------------------------------------------
 -- Server version 	10.2.18-MariaDB-cll-lve
--- Date: Thu, 15 Nov 2018 18:21:06 +0000
+-- Date: Sat, 17 Nov 2018 03:45:48 +0000
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -240,10 +240,10 @@ CREATE TABLE `user` (
   `active` enum('y','n') NOT NULL,
   `token` varchar(32) DEFAULT NULL,
   `temp_email` varchar(191) DEFAULT NULL,
-  `verified_nohp` enum('y','n') NOT NULL,
+  `verified_nohp` enum('y','n') DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,7 +253,7 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `user` VALUES (2,'admin@email.com','$2y$10$WwAZ2IliBuDLWwX1JiwcWuBe5c8t.KckyQf6siSS5Ea1cKRwZUe2K','Administrator','Someplace','1234567890','a','y',NULL,NULL,'y'),(37,'anggia5197@gmail.com','$2y$10$eEzTiQCDlXnM.k5YS1S7Vut9Niety1c5JHAedgTy6U5MPcUssU30u','Putri Anggiria','Rajabasa','0895357754418','p','y',NULL,NULL,'n'),(38,'agungdh@live.com','$2y$10$m.v.l6OfSEPNEIX9Cnsfb.BXFf9iMrW0gXdar066LyU6KW3HgGLuy','Agung Live','NGR','085323423','p','y','a09e75c48caad75d807a4b7b30911a0d','sdad@asda.sao','y'),(42,'agunggantengdh@gmail.com','$2y$10$.fwL9B14P/aevjxxafOcMumlPT5dAL7VkVpDRC/S9HtpTY1CS.KQm','Agung Gmail','NGR gm','12124124','u','y','f591793c0c52bd0b89ba2af98c3e6e91','asfasf@asfa.saf','n'),(43,'agungsaptomargonodh@gmail.com','$2y$10$GuhUF.t2FPIZOcg79TDrdenOVtsILQWr0st.CzhKpZAJONHG.8uiG','agungsmdh full','ngr 1234556','1212412414','p','y',NULL,NULL,'n');
+INSERT INTO `user` VALUES (2,'admin@email.com','$2y$10$WwAZ2IliBuDLWwX1JiwcWuBe5c8t.KckyQf6siSS5Ea1cKRwZUe2K','Administrator','Someplace','1234567890','a','y',NULL,NULL,'y'),(37,'anggia5197@gmail.com','$2y$10$eEzTiQCDlXnM.k5YS1S7Vut9Niety1c5JHAedgTy6U5MPcUssU30u','Putri Anggiria','Rajabasa','0895357754418','p','y',NULL,NULL,'n'),(38,'agungdh@live.com','$2y$10$D3Bztmq4JDiAML4bfO95YO0KSc6a/bq4TGtN3LiUUt/biZrcY6SQi','Agung Live1','NGR2','0853234233','p','y','0a5b0453f41fea3088f37d6eb4ab280d','asf@aa.a','n'),(43,'agungsaptomargonodh@gmail.com','$2y$10$GuhUF.t2FPIZOcg79TDrdenOVtsILQWr0st.CzhKpZAJONHG.8uiG','agungsmdh full','ngr 1234556','1212412414','p','y',NULL,NULL,'n'),(47,'agunggantengdh@gmail.com','$2y$10$boa9Npz/LWT0PQ6gCYsfmuEZixUUHgjg5ZFEB79eOFcB9eJQtw2YG','Agung Ganteng','NGR City','08124124','p','y',NULL,NULL,'n');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -337,4 +337,4 @@ DROP TABLE IF EXISTS `v_kos`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Thu, 15 Nov 2018 18:21:07 +0000
+-- Dump completed on: Sat, 17 Nov 2018 03:45:49 +0000
