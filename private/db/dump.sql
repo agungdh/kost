@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1	Database: serverag_kost
 -- ------------------------------------------------------
 -- Server version 	10.2.18-MariaDB-cll-lve
--- Date: Sat, 17 Nov 2018 03:45:48 +0000
+-- Date: Sun, 18 Nov 2018 03:20:19 +0000
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -337,4 +337,4 @@ DROP TABLE IF EXISTS `v_kos`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Sat, 17 Nov 2018 03:45:49 +0000
+-- Dump completed on: Sun, 18 Nov 2018 03:20:20 +0000
