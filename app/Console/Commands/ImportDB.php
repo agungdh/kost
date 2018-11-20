@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use DB;
 
 use Thamaraiselvam\MysqlImport\Import;
+use agungdh\Pustaka;
 
 class ImportDB extends Command
 {
@@ -14,7 +15,7 @@ class ImportDB extends Command
      *
      * @var string
      */
-    protected $signature = 'importdb {sqlFile}';
+    protected $signature = 'importdb {sqlFile} {--recreate}';
 
     /**
      * The console command description.
@@ -45,6 +46,11 @@ class ImportDB extends Command
         $user = env('DB_USERNAME');
         $pass = env('DB_PASSWORD');
         $host = env('DB_HOST');
+
+        if ($this->option('recreate')) {
+            $this->info("Drop all tables");
+            Pustaka::dropTableView($host, $user, $pass, $database);
+        }
 
         $location = base_path($this->argument('sqlFile'));
         $this->info("Importing Database from {$location}");
