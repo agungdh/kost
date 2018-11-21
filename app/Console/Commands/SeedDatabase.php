@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Hash;
 
 class SeedDatabase extends Command
 {
@@ -37,8 +38,26 @@ class SeedDatabase extends Command
      */
     public function handle()
     {
-        for ($i=1; $i <= $this->argument('jumlahItem') ; $i++) { 
-           $this->line($i);
-        }     
+        $faker = \Faker\Factory::create();
+
+        $users = [];
+        for ($i=0; $i <= $this->argument('jumlahItem') - 1; $i++) { 
+           $users[$i]['email'] = $faker->email;
+           $users[$i]['password'] = Hash::make(1234);
+           $users[$i]['nama'] = $faker->name;
+           $users[$i]['alamat'] = $faker->address;
+           $users[$i]['nohp'] = '08' . $faker->numberBetween(1111111111, 9999999999);
+           $users[$i]['level'] = 'p';
+           $users[$i]['active'] = 'y';
+           $users[$i]['verified_nohp'] = $faker->randomElement(['y', 'n']);
+        }
+
+        foreach ($users as $user) {
+            foreach ($user as $key => $value) {
+                $this->line($key . ' = ' . $value);
+            }
+            $this->line("\n");
+        }
+
     }
 }
