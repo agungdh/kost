@@ -272,11 +272,31 @@
 
                             {{-- media library --}}
                             <div id="mediaLibrary{{ $kost->id }}">
-                              <a href="../../images/image-gallery/1.jpg" data-sub-html="Demo Description">
-                                <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Foto">
+                              
+                                
+                              @php
+                              $i = 1;
+                              @endphp
+                              @foreach($kost->fotos as $foto)
+                                @php
+                                if (file_exists(storage_path('app/public/foto/kos/' . $foto->id))) {
+                                    $url = asset('storage/foto/kos/' . $foto->id);
+                                } else {
+                                    $url = asset('assets/img/sorry-no-image-available.png');
+                                }
+                                @endphp
+                                <a href="{{ $url }}" data-sub-html="{{ $foto->deskripsi }}">
+                                  <img style="display: none;" src="{{ $url }}">
+                                  @if($i == 1)
+                                  <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Foto">
                                   <i class="material-icons">photo_library</i>
-                                </button>
-                              </a>
+                                  </button>
+                                  @endif
+                                </a>
+                                @php
+                                $i++;
+                                @endphp
+                              @endforeach
                             </div>
                             
                             <a target="_blank" href="https://www.google.com/maps/search/{{ $kost->latitude }},{{ $kost->longitude }}">
