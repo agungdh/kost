@@ -72,13 +72,25 @@
                 !!}
 
                 {!!
-                    Form::adhSelect2(
-                        'Ketersediaan Kamar',
-                        'kamartersedia', 
-                        true,
+                    Form::adhText(
+                        'Ketersediaan Kamar Minimum',
+                        'kamartersediamin', 
+                        true,  
+                        null, 
                         [
-                          'y' => 'Tersedia',
-                          'n' => 'Tidak Tersedia',
+                          'class' => 'form-control uang',
+                        ]
+                    )
+                !!}
+
+                {!!
+                    Form::adhText(
+                        'Ketersediaan Kamar Maximum',
+                        'kamartersediamax', 
+                        true,  
+                        null, 
+                        [
+                          'class' => 'form-control uang',
                         ]
                     )
                 !!}
@@ -148,6 +160,22 @@
           </div>
     </div>
 
+    <div class="card">
+        <div class="header">
+            <h2>
+                HOME
+            </h2>
+        </div>
+
+          <div class="body">
+            <p>
+              {{ json_encode($kos) }}
+            </p>
+            <p>
+              {{ json_encode($paramCariKos) }}
+            </p>
+          </div>
+
   {!! Form::close() !!}
 
 </div>
@@ -157,21 +185,31 @@
 <script type="text/javascript">
   $("form").submit(function() {
     if ($("#bulanmin").val() != '' && $("#bulanmax").val() != '') {
-      if ($("#bulanmin").cleanVal() > $("#bulanmax").cleanVal()) {
-        alert('ngawor');
+      if (parseInt($("#bulanmin").cleanVal()) > parseInt($("#bulanmax").cleanVal())) {
+        swal('ERROR !!!', 'Biaya Minimum (Bulanan) tidak boleh lebih dari Biaya Maximum (Bulanan)', 'error');
         
         return false;
       }
     }
 
     if ($("#tahunmin").val() != '' && $("#tahunmax").val() != '') {
-      if ($("#tahunmin").cleanVal() > $("#tahunmax").cleanVal()) {
-        alert('ngawor');
+      if (parseInt($("#tahunmin").cleanVal()) > parseInt($("#tahunmax").cleanVal())) {
+        swal('ERROR !!!', 'Biaya Minimum (Tahunan) tidak boleh lebih dari Biaya Maximum (Tahunan)', 'error');
 
         return false;
       }
     }
 
+    if ($("#kamartersediamin").val() != '' && $("#kamartersediamax").val() != '') {
+      if (parseInt($("#kamartersediamin").cleanVal()) > parseInt($("#kamartersediamax").cleanVal())) {
+        swal('ERROR !!!', 'Ketersediaan Kamar Minimum tidak boleh lebih dari Ketersediaan Kamar Maximum', 'error');
+
+        return false;
+      }
+    }
+
+    $("#kamartersediamin").val($("#kamartersediamin").cleanVal());
+    $("#kamartersediamax").val($("#kamartersediamax").cleanVal());
     $("#bulanmin").val($("#bulanmin").cleanVal());
     $("#bulanmax").val($("#bulanmax").cleanVal());
     $("#tahunmin").val($("#tahunmin").cleanVal());
