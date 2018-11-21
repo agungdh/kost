@@ -270,11 +270,14 @@
                               </button>
                             </a>
 
-                            <a href="javascript:void(0)">
-                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Foto">
-                                <i class="material-icons">photo_library</i>
-                              </button>
-                            </a>
+                            {{-- media library --}}
+                            <div id="mediaLibrary{{ $kost->id }}">
+                              <a href="../../images/image-gallery/1.jpg" data-sub-html="Demo Description">
+                                <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Foto">
+                                  <i class="material-icons">photo_library</i>
+                                </button>
+                              </a>
+                            </div>
                             
                             <a target="_blank" href="https://www.google.com/maps/search/{{ $kost->latitude }},{{ $kost->longitude }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Google Maps">
@@ -286,6 +289,7 @@
 
                           </td>
                       </tr>
+
                     @endforeach
                   </tbody>
               </table>
@@ -293,6 +297,7 @@
       </div>
     </div>
 
+    {{-- modal --}}
     <div class="modal fade" id="modalDeskripsi" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -308,6 +313,7 @@
           </div>
       </div>
   </div>
+
 @endsection
 
 @section('js')
@@ -403,6 +409,10 @@ $(function() {
   initDaerahEdit();
 
   gantiWaktuPembayaran();
+
+  @foreach($kosts as $kost)
+  $("#mediaLibrary{{ $kost->id }}").lightGallery({thumbnail: true, selector: 'a'});
+  @endforeach
 });  
 </script>
 @endif
