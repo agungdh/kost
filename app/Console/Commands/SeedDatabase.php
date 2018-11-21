@@ -7,6 +7,7 @@ use Hash;
 
 use App\User;
 use App\Kos;
+use App\Foto;
 
 use agungdh\Pustaka;
 
@@ -94,12 +95,23 @@ class SeedDatabase extends Command
             $kosses[$i]['verified_alamat'] = $faker->randomElement(['y', 'n']);
         }
         Kos::insert($kosses);
-
-        // $fotos = [];
-        // foreach ($kosses as $kos) {
-            
-        // }
         // End Kos
+
+        // Fotos
+        $fotos = [];
+
+        $kosses = Kos::all();
+        $i = 0;
+        foreach ($kosses as $kos) {
+            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
+            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
+            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
+            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
+            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
+        }
+
+        Foto::insert($fotos);
+        // End Fotos
 
     }
 }
