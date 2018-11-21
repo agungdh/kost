@@ -39,4 +39,9 @@ class Kos extends Model
     {
         return $this->hasMany('App\Foto', 'id_kos');
     }
+
+    public function transaksis()
+    {
+        return $this->hasMany('App\Transaksi', 'kos_id');
+    }
 }

@@ -14,4 +14,9 @@ class Kelurahan extends Model
     {
         return $this->belongsTo('App\Kecamatan', 'kec_id');
     }
+
+    public function desas()
+    {
+        return $this->hasMany('App\Kos', 'id_desa');
+    }
 }

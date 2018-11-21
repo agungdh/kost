@@ -27,4 +27,14 @@ class User extends Model
     {
         return $this->hasMany('App\Kos', 'id_user');
     }
+
+    public function transaksiPencariKosses()
+    {
+        return $this->hasMany('App\Transaksi', 'user_id_pencari_kos');
+    }
+
+    public function transaksiValidators()
+    {
+        return $this->hasMany('App\Transaksi', 'user_id_validasi');
+    }
 }

@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1	Database: serverag_kost
 -- ------------------------------------------------------
 -- Server version 	10.2.18-MariaDB-cll-lve
--- Date: Sun, 18 Nov 2018 04:54:15 +0000
+-- Date: Wed, 21 Nov 2018 04:41:21 +0000
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -57,7 +57,7 @@ CREATE TABLE `foto` (
   PRIMARY KEY (`id`),
   KEY `id_kos` (`id_kos`),
   CONSTRAINT `foto_ibfk_1` FOREIGN KEY (`id_kos`) REFERENCES `kos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,6 +67,7 @@ CREATE TABLE `foto` (
 LOCK TABLES `foto` WRITE;
 /*!40000 ALTER TABLE `foto` DISABLE KEYS */;
 SET autocommit=0;
+INSERT INTO `foto` VALUES (15,22,NULL),(16,22,NULL),(17,22,NULL),(18,22,NULL),(19,22,NULL),(20,22,NULL);
 /*!40000 ALTER TABLE `foto` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -146,7 +147,7 @@ CREATE TABLE `kos` (
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`),
   CONSTRAINT `kos_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,6 +157,7 @@ CREATE TABLE `kos` (
 LOCK TABLES `kos` WRITE;
 /*!40000 ALTER TABLE `kos` DISABLE KEYS */;
 SET autocommit=0;
+INSERT INTO `kos` VALUES (22,38,'Kost Keren 12345','Nunggalrejo, Punggur, Lampung Tengah','1871081004','lp',150000,1200000,'Kos Mantap Djiwa',20,'-5.402623999999999','105.259008','n');
 /*!40000 ALTER TABLE `kos` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -201,7 +203,6 @@ CREATE TABLE `transaksi` (
   `harga` int(11) NOT NULL,
   `waktu_validasi` datetime DEFAULT NULL,
   `user_id_validasi` int(11) DEFAULT NULL,
-  `jenis_validasi` enum('a','d') DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `kos_id` (`kos_id`),
   KEY `user_id_pencari_kos` (`user_id_pencari_kos`),
@@ -243,7 +244,7 @@ CREATE TABLE `user` (
   `verified_nohp` enum('y','n') DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,7 +254,7 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `user` VALUES (2,'admin@email.com','$2y$10$WwAZ2IliBuDLWwX1JiwcWuBe5c8t.KckyQf6siSS5Ea1cKRwZUe2K','Administrator','Someplace','1234567890','a','y',NULL,NULL,'y'),(37,'anggia5197@gmail.com','$2y$10$eEzTiQCDlXnM.k5YS1S7Vut9Niety1c5JHAedgTy6U5MPcUssU30u','Putri Anggiria','Rajabasa','0895357754418','p','y',NULL,NULL,'n'),(38,'agungdh@live.com','$2y$10$D3Bztmq4JDiAML4bfO95YO0KSc6a/bq4TGtN3LiUUt/biZrcY6SQi','Agung Live1','NGR2','0853234233','p','y','0a5b0453f41fea3088f37d6eb4ab280d','asf@aa.a','n'),(43,'agungsaptomargonodh@gmail.com','$2y$10$GuhUF.t2FPIZOcg79TDrdenOVtsILQWr0st.CzhKpZAJONHG.8uiG','agungsmdh full','ngr 1234556','1212412414','p','y',NULL,NULL,'n'),(47,'agunggantengdh@gmail.com','$2y$10$boa9Npz/LWT0PQ6gCYsfmuEZixUUHgjg5ZFEB79eOFcB9eJQtw2YG','Agung Ganteng','NGR City','08124124','p','y',NULL,NULL,'n');
+INSERT INTO `user` VALUES (2,'admin@email.com','$2y$10$WwAZ2IliBuDLWwX1JiwcWuBe5c8t.KckyQf6siSS5Ea1cKRwZUe2K','Administrator','Someplace','1234567890','a','y',NULL,NULL,'y'),(37,'anggia5197@gmail.com','$2y$10$eEzTiQCDlXnM.k5YS1S7Vut9Niety1c5JHAedgTy6U5MPcUssU30u','Putri Anggiria','Rajabasa','0895357754418','p','y',NULL,NULL,'n'),(38,'agungdh@live.com','$2y$10$D3Bztmq4JDiAML4bfO95YO0KSc6a/bq4TGtN3LiUUt/biZrcY6SQi','Agung Live1','NGR2','0853234233','p','y','0a5b0453f41fea3088f37d6eb4ab280d','asf@aa.a','n'),(43,'agungsaptomargonodh@gmail.com','$2y$10$GuhUF.t2FPIZOcg79TDrdenOVtsILQWr0st.CzhKpZAJONHG.8uiG','agungsmdh full','ngr 1234556','1212412414','p','y',NULL,NULL,'n'),(47,'agunggantengdh@gmail.com','$2y$10$boa9Npz/LWT0PQ6gCYsfmuEZixUUHgjg5ZFEB79eOFcB9eJQtw2YG','Agung Ganteng','NGR City','08124124','p','y',NULL,NULL,'n'),(48,'muhammadjuliantoprabowo99@gmail.com','$2y$10$ajQZpv9C8LHhaXmGMPgTcOSsXThXw6B2uj8hnKPs5y5WbnwQiEBj.','Muhammad Julianto Prabowo','Bandar Lampung','082122232425','u','y',NULL,NULL,'n'),(49,'septianggraini59@gmail.com','$2y$10$EIBXaamMSWaDzDXgAGM2bOlbiUafbHtXD49jmJfhMB9vS4Iz5tC9u','Septi Anggraini','jl kapten abdul haq gg masjid nurul salam no 19 rajabasa bandar lampung','085212324858','p','n','daa068cc55134b8c3df84110d09299ab',NULL,'n');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -337,4 +338,4 @@ DROP TABLE IF EXISTS `v_kos`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Sun, 18 Nov 2018 04:54:16 +0000
+-- Dump completed on: Wed, 21 Nov 2018 04:41:22 +0000
