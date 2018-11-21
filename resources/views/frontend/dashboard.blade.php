@@ -182,7 +182,14 @@
     <div class="card col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="body">
           <div class="table-responsive">
-              <table class="table table-bordered table-striped table-hover datatable">
+            <p>Count: {{ $kosts->count() }}</p>
+            <p>Total: {{ $kosts->total() }}</p>
+            <p>pageOne: 1</p>
+            <p>Current: {{ $kosts->currentPage() }}</p>
+            <p>hasMorePages: {{ $kosts->hasMorePages() }}</p>
+            <p>lastPage: {{ $kosts->lastPage() }}</p>
+            <p>perPage: {{ $kosts->perPage() }}</p>
+              <table class="table table-bordered table-striped table-hover">
                   <thead>
                       <tr>
                           <th style="text-align: center;">Nama</th>
