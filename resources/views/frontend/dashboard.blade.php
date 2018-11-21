@@ -53,7 +53,7 @@
                         'Halaman Saat Ini',
                         'halamansaatini', 
                         true,  
-                        null, 
+                        $kosts->currentPage(), 
                         [
                           'class' => 'form-control uang',
                         ]
@@ -119,7 +119,7 @@
                 'Jumlah Data Per Halaman',
                 'jumlahperhalaman', 
                 true,  
-                null, 
+                $kosts->perPage(), 
                 [
                   'class' => 'form-control uang',
                 ]
@@ -206,9 +206,8 @@
     <div class="card col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="body">
           <div class="table-responsive">
-            <p>Halaman Saat Ini: {{ $kosts->currentPage() }}</p>
-            <p>Jumlah Perhalaman: {{ $kosts->count() }}</p>
             <p>Jumlah Data: {{ $kosts->total() }}</p>
+            <p>Jumlah Halaman: {{ $kosts->lastPage() }}</p>
               <table class="table table-bordered table-striped table-hover">
                   <thead>
                       <tr>
