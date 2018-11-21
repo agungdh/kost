@@ -39,8 +39,10 @@ class MainController extends Controller
         if (isset($inputs['tahunmax'])) { $paramCariKos[] = ['tahunan', '<=', $inputs['tahunmax']]; }
         
         $kosts = VKos::where($paramCariKos)->paginate(5);
-        
-    	return view('frontend.dashboard', compact(['inputs', 'kosts', 'paramCariKos']))->with('pustaka', new \agungdh\Pustaka());	
+
+    	return view('frontend.dashboard', compact(['inputs', 'kosts', 'paramCariKos']))
+            ->with('pustaka', new \agungdh\Pustaka())
+            ->with('fullUrl', $request->fullUrl());	
     }
 
 	public function dashboard()

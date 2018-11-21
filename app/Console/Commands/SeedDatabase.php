@@ -108,6 +108,7 @@ class SeedDatabase extends Command
             $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
             $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
             $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
+            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
         }
 
         Foto::insert($fotos);

@@ -48,9 +48,17 @@
                     )
                 !!}            
 
-                <div class="form-group">
-                <button type="submit" class="btn btn-success waves-effect">CARI</button>
-                </div>
+                {!!
+                    Form::adhText(
+                        'Halaman Saat Ini',
+                        'halamansaatini', 
+                        true,  
+                        null, 
+                        [
+                          'class' => 'form-control uang',
+                        ]
+                    )
+                !!}
 
           </div>
     </div>
@@ -106,9 +114,17 @@
             )
         !!}
 
-        <div class="form-group">
-        <a href="javascript:void(0)" onclick="resetAll()" class="btn btn-primary waves-effect">RESET</a>
-        </div>
+        {!!
+            Form::adhText(
+                'Jumlah Data Per Halaman',
+                'jumlahperhalaman', 
+                true,  
+                null, 
+                [
+                  'class' => 'form-control uang',
+                ]
+            )
+        !!}
 
       </div>
     </div>
@@ -177,18 +193,22 @@
       </div>
     </div>
 
+    <div class="form-group">
+    <button type="submit" class="btn btn-success waves-effect">CARI</button>
+    </div>
+
+    <div class="form-group">
+    <a href="javascript:void(0)" onclick="resetAll()" class="btn btn-primary waves-effect">RESET</a>
+    </div>
+
       {!! Form::close() !!}
 
     <div class="card col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="body">
           <div class="table-responsive">
-            <p>Count: {{ $kosts->count() }}</p>
-            <p>Total: {{ $kosts->total() }}</p>
-            <p>pageOne: 1</p>
-            <p>Current: {{ $kosts->currentPage() }}</p>
-            <p>hasMorePages: {{ $kosts->hasMorePages() }}</p>
-            <p>lastPage: {{ $kosts->lastPage() }}</p>
-            <p>perPage: {{ $kosts->perPage() }}</p>
+            <p>Halaman Saat Ini: {{ $kosts->currentPage() }}</p>
+            <p>Jumlah Perhalaman: {{ $kosts->count() }}</p>
+            <p>Jumlah Data: {{ $kosts->total() }}</p>
               <table class="table table-bordered table-striped table-hover">
                   <thead>
                       <tr>
@@ -321,6 +341,20 @@
                   </tbody>
               </table>
           </div>
+
+          <ul class="pager">
+              @if($kosts->currentPage() == 1)
+                <li><a href="javascript:void(0);" class="waves-effect disabled">Previous</a></li>
+              @else
+                <li><a href="{{ $fullUrl }}&page={{ $kosts->currentPage() - 1 }}" class="waves-effect">Previous</a></li>
+              @endif
+              @if($kosts->hasMorePages() == 1)
+              <li><a href="{{ $fullUrl }}&page={{ $kosts->currentPage() + 1 }}" class="waves-effect">Next</a></li>
+              @else
+              <li><a href="javascript:void(0);" class="waves-effect disabled">Next</a></li>
+              @endif
+          </ul>
+
       </div>
     </div>
 
@@ -387,7 +421,7 @@
             $("#tahunmax").prop('disabled', false);
             $("#tahunmin").prop('disabled', false);
             
-            $("#bulanmin").prop('disabled', false);
+            $("#bulanmax").prop('disabled', false);
             $("#bulanmin").prop('disabled', false);
             break;
     }
@@ -426,6 +460,8 @@
     $("#bulanmax").val($("#bulanmax").cleanVal());
     $("#tahunmin").val($("#tahunmin").cleanVal());
     $("#tahunmax").val($("#tahunmax").cleanVal());
+    $("#halamansaatini").val($("#halamansaatini").cleanVal());
+    $("#jumlahperhalaman").val($("#jumlahperhalaman").cleanVal());
   });
 </script>
 
