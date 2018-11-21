@@ -185,9 +185,6 @@
               <table class="table table-bordered table-striped table-hover datatable">
                   <thead>
                       <tr>
-                          {{-- <th style="text-align: center;">Email Pemilik</th>
-                          <th style="text-align: center;">Nama Pemilik</th>
-                          <th style="text-align: center;">No HP Pemilik</th> --}}
                           <th style="text-align: center;">Nama</th>
                           <th style="text-align: center;">Alamat</th>
                           <th style="text-align: center;">Provinsi</th>
@@ -198,7 +195,10 @@
                           <th style="text-align: center;">Bulanan</th>
                           <th style="text-align: center;">Tahunan</th>
                           <th style="text-align: center;">Kamar Tersedia</th>
-                          <th style="text-align: center;">Deskripsi</th>
+                          <th style="text-align: center;">Email Pemilik</th>
+                          <th style="text-align: center;">Nama Pemilik</th>
+                          <th style="text-align: center;">No HP Pemilik</th>
+
                           <th style="text-align: center;">Proses</th>
                       </tr>
                   </thead>
@@ -211,18 +211,6 @@
                         deskripsi[{{ $kost->id }}] = "{{ $kost->deskripsi }}";
                       </script>
                       <tr>
-                        {{-- <td>{{ $kost->user->email }}</td>
-                        <td>{{ $kost->user->nama }}</td>
-                        @php
-                        if($kost->user->verified_nohp == 'y') {
-                          $title = 'Verified';
-                          $icon = '&#10003;';
-                        } else {
-                          $title = 'Unverified';
-                          $icon = '?';
-                        }
-                        @endphp
-                        <td>{{ $kost->user->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td> --}}
                         <td>{{ $kost->nama }}</td>
                         @php
                         if($kost->verified_alamat == 'y') {
@@ -260,12 +248,30 @@
                         <td>{{ $tipe }}</td>
                         <td>{{ $kost->bulanan != 0 ? $pustaka->rupiah($kost->bulanan) : '-' }}</td>
                         <td>{{ $kost->tahunan != 0 ? $pustaka->rupiah($kost->tahunan) : '-' }}</td>
+                        <td>{{ $kost->user->email }}</td>
+                        <td>{{ $kost->user->nama }}</td>
+                        @php
+                        if($kost->user->verified_nohp == 'y') {
+                          $title = 'Verified';
+                          $icon = '&#10003;';
+                        } else {
+                          $title = 'Unverified';
+                          $icon = '?';
+                        }
+                        @endphp
+                        <td>{{ $kost->user->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
                         <td>{{ $kost->kamartersedia }}</td>
-                        <td>{{ $kost->deskripsi }}</td>
+
                           <td style="text-align: center;">
                             
-                            <a href="{{ route('kos.mediaLibrary', $kost->id) }}">
-                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Media Library">
+                            <a href="javascript:void(0)" onclick="modalDeskripsi('{{ $kost->id }}')">
+                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Deskripsi">
+                                <i class="material-icons">description</i>
+                              </button>
+                            </a>
+
+                            <a href="javascript:void(0)">
+                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Foto">
                                 <i class="material-icons">photo_library</i>
                               </button>
                             </a>
@@ -286,9 +292,32 @@
           </div>
       </div>
     </div>
+
+    <div class="modal fade" id="modalDeskripsi" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Deskripsi</h4>
+              </div>
+              <div class="modal-body" id="modalBody">
+                  
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">TUTUP</button>
+              </div>
+          </div>
+      </div>
+  </div>
 @endsection
 
 @section('js')
+<script type="text/javascript">
+  function modalDeskripsi(id) {
+    $("#modalBody").html(deskripsi[id]);
+    $("#modalDeskripsi").modal('show');
+  }
+</script>
+
 <script type="text/javascript">
   function resetAll() {
     $('input').val('');
