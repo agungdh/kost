@@ -49,7 +49,7 @@
                 !!}            
 
                 <div class="form-group">
-                <button type="submit" class="btn btn-success waves-effect">SIMPAN</button>
+                <button type="submit" class="btn btn-success waves-effect">CARI</button>
                 </div>
 
           </div>
@@ -248,6 +248,7 @@
                         <td>{{ $tipe }}</td>
                         <td>{{ $kost->bulanan != 0 ? $pustaka->rupiah($kost->bulanan) : '-' }}</td>
                         <td>{{ $kost->tahunan != 0 ? $pustaka->rupiah($kost->tahunan) : '-' }}</td>
+                        <td>{{ $kost->kamartersedia }}</td>
                         <td>{{ $kost->user->email }}</td>
                         <td>{{ $kost->user->nama }}</td>
                         @php
@@ -260,7 +261,6 @@
                         }
                         @endphp
                         <td>{{ $kost->user->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
-                        <td>{{ $kost->kamartersedia }}</td>
 
                           <td style="text-align: center;">
                             
