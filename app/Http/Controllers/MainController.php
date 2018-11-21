@@ -29,8 +29,7 @@ class MainController extends Controller
         if ($inputs['kec'] != null) { $paramCariKos['kec_id'] = $inputs['kec']; }
         if ($inputs['desa'] != null) { $paramCariKos['desa_id'] = $inputs['desa']; }
         if (isset($inputs['tipe'])) { $paramCariKos['tipe'] = $inputs['tipe']; }
-        // if (isset($inputs['waktupembayaran'])) { $paramCariKos['waktupembayaran'] = $inputs['waktupembayaran']; }
-        if (isset($inputs['tipe'])) { $paramCariKos['tipe'] = $inputs['tipe']; }
+        if (isset($inputs['alamatverifikasi'])) { $paramCariKos['verified_alamat'] = $inputs['alamatverifikasi']; }
 
         $kos = DB::table('v_kos')->where($paramCariKos)->get();
 

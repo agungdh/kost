@@ -183,6 +183,42 @@
 
 @section('js')
 <script type="text/javascript">
+  $("#waktupembayaran").on('change', function() {
+    gantiWaktuPembayaran();
+  });
+
+  function gantiWaktuPembayaran() {
+    switch($("#waktupembayaran").val()) {
+        case 'b':
+            $("#tahunmax").prop('disabled', true);
+            $("#tahunmin").prop('disabled', true);
+            $("#tahunmax").val('');
+            $("#tahunmin").val('');
+            
+            $("#bulanmax").prop('disabled', false);
+            $("#bulanmin").prop('disabled', false);
+            break;
+        case 't':
+            $("#tahunmax").prop('disabled', false);
+            $("#tahunmin").prop('disabled', false);
+            
+            $("#bulanmax").prop('disabled', true);
+            $("#bulanmin").prop('disabled', true);
+            $("#bulanmax").val('');
+            $("#bulanmin").val('');
+            break;
+        default:
+            $("#tahunmax").prop('disabled', false);
+            $("#tahunmin").prop('disabled', false);
+            
+            $("#bulanmin").prop('disabled', false);
+            $("#bulanmin").prop('disabled', false);
+            break;
+    }
+  }
+</script>
+
+<script type="text/javascript">
   $("form").submit(function() {
     if ($("#bulanmin").val() != '' && $("#bulanmax").val() != '') {
       if (parseInt($("#bulanmin").cleanVal()) > parseInt($("#bulanmax").cleanVal())) {
@@ -221,9 +257,9 @@
 {{-- onload --}}
 <script type="text/javascript">
 $(function() {
-  getLocation();
-
   initDaerahEdit();
+
+  gantiWaktuPembayaran();
 });  
 </script>
 @endif
