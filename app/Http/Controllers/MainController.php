@@ -13,7 +13,11 @@ class MainController extends Controller
     public function index(Request $request)
     {
         $inputs = $request->all();
-
+        $inputs['prop'] = isset($inputs['prop']) ? $inputs['prop'] : null;
+        $inputs['kab'] = isset($inputs['kab']) ? $inputs['kab'] : null;
+        $inputs['kec'] = isset($inputs['kec']) ? $inputs['kec'] : null;
+        $inputs['desa'] = isset($inputs['desa']) ? $inputs['desa'] : null;
+        
     	return view('frontend.dashboard', compact('inputs'));	
     }
 

@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1	Database: serverag_kost
 -- ------------------------------------------------------
 -- Server version 	10.2.18-MariaDB-cll-lve
--- Date: Wed, 21 Nov 2018 04:41:21 +0000
+-- Date: Wed, 21 Nov 2018 05:53:45 +0000
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -254,7 +254,7 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `user` VALUES (2,'admin@email.com','$2y$10$WwAZ2IliBuDLWwX1JiwcWuBe5c8t.KckyQf6siSS5Ea1cKRwZUe2K','Administrator','Someplace','1234567890','a','y',NULL,NULL,'y'),(37,'anggia5197@gmail.com','$2y$10$eEzTiQCDlXnM.k5YS1S7Vut9Niety1c5JHAedgTy6U5MPcUssU30u','Putri Anggiria','Rajabasa','0895357754418','p','y',NULL,NULL,'n'),(38,'agungdh@live.com','$2y$10$D3Bztmq4JDiAML4bfO95YO0KSc6a/bq4TGtN3LiUUt/biZrcY6SQi','Agung Live1','NGR2','0853234233','p','y','0a5b0453f41fea3088f37d6eb4ab280d','asf@aa.a','n'),(43,'agungsaptomargonodh@gmail.com','$2y$10$GuhUF.t2FPIZOcg79TDrdenOVtsILQWr0st.CzhKpZAJONHG.8uiG','agungsmdh full','ngr 1234556','1212412414','p','y',NULL,NULL,'n'),(47,'agunggantengdh@gmail.com','$2y$10$boa9Npz/LWT0PQ6gCYsfmuEZixUUHgjg5ZFEB79eOFcB9eJQtw2YG','Agung Ganteng','NGR City','08124124','p','y',NULL,NULL,'n'),(48,'muhammadjuliantoprabowo99@gmail.com','$2y$10$ajQZpv9C8LHhaXmGMPgTcOSsXThXw6B2uj8hnKPs5y5WbnwQiEBj.','Muhammad Julianto Prabowo','Bandar Lampung','082122232425','u','y',NULL,NULL,'n'),(49,'septianggraini59@gmail.com','$2y$10$EIBXaamMSWaDzDXgAGM2bOlbiUafbHtXD49jmJfhMB9vS4Iz5tC9u','Septi Anggraini','jl kapten abdul haq gg masjid nurul salam no 19 rajabasa bandar lampung','085212324858','p','n','daa068cc55134b8c3df84110d09299ab',NULL,'n');
+INSERT INTO `user` VALUES (2,'admin@email.com','$2y$10$WwAZ2IliBuDLWwX1JiwcWuBe5c8t.KckyQf6siSS5Ea1cKRwZUe2K','Administrator','Someplace','1234567890','a','y',NULL,NULL,'y'),(37,'anggia5197@gmail.com','$2y$10$eEzTiQCDlXnM.k5YS1S7Vut9Niety1c5JHAedgTy6U5MPcUssU30u','Putri Anggiria','Rajabasa','0895357754418','p','y',NULL,NULL,'n'),(38,'agungdh@live.com','$2y$10$D3Bztmq4JDiAML4bfO95YO0KSc6a/bq4TGtN3LiUUt/biZrcY6SQi','Agung Live1','NGR2','0853234233','p','y','0a5b0453f41fea3088f37d6eb4ab280d','asf@aa.a','n'),(43,'agungsaptomargonodh@gmail.com','$2y$10$GuhUF.t2FPIZOcg79TDrdenOVtsILQWr0st.CzhKpZAJONHG.8uiG','agungsmdh full','ngr 1234556','1212412414','u','y',NULL,NULL,'n'),(47,'agunggantengdh@gmail.com','$2y$10$boa9Npz/LWT0PQ6gCYsfmuEZixUUHgjg5ZFEB79eOFcB9eJQtw2YG','Agung Ganteng','NGR City','08124124','p','y',NULL,NULL,'n'),(48,'muhammadjuliantoprabowo99@gmail.com','$2y$10$ajQZpv9C8LHhaXmGMPgTcOSsXThXw6B2uj8hnKPs5y5WbnwQiEBj.','Muhammad Julianto Prabowo','Bandar Lampung','082122232425','u','y',NULL,NULL,'n'),(49,'septianggraini59@gmail.com','$2y$10$EIBXaamMSWaDzDXgAGM2bOlbiUafbHtXD49jmJfhMB9vS4Iz5tC9u','Septi Anggraini','jl kapten abdul haq gg masjid nurul salam no 19 rajabasa bandar lampung','085212324858','p','n','daa068cc55134b8c3df84110d09299ab',NULL,'n');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
@@ -338,4 +338,4 @@ DROP TABLE IF EXISTS `v_kos`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Wed, 21 Nov 2018 04:41:22 +0000
+-- Dump completed on: Wed, 21 Nov 2018 05:53:47 +0000
