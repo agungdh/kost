@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "agungdh/pustaka",
-            "version": "1.0.6",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/agungdh/pustaka.git",
-                "reference": "6231fd1d7c820f3fb77aa70421de0c7474422004"
+                "reference": "f56e4bbbabe87354e4e62d9907099265f0b16106"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agungdh/pustaka/zipball/6231fd1d7c820f3fb77aa70421de0c7474422004",
-                "reference": "6231fd1d7c820f3fb77aa70421de0c7474422004",
+                "url": "https://api.github.com/repos/agungdh/pustaka/zipball/f56e4bbbabe87354e4e62d9907099265f0b16106",
+                "reference": "f56e4bbbabe87354e4e62d9907099265f0b16106",
                 "shasum": ""
             },
             "require": {
@@ -40,7 +40,7 @@
                 }
             ],
             "description": "Collection of libraries commonly used in developing web applications by AgungDH",
-            "time": "2018-11-20T02:00:41+00:00"
+            "time": "2018-11-21T15:12:21+00:00"
         },
         {
             "name": "apfelbox/php-file-download",
@@ -1203,16 +1203,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.13",
+            "version": "v5.7.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "3ff3110ac14f2b4876acaff289bb55a1af74f02e"
+                "reference": "ad6c1fe1e455c0f73a431928282704879ccbd856"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/3ff3110ac14f2b4876acaff289bb55a1af74f02e",
-                "reference": "3ff3110ac14f2b4876acaff289bb55a1af74f02e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ad6c1fe1e455c0f73a431928282704879ccbd856",
+                "reference": "ad6c1fe1e455c0f73a431928282704879ccbd856",
                 "shasum": ""
             },
             "require": {
@@ -1343,7 +1343,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-11-07T12:41:02+00:00"
+            "time": "2018-11-21T13:46:08+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2893,16 +2893,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
                 "shasum": ""
             },
             "require": {
@@ -2936,7 +2936,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2018-11-20T15:27:04+00:00"
         },
         {
             "name": "psr/simple-cache",
