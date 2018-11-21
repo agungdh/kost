@@ -24,13 +24,19 @@ class MainController extends Controller
         
         // parameter cari kos
         $paramCariKos = [];
-        if ($inputs['prop'] != null) { $paramCariKos['prop_id'] = $inputs['prop']; }
-        if ($inputs['kab'] != null) { $paramCariKos['kab_id'] = $inputs['kab']; }
-        if ($inputs['kec'] != null) { $paramCariKos['kec_id'] = $inputs['kec']; }
-        if ($inputs['desa'] != null) { $paramCariKos['desa_id'] = $inputs['desa']; }
-        if (isset($inputs['tipe'])) { $paramCariKos['tipe'] = $inputs['tipe']; }
-        if (isset($inputs['alamatverifikasi'])) { $paramCariKos['verified_alamat'] = $inputs['alamatverifikasi']; }
-
+        if ($inputs['prop'] != null) { $paramCariKos[] = ['prop_id', '=', $inputs['prop']]; }
+        if ($inputs['kab'] != null) { $paramCariKos[] = ['kab_id', '=', $inputs['kab']]; }
+        if ($inputs['kec'] != null) { $paramCariKos[] = ['kec_id', '=', $inputs['kec']]; }
+        if ($inputs['desa'] != null) { $paramCariKos[] = ['desa_id', '=', $inputs['desa']]; }
+        if (isset($inputs['tipe'])) { $paramCariKos[] = ['tipe', '=', $inputs['tipe']]; }
+        if (isset($inputs['alamatverifikasi'])) { $paramCariKos[] = ['verified_alamat', '=', $inputs['alamatverifikasi']]; }
+        if (isset($inputs['kamartersediamin'])) { $paramCariKos[] = ['kamartersedia', '>=', $inputs['kamartersediamin']]; }
+        if (isset($inputs['kamartersediamax'])) { $paramCariKos[] = ['kamartersedia', '<=', $inputs['kamartersediamax']]; }
+        if (isset($inputs['bulanmin'])) { $paramCariKos[] = ['bulanan', '>=', $inputs['bulanmin']]; }
+        if (isset($inputs['bulanmax'])) { $paramCariKos[] = ['bulanan', '<=', $inputs['bulanmax']]; }
+        if (isset($inputs['tahunmin'])) { $paramCariKos[] = ['tahunan', '>=', $inputs['tahunmin']]; }
+        if (isset($inputs['tahunmax'])) { $paramCariKos[] = ['tahunan', '<=', $inputs['tahunmax']]; }
+        
         $kos = DB::table('v_kos')->where($paramCariKos)->get();
 
     	return view('frontend.dashboard', compact(['inputs', 'kos', 'paramCariKos']));	
