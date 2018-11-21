@@ -9,6 +9,7 @@ use Ifsnop\Mysqldump as IMysqldump;
 use Apfelbox\FileDownload\FileDownload;
 
 use App\Kos;
+use App\VKos;
 use DB;
 
 class MainController extends Controller
@@ -37,9 +38,9 @@ class MainController extends Controller
         if (isset($inputs['tahunmin'])) { $paramCariKos[] = ['tahunan', '>=', $inputs['tahunmin']]; }
         if (isset($inputs['tahunmax'])) { $paramCariKos[] = ['tahunan', '<=', $inputs['tahunmax']]; }
         
-        $kos = DB::table('v_kos')->where($paramCariKos)->get();
+        $kosts = VKos::where($paramCariKos)->get();
 
-    	return view('frontend.dashboard', compact(['inputs', 'kos', 'paramCariKos']));	
+    	return view('frontend.dashboard', compact(['inputs', 'kosts', 'paramCariKos']))->with('pustaka', new \agungdh\Pustaka());	
     }
 
 	public function dashboard()

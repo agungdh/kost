@@ -9,13 +9,15 @@
 
   {!! Form::model($inputs, ['route' => 'root', 'method' => 'get']) !!}
 
-    <div class="card">
-        <div class="header">
-            <h2>
-                HOME
-            </h2>
-        </div>
+    <div class="card col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="header">
+          <h2>
+              HOME
+          </h2>
+      </div>
+    </div>
 
+    <div class="card col-lg-4 col-md-4 col-sm-12 col-xs-12">
           <div class="body">
 
                 {!!
@@ -46,142 +48,254 @@
                     )
                 !!}            
 
-                {!!
-                    Form::adhSelect2(
-                        'Tipe',
-                        'tipe', 
-                        true,
-                        [
-                          'l' => 'Laki - Laki',
-                          'p' => 'Perempuan',
-                          'lp' => 'Campur',
-                        ]
-                    )
-                !!}
-                
-                {!!
-                    Form::adhSelect2(
-                        'Bulanan / Tahunan',
-                        'waktupembayaran', 
-                        true,
-                        [
-                          'b' => 'Bulanan',
-                          't' => 'Tahunan',
-                        ]
-                    )
-                !!}
-
-                {!!
-                    Form::adhText(
-                        'Ketersediaan Kamar Minimum',
-                        'kamartersediamin', 
-                        true,  
-                        null, 
-                        [
-                          'class' => 'form-control uang',
-                        ]
-                    )
-                !!}
-
-                {!!
-                    Form::adhText(
-                        'Ketersediaan Kamar Maximum',
-                        'kamartersediamax', 
-                        true,  
-                        null, 
-                        [
-                          'class' => 'form-control uang',
-                        ]
-                    )
-                !!}
-
-                {!!
-                    Form::adhSelect2(
-                        'Alamat Terverifikasi ?',
-                        'alamatverifikasi', 
-                        true,
-                        [
-                          'y' => 'Ya',
-                          'n' => 'Tidak',
-                        ]
-                    )
-                !!}
-
-                {!!
-                    Form::adhText(
-                        'Biaya Minimum (Bulanan)',
-                        'bulanmin',
-                        true,  
-                        null, 
-                        [
-                          'class' => 'form-control uang',
-                        ]
-                    )
-                !!}
-
-                {!!
-                    Form::adhText(
-                        'Biaya Maximum (Bulanan)',
-                        'bulanmax',
-                        true,  
-                        null, 
-                        [
-                          'class' => 'form-control uang',
-                        ]
-                    )
-                !!}
-
-                {!!
-                    Form::adhText(
-                        'Biaya Minimum (Tahunan)',
-                        'tahunmin',
-                        true,  
-                        null, 
-                        [
-                          'class' => 'form-control uang',
-                        ]
-                    )
-                !!}
-
-                {!!
-                    Form::adhText(
-                        'Biaya Maximum (Tahunan)',
-                        'tahunmax',
-                        true,  
-                        null, 
-                        [
-                          'class' => 'form-control uang',
-                        ]
-                    )
-                !!}
-
+                <div class="form-group">
                 <button type="submit" class="btn btn-success waves-effect">SIMPAN</button>
-                <a href="{{ route('kos.index') }}" class="btn btn-primary waves-effect">BATAL</a>
+                </div>
+
           </div>
     </div>
 
-    <div class="card">
-        <div class="header">
-            <h2>
-                HOME
-            </h2>
+    <div class="card col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <div class="body">
+        {!!
+            Form::adhSelect2(
+                'Tipe',
+                'tipe', 
+                true,
+                [
+                  'l' => 'Laki - Laki',
+                  'p' => 'Perempuan',
+                  'lp' => 'Campur',
+                ]
+            )
+        !!}
+        
+        {!!
+            Form::adhSelect2(
+                'Bulanan / Tahunan',
+                'waktupembayaran', 
+                true,
+                [
+                  'b' => 'Bulanan',
+                  't' => 'Tahunan',
+                ]
+            )
+        !!}
+
+        {!!
+            Form::adhText(
+                'Ketersediaan Kamar Minimum',
+                'kamartersediamin', 
+                true,  
+                null, 
+                [
+                  'class' => 'form-control uang',
+                ]
+            )
+        !!}
+
+        {!!
+            Form::adhText(
+                'Ketersediaan Kamar Maximum',
+                'kamartersediamax', 
+                true,  
+                null, 
+                [
+                  'class' => 'form-control uang',
+                ]
+            )
+        !!}
+
+        <div class="form-group">
+        <a href="javascript:void(0)" onclick="resetAll()" class="btn btn-primary waves-effect">RESET</a>
         </div>
 
-          <div class="body">
-            <p>
-              {{ json_encode($kos) }}
-            </p>
-            <p>
-              {{ json_encode($paramCariKos) }}
-            </p>
+      </div>
+    </div>
+
+    <div class="card col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <div class="body">
+        {!!
+            Form::adhSelect2(
+                'Alamat Terverifikasi ?',
+                'alamatverifikasi', 
+                true,
+                [
+                  'y' => 'Ya',
+                  'n' => 'Tidak',
+                ]
+            )
+        !!}
+
+        {!!
+            Form::adhText(
+                'Biaya Minimum (Bulanan)',
+                'bulanmin',
+                true,  
+                null, 
+                [
+                  'class' => 'form-control uang',
+                ]
+            )
+        !!}
+
+        {!!
+            Form::adhText(
+                'Biaya Maximum (Bulanan)',
+                'bulanmax',
+                true,  
+                null, 
+                [
+                  'class' => 'form-control uang',
+                ]
+            )
+        !!}
+
+        {!!
+            Form::adhText(
+                'Biaya Minimum (Tahunan)',
+                'tahunmin',
+                true,  
+                null, 
+                [
+                  'class' => 'form-control uang',
+                ]
+            )
+        !!}
+
+        {!!
+            Form::adhText(
+                'Biaya Maximum (Tahunan)',
+                'tahunmax',
+                true,  
+                null, 
+                [
+                  'class' => 'form-control uang',
+                ]
+            )
+        !!}        
+      </div>
+    </div>
+
+      {!! Form::close() !!}
+
+    <div class="card col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="body">
+          <div class="table-responsive">
+              <table class="table table-bordered table-striped table-hover datatable">
+                  <thead>
+                      <tr>
+                          {{-- <th style="text-align: center;">Email Pemilik</th>
+                          <th style="text-align: center;">Nama Pemilik</th>
+                          <th style="text-align: center;">No HP Pemilik</th> --}}
+                          <th style="text-align: center;">Nama</th>
+                          <th style="text-align: center;">Alamat</th>
+                          <th style="text-align: center;">Provinsi</th>
+                          <th style="text-align: center;">Kabupaten</th>
+                          <th style="text-align: center;">Kecamatan</th>
+                          <th style="text-align: center;">Kelurahan</th>
+                          <th style="text-align: center;">Tipe</th>
+                          <th style="text-align: center;">Bulanan</th>
+                          <th style="text-align: center;">Tahunan</th>
+                          <th style="text-align: center;">Kamar Tersedia</th>
+                          <th style="text-align: center;">Deskripsi</th>
+                          <th style="text-align: center;">Proses</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <script type="text/javascript">
+                      var deskripsi = [];
+                    </script>
+                    @foreach($kosts as $kost)
+                      <script type="text/javascript">
+                        deskripsi[{{ $kost->id }}] = "{{ $kost->deskripsi }}";
+                      </script>
+                      <tr>
+                        {{-- <td>{{ $kost->user->email }}</td>
+                        <td>{{ $kost->user->nama }}</td>
+                        @php
+                        if($kost->user->verified_nohp == 'y') {
+                          $title = 'Verified';
+                          $icon = '&#10003;';
+                        } else {
+                          $title = 'Unverified';
+                          $icon = '?';
+                        }
+                        @endphp
+                        <td>{{ $kost->user->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td> --}}
+                        <td>{{ $kost->nama }}</td>
+                        @php
+                        if($kost->verified_alamat == 'y') {
+                          $title = 'Verified';
+                          $icon = '&#10003;';
+                        } else {
+                          $title = 'Unverified';
+                          $icon = '?';
+                        }
+                        @endphp
+                        <td>{{ $kost->alamat }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
+                        <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->kabupaten->provinsi->nama_prop)) }}</td>
+                        <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->kabupaten->nama_kab)) }}</td>
+                        <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->nama_kec)) }}</td>
+                        <td>{{ ucwords(strtolower($kost->kelurahan->nama_desa)) }}</td>
+                        @php
+                        switch ($kost->tipe) {
+                          case 'l':
+                            $tipe = 'Laki - Laki';
+                            break;
+                          
+                          case 'p':
+                            $tipe = 'Perempuan';
+                            break;
+                          
+                          case 'lp':
+                            $tipe = 'Campur';
+                            break;
+                          
+                          default:
+                            $tipe = 'ERROR !!!';
+                            break;
+                        }
+                        @endphp
+                        <td>{{ $tipe }}</td>
+                        <td>{{ $kost->bulanan != 0 ? $pustaka->rupiah($kost->bulanan) : '-' }}</td>
+                        <td>{{ $kost->tahunan != 0 ? $pustaka->rupiah($kost->tahunan) : '-' }}</td>
+                        <td>{{ $kost->kamartersedia }}</td>
+                        <td>{{ $kost->deskripsi }}</td>
+                          <td style="text-align: center;">
+                            
+                            <a href="{{ route('kos.mediaLibrary', $kost->id) }}">
+                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Media Library">
+                                <i class="material-icons">photo_library</i>
+                              </button>
+                            </a>
+                            
+                            <a target="_blank" href="https://www.google.com/maps/search/{{ $kost->latitude }},{{ $kost->longitude }}">
+                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Google Maps">
+                                <i class="material-icons">place</i>
+                              </button>
+                            </a>
+                            
+                            {!! Form::close() !!}
+
+                          </td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+              </table>
           </div>
-
-  {!! Form::close() !!}
-
-</div>
+      </div>
+    </div>
 @endsection
 
 @section('js')
+<script type="text/javascript">
+  function resetAll() {
+    $('input').val('');
+    $('option').attr('selected', false);
+    $('.select2').select2();
+  }
+</script>
 <script type="text/javascript">
   $("#waktupembayaran").on('change', function() {
     gantiWaktuPembayaran();
