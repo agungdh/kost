@@ -64,7 +64,7 @@ class SeedDatabase extends Command
         //    $users[$i]['verified_nohp'] = $faker->randomElement(['y', 'n']);
         // }
 
-        // User::insert($users);
+        // User::insert($users); die;
         // End User
 
         // Kos
@@ -76,7 +76,7 @@ class SeedDatabase extends Command
         }
 
         $desaId = [];
-        foreach (DB::table('v_daerah')->where('prop_id', '18')->get() as $value) {
+        foreach (DB::table('v_daerah')->where('kab_id', '1872')->get() as $value) {
             $desaId[] = $value->desa_id;
         }
 
@@ -88,7 +88,7 @@ class SeedDatabase extends Command
             $kosses[$i]['tipe'] = $faker->randomElement(['l', 'p', 'lp']);
             $kosses[$i]['bulanan'] = Pustaka::decimalRand(300000, 1000000, 100000);
             $kosses[$i]['tahunan'] = Pustaka::decimalRand(1500000, 10000000, 250000);
-            $kosses[$i]['deskripsi'] = $faker->realText(500);
+            $kosses[$i]['deskripsi'] = $faker->realText(100);
             $kosses[$i]['kamartersedia'] = $faker->randomNumber(2);
             $kosses[$i]['latitude'] = $faker->latitude();
             $kosses[$i]['longitude'] = $faker->longitude();
@@ -103,12 +103,12 @@ class SeedDatabase extends Command
         $kosses = Kos::all();
         $i = 0;
         foreach ($kosses as $kos) {
-            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
-            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
-            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
-            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
-            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
-            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(191)];
+            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(25)];
+            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(25)];
+            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(25)];
+            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(25)];
+            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(25)];
+            $fotos[$i++] = ['id_kos' => $kos->id, 'deskripsi' => $faker->realText(25)];
         }
 
         Foto::insert($fotos);
