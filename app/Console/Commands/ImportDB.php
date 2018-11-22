@@ -15,7 +15,7 @@ class ImportDB extends Command
      *
      * @var string
      */
-    protected $signature = 'importdb {sqlFile} {--recreate}';
+    protected $signature = 'importdb {sqlFile} {--R|recreate}';
 
     /**
      * The console command description.
