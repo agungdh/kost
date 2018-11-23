@@ -38,7 +38,8 @@ class MainController extends Controller
         if (isset($inputs['tahunmin'])) { $paramCariKos[] = ['tahunan', '>=', $inputs['tahunmin']]; }
         if (isset($inputs['tahunmax'])) { $paramCariKos[] = ['tahunan', '<=', $inputs['tahunmax']]; }
         
-        $kosts = VKos::where($paramCariKos)->paginate(5);
+        if (isset($inputs['jumlahperhalaman'])) { $inputs['jumlahperhalaman'] = intval($inputs['jumlahperhalaman']); } else { $inputs['jumlahperhalaman'] = 5; }
+        $kosts = VKos::where($paramCariKos)->paginate($inputs['jumlahperhalaman']);
 
     	return view('frontend.dashboard', compact(['inputs', 'kosts', 'paramCariKos']))
             ->with('pustaka', new \agungdh\Pustaka())

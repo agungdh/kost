@@ -119,7 +119,7 @@
                 'Jumlah Data Per Halaman',
                 'jumlahperhalaman', 
                 true,  
-                $kosts->perPage(), 
+                null, 
                 [
                   'class' => 'form-control uang',
                 ]
