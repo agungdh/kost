@@ -265,7 +265,7 @@
                           <th style="text-align: center;">Nama Pemilik</th>
                           <th style="text-align: center;">No HP Pemilik</th>
 
-                          <th style="text-align: center;">Proses</th>
+                          <th colspan="4" style="text-align: center;">Proses</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -328,18 +328,18 @@
                         @endphp
                         <td>{{ $kost->user->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
 
-                          <td style="text-align: center;">
-                            
+                            <td>
                             <a href="javascript:void(0)" onclick="modalDeskripsi('{{ $kost->id }}')">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Deskripsi">
                                 <i class="material-icons">description</i>
                               </button>
                             </a>
+                            </td>
 
+                            <td>
                             {{-- media library --}}
                             <div id="mediaLibrary{{ $kost->id }}">
                               
-                                
                               @php
                               $i = 1;
                               @endphp
@@ -364,16 +364,18 @@
                                 @endphp
                               @endforeach
                             </div>
+                            </td>
                             
+                            <td>
                             <a target="_blank" href="https://www.google.com/maps/search/{{ $kost->latitude }},{{ $kost->longitude }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Google Maps">
                                 <i class="material-icons">place</i>
                               </button>
                             </a>
-                            
-                            {!! Form::close() !!}
+                            </td>
 
-                          </td>
+                            <td></td>
+                          
                       </tr>
 
                     @endforeach
