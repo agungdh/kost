@@ -60,6 +60,15 @@
                     )
                 !!}
 
+                <div class="form-group">
+                  <label>Jumlah Data: {{ $kosts->total() }}</label>
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-success waves-effect">CARI</button>
+                  <a href="javascript:void(0)" onclick="resetAll()" class="btn btn-primary waves-effect">RESET</a>
+                </div>
+
           </div>
     </div>
 
@@ -126,6 +135,10 @@
             )
         !!}
 
+        <div class="form-group">
+          <label>Jumlah Halaman: {{ $kosts->lastPage() }}</label>
+        </div>
+        <div class="form-group"><p style="visibility: hidden;">dummy</p></div>
       </div>
     </div>
 
@@ -189,16 +202,20 @@
                   'class' => 'form-control uang',
                 ]
             )
-        !!}        
+        !!}  
+
+        {!!
+            Form::adhSelect2(
+                'Urutkan Berdasarkan',
+                'urut', 
+                true,
+                [
+                  'y' => 'Ya',
+                  'n' => 'Tidak',
+                ]
+            )
+        !!}      
       </div>
-    </div>
-
-    <div class="form-group">
-    <button type="submit" class="btn btn-success waves-effect">CARI</button>
-    </div>
-
-    <div class="form-group">
-    <a href="javascript:void(0)" onclick="resetAll()" class="btn btn-primary waves-effect">RESET</a>
     </div>
 
       {!! Form::close() !!}
@@ -206,8 +223,6 @@
     <div class="card col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="body">
           <div class="table-responsive">
-            <p>Jumlah Data: {{ $kosts->total() }}</p>
-            <p>Jumlah Halaman: {{ $kosts->lastPage() }}</p>
               <table class="table table-bordered table-striped table-hover">
                   <thead>
                       <tr>
