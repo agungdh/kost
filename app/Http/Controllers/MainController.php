@@ -42,6 +42,7 @@ class MainController extends Controller
         if (isset($inputs['jumlahperhalaman'])) { $inputs['jumlahperhalaman'] = intval($inputs['jumlahperhalaman']); } else { $inputs['jumlahperhalaman'] = 5; }
         if ($inputs['jumlahperhalaman'] < 1) { $inputs['jumlahperhalaman'] = 5; }
 
+        // halaman
         if (isset($inputs['page'])) { $inputs['page'] = intval($inputs['page']); } else { $inputs['page'] = 1; }
         if ($inputs['page'] < 1) { $inputs['page'] = 1; }
 
@@ -166,6 +167,8 @@ class MainController extends Controller
         if ($inputs['page'] > $kosts->lastPage()) {
             return redirect($request->fullUrl() . '&page=' . $kosts->lastPage());
         }
+
+        if (count($request->all()) > 0) { $inputs['uqm'] = false; } else { $inputs['uqm'] = true; }
 
     	return view('frontend.dashboard', compact(['inputs', 'kosts', 'paramCariKos']))
             ->with('pustaka', new \agungdh\Pustaka())

@@ -390,7 +390,11 @@
                 <li><a href="{{ $fullUrl }}&page={{ $kosts->currentPage() - 1 }}" class="waves-effect">Previous</a></li>
               @endif
               @if($kosts->hasMorePages() == 1)
+              @if($inputs['uqm'] == true) 
+              <li><a href="{{ $fullUrl }}?page={{ $kosts->currentPage() + 1 }}" class="waves-effect">Next</a></li>
+              @else
               <li><a href="{{ $fullUrl }}&page={{ $kosts->currentPage() + 1 }}" class="waves-effect">Next</a></li>
+              @endif
               @else
               <li><a href="javascript:void(0);" class="waves-effect disabled">Next</a></li>
               @endif
