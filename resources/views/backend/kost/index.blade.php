@@ -33,7 +33,9 @@
                           <th style="text-align: center;">Bulanan</th>
                           <th style="text-align: center;">Tahunan</th>
                           <th style="text-align: center;">Kamar Tersedia</th>
-                          <th colspan="5" style="text-align: center;">Proses</th>
+                          <th>&nbsp;</th><th>&nbsp;</th>
+                          <th style="text-align: center;">Proses</th>
+                          <th>&nbsp;</th><th>&nbsp;</th>
                       </tr>
                   </thead>
                   <tbody>
