@@ -206,15 +206,40 @@
 
         {!!
             Form::adhSelect2(
-                'Urutkan Berdasarkan',
+                'Urut',
                 'urut', 
                 true,
                 [
-                  'y' => 'Ya',
-                  'n' => 'Tidak',
+                  'namaa' => 'Nama (A-Z)',
+                  'namaz' => 'Nama (Z-A)',
+                  'alamata' => 'Alamat (A-Z)',
+                  'alamatz' => 'Alamat (Z-A)',
+                  'provinsia' => 'Provinsi (A-Z)',
+                  'provinsiz' => 'Provinsi (Z-A)',
+                  'kabupatena' => 'Kabupaten (A-Z)',
+                  'kabupatenz' => 'Kabupaten (Z-A)',
+                  'kecamatana' => 'Kecamatan (A-Z)',
+                  'kecamatanz' => 'Kecamatan (Z-A)',
+                  'kelurahana' => 'Kelurahan (A-Z)',
+                  'kelurahanz' => 'Kelurahan (Z-A)',
+                  'tipea' => 'Tipe (A-Z)',
+                  'tipez' => 'Tipe (Z-A)',
+                  'bulanana' => 'Bulanan (A-Z)',
+                  'bulananz' => 'Bulanan (Z-A)',
+                  'tahunana' => 'Tahunan (A-Z)',
+                  'tahunanz' => 'Tahunan (Z-A)',
+                  'kamartersediaa' => 'Kamar Tersedia (A-Z)',
+                  'kamartersediaz' => 'Kamar Tersedia (Z-A)',
+                  'emailpemilika' => 'Email Pemilik (A-Z)',
+                  'emailpemilikz' => 'Email Pemilik (Z-A)',
+                  'namapemilika' => 'Nama Pemilik (A-Z)',
+                  'namapemilikz' => 'Nama Pemilik (Z-A)',
+                  'nohppemilika' => 'No HP Pemilik (A-Z)',
+                  'nohppemilikz' => 'No HP Pemilik (Z-A)',
                 ]
             )
-        !!}      
+        !!}
+
       </div>
     </div>
 

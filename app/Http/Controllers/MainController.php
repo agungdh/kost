@@ -45,7 +45,123 @@ class MainController extends Controller
         if (isset($inputs['page'])) { $inputs['page'] = intval($inputs['page']); } else { $inputs['page'] = 1; }
         if ($inputs['page'] < 1) { $inputs['page'] = 1; }
 
-        $kosts = VKos::where($paramCariKos)->paginate($inputs['jumlahperhalaman']);
+        // urut
+        if (!isset($inputs['urut'])) { $inputs['urut'] = 'namaa'; }
+        switch ($inputs['urut']) {
+            case 'namaa':
+            $orderVar = 'nama';
+            $orderVal = 'asc';
+            break;
+            case 'namaz':
+            $orderVar = 'nama';
+            $orderVal = 'desc';
+            break;
+            case 'alamata':
+            $orderVar = 'alamat';
+            $orderVal = 'asc';
+            break;
+            case 'alamatz':
+            $orderVar = 'alamat';
+            $orderVal = 'desc';
+            break;
+            case 'provinsia':
+            $orderVar = 'nama_prop';
+            $orderVal = 'asc';
+            break;
+            case 'provinsiz':
+            $orderVar = 'nama_prop';
+            $orderVal = 'desc';
+            break;
+            case 'kabupatena':
+            $orderVar = 'nama_kab';
+            $orderVal = 'asc';
+            break;
+            case 'kabupatenz':
+            $orderVar = 'nama_kab';
+            $orderVal = 'desc';
+            break;
+            case 'kecamatana':
+            $orderVar = 'nama_kec';
+            $orderVal = 'asc';
+            break;
+            case 'kecamatanz':
+            $orderVar = 'nama_kec';
+            $orderVal = 'desc';
+            break;
+            case 'kelurahana':
+            $orderVar = 'nama_desa';
+            $orderVal = 'asc';
+            break;
+            case 'kelurahanz':
+            $orderVar = 'nama_desa';
+            $orderVal = 'desc';
+            break;
+            case 'tipea':
+            $orderVar = 'tipe';
+            $orderVal = 'asc';
+            break;
+            case 'tipez':
+            $orderVar = 'tipe';
+            $orderVal = 'desc';
+            break;
+            case 'bulanana':
+            $orderVar = 'bulanan';
+            $orderVal = 'asc';
+            break;
+            case 'bulananz':
+            $orderVar = 'bulanan';
+            $orderVal = 'desc';
+            break;
+            case 'tahunana':
+            $orderVar = 'tahunan';
+            $orderVal = 'asc';
+            break;
+            case 'tahunanz':
+            $orderVar = 'tahunan';
+            $orderVal = 'desc';
+            break;
+            case 'kamartersediaa':
+            $orderVar = 'kamartersedia';
+            $orderVal = 'asc';
+            break;
+            case 'kamartersediaz':
+            $orderVar = 'kamartersedia';
+            $orderVal = 'desc';
+            break;
+            case 'emailpemilika':
+            $orderVar = 'email';
+            $orderVal = 'asc';
+            break;
+            case 'emailpemilikz':
+            $orderVar = 'email';
+            $orderVal = 'desc';
+            break;
+            case 'namapemilika':
+            $orderVar = 'nama_user';
+            $orderVal = 'asc';
+            break;
+            case 'namapemilikz':
+            $orderVar = 'nama_user';
+            $orderVal = 'desc';
+            break;
+            case 'nohppemilika':
+            $orderVar = 'nohp';
+            $orderVal = 'asc';
+            break;
+            case 'nohppemilikz':
+            $orderVar = 'nohp';
+            $orderVal = 'desc';
+            break;  
+
+            default:
+            $orderVar = 'nama';
+            $orderVal = 'asc';
+            break;
+        }
+
+        $kosts = VKos::where($paramCariKos)
+                    ->orderBy($orderVar, $orderVal)
+                    ->paginate($inputs['jumlahperhalaman']);
 
         if ($inputs['page'] > $kosts->lastPage()) {
             return redirect($request->fullUrl() . '&page=' . $kosts->lastPage());
