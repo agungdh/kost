@@ -7,35 +7,35 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $judul }}</title>
     <!-- Favicon-->
-    <link rel="icon" href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
-    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Waves Effect Css -->
-    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/node-waves/waves.css" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/animate-css/animate.css" rel="stylesheet" />
 
     <!-- Custom Css -->
-    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/css/style.css" rel="stylesheet">
+    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/css/themes/all-themes.css" rel="stylesheet" />
+    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/css/themes/all-themes.css" rel="stylesheet" />
 
     <!-- baru ada -->
-    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
-    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
-    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
     <link href="{{ asset('assets') }}/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
     
     <!-- Light Gallery Plugin Css -->
-    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/light-gallery/css/lightgallery.css" rel="stylesheet">
+    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/light-gallery/css/lightgallery.css" rel="stylesheet">
 
     <!-- geolocation -->
     <script>
@@ -116,7 +116,7 @@
                     if (file_exists(storage_path('app/public/profilephoto/' . session('id')))) {
                         $url = asset('storage/profilephoto/' . session('id'));
                     } else {
-                        $url = asset('assets/AdminBSBMaterialDesign-1.0.5/images/user.png');
+                        $url = asset('assets/AdminBSBMaterialDesign-1.0.7/images/user.png');
                     }
                     @endphp
                     <img src="{{ $url }}" width="48" height="48" alt="User" />
@@ -209,7 +209,7 @@
     </section>
 
     <!-- Jquery Core Js -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/jquery/jquery.min.js"></script>
     <script type="text/javascript">
     $.ajaxSetup({
         headers: {
@@ -219,51 +219,51 @@
     </script>
 
     <!-- Bootstrap Core Js -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/bootstrap/js/bootstrap.js"></script>
 
     <!-- Slimscroll Plugin Js -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/node-waves/waves.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/node-waves/waves.js"></script>
 
 
     <!-- Jquery CountTo Plugin Js -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-countto/jquery.countTo.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/jquery-countto/jquery.countTo.js"></script>
 
     <!-- Morris Plugin Js -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/raphael/raphael.min.js"></script>
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/morrisjs/morris.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/raphael/raphael.min.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/morrisjs/morris.js"></script>
 
     <!-- ChartJs -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/chartjs/Chart.bundle.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/chartjs/Chart.bundle.js"></script>
 
     <!-- Flot Charts Plugin Js -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/flot-charts/jquery.flot.js"></script>
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/flot-charts/jquery.flot.resize.js"></script>
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/flot-charts/jquery.flot.pie.js"></script>
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/flot-charts/jquery.flot.categories.js"></script>
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/flot-charts/jquery.flot.time.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/flot-charts/jquery.flot.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/flot-charts/jquery.flot.resize.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/flot-charts/jquery.flot.pie.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/flot-charts/jquery.flot.categories.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/flot-charts/jquery.flot.time.js"></script>
 
     <!-- Sparkline Chart Plugin Js -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
     <!-- Custom Js -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/js/admin.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/js/admin.js"></script>
 
     <!-- baru ada -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-datatable/jquery.dataTables.js"></script>
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
     <script type="text/javascript">
         $('.datatable').DataTable({
             responsive: true
         });
     </script>
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/sweetalert/sweetalert.min.js"></script>
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/momentjs/moment.js"></script>
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/chartjs/Chart.bundle.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/momentjs/moment.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/chartjs/Chart.bundle.js"></script>
     <script src="{{ asset('assets') }}/bower_components/select2/dist/js/select2.min.js"></script>
     <script type="text/javascript">
         $(".select2").select2();
@@ -281,7 +281,7 @@
     </script>
 
     <!-- Light Gallery Plugin Js -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/light-gallery/js/lightgallery-all.js"></script>
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/light-gallery/js/lightgallery-all.js"></script>
     <script type="text/javascript">
     $('#aniimated-thumbnials').lightGallery({
         thumbnail: true,
