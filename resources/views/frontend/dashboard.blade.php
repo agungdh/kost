@@ -274,7 +274,7 @@
                     </script>
                     @foreach($kosts as $kost)
                       <script type="text/javascript">
-                        deskripsi[{{ $kost->id }}] = "{{ $kost->deskripsi }}";
+                        deskripsi[{{ $kost->id }}] = atob('{!! base64_encode($kost->deskripsi) !!}');
                       </script>
                       <tr>
                         <td>{{ $kost->nama }}</td>
@@ -401,7 +401,7 @@
 
     {{-- modal --}}
     <div class="modal fade" id="modalDeskripsi" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
               <div class="modal-header">
                   <h4 class="modal-title">Deskripsi</h4>

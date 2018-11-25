@@ -33,12 +33,17 @@
                           <th style="text-align: center;">Bulanan</th>
                           <th style="text-align: center;">Tahunan</th>
                           <th style="text-align: center;">Kamar Tersedia</th>
-                          <th style="text-align: center;">Deskripsi</th>
-                          <th style="text-align: center;">Proses</th>
+                          <th colspan="5" style="text-align: center;">Proses</th>
                       </tr>
                   </thead>
                   <tbody>
+                    <script type="text/javascript">
+                      var deskripsi = [];
+                    </script>
                     @foreach($kosts as $kos)
+                    <script type="text/javascript">
+                      deskripsi[{{ $kos->id }}] = atob('{!! base64_encode($kos->deskripsi) !!}');
+                    </script>
                       <tr>
                         <td>{{ $kos->nama }}</td>
                         @php
@@ -78,34 +83,48 @@
                         <td>{{ $kos->bulanan != 0 ? $pustaka->rupiah($kos->bulanan) : '-' }}</td>
                         <td>{{ $kos->tahunan != 0 ? $pustaka->rupiah($kos->tahunan) : '-' }}</td>
                         <td>{{ $kos->kamartersedia }}</td>
-                        <td>{{ $kos->deskripsi }}</td>
-                          <td style="text-align: center;">
-                            
+                          
+                        
+                            <td>
+                            <a href="javascript:void(0)" onclick="modalDeskripsi('{{ $kos->id }}')">
+                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Deskripsi">
+                                <i class="material-icons">description</i>
+                              </button>
+                            </a>
+                            </td>    
+
+                            <td>
                             <a href="{{ route('kost.mediaLibrary', $kos->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Media Library">
                                 <i class="material-icons">photo_library</i>
                               </button>
                             </a>
+                            </td>
                             
+                            <td>
                             <a target="_blank" href="https://www.google.com/maps/search/{{ $kos->latitude }},{{ $kos->longitude }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Google Maps">
                                 <i class="material-icons">place</i>
                               </button>
                             </a>
+                            </td>
                             
+                            <td>
                             <a href="{{ route('kost.edit', $kos->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Ubah">
                                 <i class="material-icons">edit</i>
                               </button>
                             </a>
+                            </td>
 
+                            <td>
                             {!! Form::open(['id' => 'formHapus' . $kos->id, 'route' => ['kost.destroy', $kos->id], 'method' => 'delete']) !!}
                             <button type="button" class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="hapus('{{ $kos->id }}')">
                                 <i class="material-icons">delete</i>
                               </button>
                             {!! Form::close() !!}
+                            </td>
 
-                          </td>
                       </tr>
                     @endforeach
                   </tbody>
@@ -114,9 +133,32 @@
       </div>
   </div>
 </div>
+
+{{-- modal --}}
+<div class="modal fade" id="modalDeskripsi" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title">Deskripsi</h4>
+          </div>
+          <div class="modal-body" id="modalBody">
+              
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">TUTUP</button>
+          </div>
+      </div>
+  </div>
+</div>
 @endsection
 
 @section('js')
+<script type="text/javascript">
+  function modalDeskripsi(id) {
+    $("#modalBody").html(deskripsi[id]);
+    $("#modalDeskripsi").modal('show');
+  }
+</script>
 <script type="text/javascript">
   function hapus(id) {
     swal({

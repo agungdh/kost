@@ -39,6 +39,7 @@
 {{-- onload --}}
 <script type="text/javascript">
 $(function() {
+  CKEDITOR.replace('deskripsi');
   getLocation();
 
   $.ajax({

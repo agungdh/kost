@@ -29,12 +29,21 @@
                           <th style="text-align: center;">Bulanan</th>
                           <th style="text-align: center;">Tahunan</th>
                           <th style="text-align: center;">Kamar Tersedia</th>
-                          <th style="text-align: center;">Deskripsi</th>
+                          <th>&nbsp;</th>
+                          <th>&nbsp;</th>
                           <th style="text-align: center;">Proses</th>
+                          <th>&nbsp;</th>
+                          <th>&nbsp;</th>
                       </tr>
                   </thead>
                   <tbody>
+                    <script type="text/javascript">
+                      var deskripsi = [];
+                    </script>
                     @foreach($kosts as $kost)
+                    <script type="text/javascript">
+                      deskripsi[{{ $kost->id }}] = atob('{!! base64_encode($kost->deskripsi) !!}');
+                    </script>
                       <tr>
                         <td>{{ $kost->user->email }}</td>
                         <td>{{ $kost->user->nama }}</td>
@@ -86,34 +95,47 @@
                         <td>{{ $kost->bulanan != 0 ? $pustaka->rupiah($kost->bulanan) : '-' }}</td>
                         <td>{{ $kost->tahunan != 0 ? $pustaka->rupiah($kost->tahunan) : '-' }}</td>
                         <td>{{ $kost->kamartersedia }}</td>
-                        <td>{{ $kost->deskripsi }}</td>
-                          <td style="text-align: center;">
-                            
+                        
+                            <td>
+                            <a href="javascript:void(0)" onclick="modalDeskripsi('{{ $kost->id }}')">
+                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Deskripsi">
+                                <i class="material-icons">description</i>
+                              </button>
+                            </a>
+                            </td> 
+
+                            <td>
                             <a href="{{ route('kos.mediaLibrary', $kost->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Media Library">
                                 <i class="material-icons">photo_library</i>
                               </button>
                             </a>
+                            </td>
                             
+                            <td>
                             <a target="_blank" href="https://www.google.com/maps/search/{{ $kost->latitude }},{{ $kost->longitude }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Google Maps">
                                 <i class="material-icons">place</i>
                               </button>
                             </a>
+                            </td>
                             
+                            <td>
                             <a href="{{ route('kos.edit', $kost->id) }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Ubah">
                                 <i class="material-icons">edit</i>
                               </button>
                             </a>
+                            </td>
 
+                            <td>
                             {!! Form::open(['id' => 'formHapus' . $kost->id, 'route' => ['kos.destroy', $kost->id], 'method' => 'delete']) !!}
                             <button type="button" class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="hapus('{{ $kost->id }}')">
                                 <i class="material-icons">delete</i>
                               </button>
                             {!! Form::close() !!}
+                            </td>
 
-                          </td>
                       </tr>
                     @endforeach
                   </tbody>
@@ -122,9 +144,31 @@
       </div>
   </div>
 </div>
+{{-- modal --}}
+<div class="modal fade" id="modalDeskripsi" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title">Deskripsi</h4>
+          </div>
+          <div class="modal-body" id="modalBody">
+              
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">TUTUP</button>
+          </div>
+      </div>
+  </div>
+</div>
 @endsection
 
 @section('js')
+<script type="text/javascript">
+  function modalDeskripsi(id) {
+    $("#modalBody").html(deskripsi[id]);
+    $("#modalDeskripsi").modal('show');
+  }
+</script>
 <script type="text/javascript">
   function hapus(id) {
     swal({

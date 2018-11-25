@@ -289,6 +289,10 @@
     });
     </script>
     
+    <!-- Ckeditor -->
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/ckeditor/ckeditor.js"></script>
+
+    
     @if(session('alert'))
     <script type="text/javascript">
         swal('{{ session('alert')['title'] }}', '{{ session('alert')['message'] }}', '{{ session('alert')['class'] }}');
