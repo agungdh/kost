@@ -374,7 +374,11 @@
                             </a>
                             </td>
 
-                            <td></td>
+                            <td>                              
+                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Pesan">
+                                <i class="material-icons">shopping_cart</i>
+                              </button>
+                            </td>
                           
                       </tr>
 
