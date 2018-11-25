@@ -51,9 +51,9 @@
                 {!!
                     Form::adhText(
                         'Halaman Saat Ini',
-                        'halamansaatini', 
+                        'page', 
                         true,  
-                        $kosts->currentPage(), 
+                        $inputs['page'], 
                         [
                           'class' => 'form-control uang',
                         ]
@@ -459,7 +459,7 @@
     $("#bulanmax").val($("#bulanmax").cleanVal());
     $("#tahunmin").val($("#tahunmin").cleanVal());
     $("#tahunmax").val($("#tahunmax").cleanVal());
-    $("#halamansaatini").val($("#halamansaatini").cleanVal());
+    $("#page").val($("#page").cleanVal());
     $("#jumlahperhalaman").val($("#jumlahperhalaman").cleanVal());
   });
 </script>
