@@ -5,7 +5,7 @@
 	
 	<title></title>
 
-	<script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/plugins/jquery/jquery.min.js"></script>
+	<script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript">
 	$.ajaxSetup({
 	    headers: {

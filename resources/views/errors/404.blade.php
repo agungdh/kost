@@ -10,7 +10,7 @@
     <title>{{ $judul }}</title>
 
     <!-- Favicon-->
-    <link rel="icon" href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.5/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/favicon.ico" type="image/x-icon">
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700" rel="stylesheet">

@@ -21,10 +21,7 @@ class DummyController extends Controller
 
     public function temp()
     {
-        Provinsi::create([
-            'id' => '01',
-            'nama_prop' => 'GG WP',
-        ]);
+        // return view('template.email.aktivasi');
     }
 
     public function testModelProvinsi($id)
