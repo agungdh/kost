@@ -14,6 +14,10 @@ use DB;
 
 class MainController extends Controller
 {
+    public function __construct() {
+
+    }
+
     public function index(Request $request)
     {
         // inputan
@@ -218,6 +222,30 @@ class MainController extends Controller
     public function metodePembayaran()
     {
         return view('template.metodepembayaran');  
+    }
+
+    public function pesan($id_kos)
+    {
+        if (!in_array(session('level'), ['u'])) {
+            return redirect(route('root'))->with('alert', [
+                        'title' => 'ERROR !!!',
+                        'message' => 'Hanya User Dengan Level Pencari Kos Yang Dapat Memesan !!!',
+                        'class' => 'error',
+                    ]);
+        }
+
+        return view('frontend.pesan');  
+    }
+
+    public function doPesan(Request $request, $id_kos)
+    {
+        if (!in_array(session('level'), ['u'])) {
+            return redirect(route('root'))->with('alert', [
+                        'title' => 'ERROR !!!',
+                        'message' => 'Hanya User Dengan Level Pencari Kos Yang Dapat Memesan !!!',
+                        'class' => 'error',
+                    ]);
+        }
     }
 
 }

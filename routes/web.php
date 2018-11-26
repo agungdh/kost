@@ -85,3 +85,7 @@ Route::get('/dummy/testmodelkelurahan/{id}', 'DummyController@testModelKelurahan
 Route::get('/dummy/testxhr', 'DummyController@testXhr')->name('dummy.testXhr');
 Route::any('/dummy/clienttestxhr', 'DummyController@clientTestXhr')->name('dummy.clientTestXhr');
 Route::any('/dummy/generateqrcode', 'DummyController@generateQRCode')->name('dummy.generateQRCode');
+
+// pemesanan
+Route::get('/pesan/{id}', 'MainController@pesan')->name('pesan');
+Route::post('/pesan/{id}', 'MainController@doPesan')->name('doPesan');
