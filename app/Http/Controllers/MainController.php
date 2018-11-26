@@ -12,6 +12,8 @@ use App\Kos;
 use App\VKos;
 use DB;
 
+use agungdh\Pustaka;
+
 class MainController extends Controller
 {
     public function __construct() {
@@ -234,7 +236,9 @@ class MainController extends Controller
                     ]);
         }
 
-        return view('frontend.pesan');  
+        $kos = VKos::find($id_kos);
+
+        return view('frontend.pesan', compact(['kos']))->with('pustaka', new Pustaka());  
     }
 
     public function doPesan(Request $request, $id_kos)
