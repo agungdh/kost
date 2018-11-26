@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1	Database: serverag_kost
 -- ------------------------------------------------------
 -- Server version 	10.2.18-MariaDB-cll-lve
--- Date: Mon, 26 Nov 2018 01:18:04 +0000
+-- Date: Mon, 26 Nov 2018 02:50:01 +0000
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -197,10 +197,12 @@ CREATE TABLE `transaksi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id_pencari_kos` int(11) NOT NULL,
   `kos_id` int(11) NOT NULL,
+  `jumlah_kamar` int(11) NOT NULL,
   `waktu_transaksi` datetime NOT NULL,
   `lama_kost` int(11) NOT NULL,
   `jenis_lama_kost` enum('b','t') NOT NULL,
   `harga` int(11) NOT NULL,
+  `status` enum('a','d','c') DEFAULT NULL,
   `waktu_validasi` datetime DEFAULT NULL,
   `user_id_validasi` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -338,4 +340,4 @@ DROP TABLE IF EXISTS `v_kos`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Mon, 26 Nov 2018 01:18:06 +0000
+-- Dump completed on: Mon, 26 Nov 2018 02:50:03 +0000
