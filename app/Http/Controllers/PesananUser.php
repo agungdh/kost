@@ -8,8 +8,8 @@ use App\Transaksi;
 class PesananUser extends Controller
 {
     function index() {
-    	$transaksi = Transaksi::where('user_id_pencari_kos', session('id'))->get();
+    	$transaksis = Transaksi::where('user_id_pencari_kos', session('id'))->get();
 
-    	return view('backend.pesanan.user.index', compact(['transaksi']));
+    	return view('backend.pesanan.user.index', compact(['transaksis']))->with('pustaka', new \agungdh\Pustaka());
     }
 }
