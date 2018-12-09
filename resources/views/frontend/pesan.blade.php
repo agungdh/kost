@@ -137,7 +137,7 @@
 		</table>
 	</div>
 	<div class="body">
-        {!! Form::open(['route' => 'kost.store']) !!}
+        {!! Form::open(['route' => ['doPesan', $kos->id]]) !!}
 
         	{!!
 			    Form::adhText(
@@ -250,11 +250,17 @@ $("form").submit(function(event) {
 
 	if ($("#jumlah_kamar").cleanVal() > {{ $kos->kamartersedia }}) {
 		swal('ERROR !!!', 'Kamar Tersedia Tidak Cukup !!!', 'error');
+
+		return false;
 	}
 
 	if (varTotal == 0) {
 		swal('ERROR !!!', 'Data Pemesanan Tidak Valid !!!', 'error');	
+	
+		return false;
 	}
+
+	$("form").unbind().submit();
 })
 </script>
 

@@ -243,6 +243,8 @@ class MainController extends Controller
 
     public function doPesan(Request $request, $id_kos)
     {
+        $kos = Kos::find($id_kos);
+        
         if (!in_array(session('level'), ['u'])) {
             return redirect(route('root'))->with('alert', [
                         'title' => 'ERROR !!!',
@@ -250,6 +252,20 @@ class MainController extends Controller
                         'class' => 'error',
                     ]);
         }
+
+        $data = $request->only('jumlah_kamar', 'lama_kost');
+        $data['user_id_pencari_kos'] = session('id');
+        $data['kos_id'] = $id_kos;
+        $data['waktu_transaksi'] = date('Y-m-d H:i:s');
+        if ($request->pembayaran == 'b') {
+            $data['harga'] = $request->jumlah_kamar * ($request->lama_kost * $kos->bulanan);
+            $data['jenis_lama_kos'] = 'b';
+        } elseif ($request->pembayaran == 't') {
+            $data['harga'] = $request->jumlah_kamar * ($request->lama_kost * $kos->tahunan);
+            $data['jenis_lama_kos'] = 't';
+        }
+
+        dd($data);
     }
 
 }
