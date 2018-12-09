@@ -89,3 +89,15 @@ Route::any('/dummy/generateqrcode', 'DummyController@generateQRCode')->name('dum
 // pemesanan
 Route::get('/pesan/{id}', 'MainController@pesan')->name('pesan');
 Route::post('/pesan/{id}', 'MainController@doPesan')->name('doPesan');
+
+// admin pesanan
+Route::get('/pesanan', 'PesananAdmin@index')->name('pesananAdmin.index');
+Route::put('/pesanan/{id}', 'PesananAdmin@do')->name('pesananAdmin.do');
+
+// pemilik pesanan
+Route::get('/pezanan', 'PesananPemilik@index')->name('pesananPemilik.index');
+Route::put('/pezanan/{id}', 'PesananPemilik@do')->name('pesananPemilik.do');
+
+// user pesanan
+Route::get('/pecanan', 'PesananUser@index')->name('pesananUser.index');
+Route::put('/pecanan/{id}', 'PesananUser@do')->name('pesananUser.do');

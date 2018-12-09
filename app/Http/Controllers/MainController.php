@@ -10,6 +10,7 @@ use Apfelbox\FileDownload\FileDownload;
 
 use App\Kos;
 use App\VKos;
+use App\Transaksi;
 use DB;
 
 use agungdh\Pustaka;
@@ -259,13 +260,19 @@ class MainController extends Controller
         $data['waktu_transaksi'] = date('Y-m-d H:i:s');
         if ($request->pembayaran == 'b') {
             $data['harga'] = $request->jumlah_kamar * ($request->lama_kost * $kos->bulanan);
-            $data['jenis_lama_kos'] = 'b';
+            $data['jenis_lama_kost'] = 'b';
         } elseif ($request->pembayaran == 't') {
             $data['harga'] = $request->jumlah_kamar * ($request->lama_kost * $kos->tahunan);
-            $data['jenis_lama_kos'] = 't';
+            $data['jenis_lama_kost'] = 't';
         }
 
-        dd($data);
+        Transaksi::insert($data);
+
+        return redirect(route('pesananUser.index'))->with('alert', [
+                        'title' => 'BERHASIL !!!',
+                        'message' => 'Pesanan telah diterima, silakan upload bukti transfer uang !!!',
+                        'class' => 'success',
+                    ]);
     }
 
 }
