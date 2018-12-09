@@ -137,8 +137,62 @@
 		</table>
 	</div>
 	<div class="body">
-		
-	</div>
+        {!! Form::open(['route' => 'kost.store']) !!}
+
+        	{!!
+			    Form::adhText(
+			        'Jumlah Kamar',
+			        'jumlah_kamar',
+			        true,  
+			        null, 
+			        [
+			          'class' => 'form-control uang',
+			        ]
+			    )
+			!!}
+
+        	{!!
+			    Form::adhText(
+			        'Lama Kost',
+			        'lama_kost',
+			        true,  
+			        null, 
+			        [
+			          'class' => 'form-control uang',
+			        ]
+			    )
+			!!}
+
+			{!!
+			    Form::adhSelect2(
+			        'Pembayaran',
+			        'pembayaran', 
+			        true,
+			        [
+			          'b' => 'Bulanan',
+			          't' => 'Tahunan',
+			        ]
+			    )
+			!!}
+
+			{!!
+			    Form::adhText(
+			        'Jumlah Yang Harus Dibayar',
+			        'total',
+			        true,  
+			        null, 
+			        [
+			          'disabled' => 'true',
+			          'class' => 'form-control uang',
+			        ]
+			    )
+			!!}
+
+            <button type="submit" class="btn btn-success waves-effect">SIMPAN</button>
+            <button type="reset" class="btn btn-primary waves-effect">RESET</button>
+
+        {!! Form::close() !!}
+    </div>
 </div>
 
 {{-- modal --}}
@@ -161,6 +215,50 @@
 
 @section('js')
 <script type="text/javascript">
+$("#pembayaran").change(function() {
+	hitung();
+});
+$("#jumlah_kamar").keyup(function() {
+	hitung();
+});
+$("#lama_kost").keyup(function() {
+	hitung();
+});
+</script>
+
+<script type="text/javascript">
+var varTotal = 0;
+function hitung() {
+	if ($("#pembayaran").val() == 't') {
+		varTotal = $("#jumlah_kamar").cleanVal() * ($("#lama_kost").cleanVal() * {{ $kos->tahunan ?? 0 }});
+	} else if ($("#pembayaran").val() == 'b') {
+		varTotal = $("#jumlah_kamar").cleanVal() * ($("#lama_kost").cleanVal() * {{ $kos->bulanan ?? 0}});
+	} else {
+		varTotal = 0;
+	}
+	$("#total").val(varTotal);
+	$("#total").unmask();
+	$( '#total' ).mask('000.000.000.000.000.000', {
+        reverse: true
+    });    
+}
+</script>
+
+<script type="text/javascript">
+$("form").submit(function(event) {
+	event.preventDefault();
+
+	if ($("#jumlah_kamar").cleanVal() > {{ $kos->kamartersedia }}) {
+		swal('ERROR !!!', 'Kamar Tersedia Tidak Cukup !!!', 'error');
+	}
+
+	if (varTotal == 0) {
+		swal('ERROR !!!', 'Data Pemesanan Tidak Valid !!!', 'error');	
+	}
+})
+</script>
+
+<script type="text/javascript">
   function modalDeskripsi(id) {
     $("#modalBody").html(deskripsi[id]);
     $("#modalDeskripsi").modal('show');
@@ -170,6 +268,7 @@
 {{-- onload --}}
 <script type="text/javascript">
 $(function() {
+	hitung();
   $("#mediaLibrary{{ $kos->id }}").lightGallery({thumbnail: true, selector: 'a'});
 });  
 </script>
