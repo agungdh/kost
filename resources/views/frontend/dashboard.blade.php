@@ -718,9 +718,10 @@ function initDaerahEdit() {
     success: function(response) {
       $("#prop").html(response);
 
-      $("#prop").prop('disabled', false);
-
-      $("#prop").val('{{ $inputs['prop'] }}');
+      // $("#prop").prop('disabled', false);
+      
+      $("#prop").val('18');
+      {{-- $("#prop").val('{{ $inputs['prop'] }}'); --}}
 
       $("#prop").select2();
 
@@ -733,9 +734,10 @@ function initDaerahEdit() {
         success: function(response) {
           $("#kab").html(response);
 
-          $("#kab").prop('disabled', false);
+          // $("#kab").prop('disabled', false);
 
-          $("#kab").val('{{ $inputs['kab'] }}');
+          $("#kab").val('1871');
+          {{-- $("#kab").val('{{ $inputs['kab'] }}'); --}}
 
           $("#kab").select2();
 
