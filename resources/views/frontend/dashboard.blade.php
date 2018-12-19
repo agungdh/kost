@@ -60,9 +60,7 @@
                     )
                 !!}
 
-                <div class="form-group">
-                  <label>Jumlah Data: {{ $kosts->total() }}</label>
-                </div>
+                
 
                 <div class="form-group">
                   <button type="submit" class="btn btn-success waves-effect">CARI</button>
@@ -87,7 +85,7 @@
             )
         !!}
         
-        {!!
+        {{-- {!!
             Form::adhSelect2(
                 'Bulanan / Tahunan',
                 'waktupembayaran', 
@@ -97,7 +95,7 @@
                   't' => 'Tahunan',
                 ]
             )
-        !!}
+        !!} --}}
 
         {!!
             Form::adhText(
@@ -156,7 +154,7 @@
             )
         !!}
 
-        {!!
+{{--         {!!
             Form::adhText(
                 'Biaya Minimum (Bulanan)',
                 'bulanmin',
@@ -179,10 +177,10 @@
                 ]
             )
         !!}
-
+ --}}
         {!!
             Form::adhText(
-                'Biaya Minimum (Tahunan)',
+                'Biaya Minimum',
                 'tahunmin',
                 true,  
                 null, 
@@ -194,7 +192,7 @@
 
         {!!
             Form::adhText(
-                'Biaya Maximum (Tahunan)',
+                'Biaya Maximum',
                 'tahunmax',
                 true,  
                 null, 
@@ -224,10 +222,10 @@
                   'kelurahanz' => 'Kelurahan (Z-A)',
                   'tipea' => 'Tipe (A-Z)',
                   'tipez' => 'Tipe (Z-A)',
-                  'bulanana' => 'Bulanan (A-Z)',
-                  'bulananz' => 'Bulanan (Z-A)',
-                  'tahunana' => 'Tahunan (A-Z)',
-                  'tahunanz' => 'Tahunan (Z-A)',
+                  // 'bulanana' => 'Bulanan (A-Z)',
+                  // 'bulananz' => 'Bulanan (Z-A)',
+                  'tahunana' => 'Biaya (A-Z)',
+                  'tahunanz' => 'Biaya (Z-A)',
                   'kamartersediaa' => 'Kamar Tersedia (A-Z)',
                   'kamartersediaz' => 'Kamar Tersedia (Z-A)',
                   'emailpemilika' => 'Email Pemilik (A-Z)',
@@ -239,6 +237,10 @@
                 ]
             )
         !!}
+
+        <div class="form-group">
+          <label>Jumlah Data: {{ $kosts->total() }}</label>
+        </div>
 
       </div>
     </div>
@@ -719,7 +721,7 @@ function initDaerahEdit() {
       $("#prop").html(response);
 
       // $("#prop").prop('disabled', false);
-      
+
       $("#prop").val('18');
       {{-- $("#prop").val('{{ $inputs['prop'] }}'); --}}
 
