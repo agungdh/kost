@@ -258,13 +258,14 @@ class MainController extends Controller
         $data['user_id_pencari_kos'] = session('id');
         $data['kos_id'] = $id_kos;
         $data['waktu_transaksi'] = date('Y-m-d H:i:s');
-        if ($request->pembayaran == 'b') {
-            $data['harga'] = $request->jumlah_kamar * ($request->lama_kost * $kos->bulanan);
-            $data['jenis_lama_kost'] = 'b';
-        } elseif ($request->pembayaran == 't') {
-            $data['harga'] = $request->jumlah_kamar * ($request->lama_kost * $kos->tahunan);
-            $data['jenis_lama_kost'] = 't';
-        }
+        // if ($request->pembayaran == 'b') {
+        //     $data['harga'] = $request->jumlah_kamar * ($request->lama_kost * $kos->bulanan);
+        //     $data['jenis_lama_kost'] = 'b';
+        // } elseif ($request->pembayaran == 't') {
+        //     $data['harga'] = $request->jumlah_kamar * ($request->lama_kost * $kos->tahunan);
+        //     $data['jenis_lama_kost'] = 't';
+        // }
+        $data['harga'] = $request->jumlah_kamar * ($request->lama_kost * $kos->tahunan);
 
         Transaksi::insert($data);
 

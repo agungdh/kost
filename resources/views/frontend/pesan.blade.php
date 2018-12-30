@@ -40,8 +40,10 @@
 	        <td>{{ $tipe }}</td>
 		  </tr>
 		  <tr>
-		    <td>BULANAN: </td>
-		    <td>{{ $kos->bulanan != 0 ? $pustaka->rupiah($kos->bulanan) : '-' }}</td>
+		    {{-- <td>BULANAN: </td> --}}
+		    {{-- <td>{{ $kos->bulanan != 0 ? $pustaka->rupiah($kos->bulanan) : '-' }}</td> --}}
+		    <td></td>
+		    <td></td>
 		    <td>ALAMAT: </td>
 		    @php
 	        if($kos->verified_alamat == 'y') {
@@ -55,7 +57,7 @@
 	        <td>{{ $kos->alamat }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
 		  </tr>
 		  <tr>
-		    <td>TAHUNAN: </td>
+		    <td>BIAYA PER TAHUN: </td>
 		    <td>{{ $kos->tahunan != 0 ? $pustaka->rupiah($kos->tahunan) : '-' }}</td>
 		    <td>PROVINSI: </td>
 		    <td>{{ ucwords(strtolower($kos->kelurahan->kecamatan->kabupaten->provinsi->nama_prop)) }}</td>
@@ -163,7 +165,7 @@
 			    )
 			!!}
 
-			{!!
+{{-- 			{!!
 			    Form::adhSelect2(
 			        'Pembayaran',
 			        'pembayaran', 
@@ -174,7 +176,7 @@
 			        ]
 			    )
 			!!}
-
+ --}}
 			{!!
 			    Form::adhText(
 			        'Jumlah Yang Harus Dibayar',
@@ -215,9 +217,9 @@
 
 @section('js')
 <script type="text/javascript">
-$("#pembayaran").change(function() {
-	hitung();
-});
+// $("#pembayaran").change(function() {
+// 	hitung();
+// });
 $("#jumlah_kamar").keyup(function() {
 	hitung();
 });
@@ -229,13 +231,14 @@ $("#lama_kost").keyup(function() {
 <script type="text/javascript">
 var varTotal = 0;
 function hitung() {
-	if ($("#pembayaran").val() == 't') {
-		varTotal = $("#jumlah_kamar").cleanVal() * ($("#lama_kost").cleanVal() * {{ $kos->tahunan ?? 0 }});
-	} else if ($("#pembayaran").val() == 'b') {
-		varTotal = $("#jumlah_kamar").cleanVal() * ($("#lama_kost").cleanVal() * {{ $kos->bulanan ?? 0}});
-	} else {
-		varTotal = 0;
-	}
+	// if ($("#pembayaran").val() == 't') {
+	// 	varTotal = $("#jumlah_kamar").cleanVal() * ($("#lama_kost").cleanVal() * {{ $kos->tahunan ?? 0 }});
+	// } else if ($("#pembayaran").val() == 'b') {
+	// 	varTotal = $("#jumlah_kamar").cleanVal() * ($("#lama_kost").cleanVal() * {{ $kos->bulanan ?? 0}});
+	// } else {
+	// 	varTotal = 0;
+	// }
+	varTotal = $("#jumlah_kamar").cleanVal() * ($("#lama_kost").cleanVal() * {{ $kos->tahunan ?? 0 }});
 	$("#total").val(varTotal);
 	$("#total").unmask();
 	$( '#total' ).mask('000.000.000.000.000.000', {
