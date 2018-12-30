@@ -87,7 +87,7 @@ Route::any('/dummy/clienttestxhr', 'DummyController@clientTestXhr')->name('dummy
 Route::any('/dummy/generateqrcode', 'DummyController@generateQRCode')->name('dummy.generateQRCode');
 
 // pemesanan
-Route::get('/pesan/{id}', 'MainController@pesan')->name('pesan');
+Route::get('/pesan/{id?}', 'MainController@pesan')->name('pesan');
 Route::post('/pesan/{id}', 'MainController@doPesan')->name('doPesan');
 
 // admin pesanan

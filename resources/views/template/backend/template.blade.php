@@ -37,6 +37,16 @@
     <!-- Light Gallery Plugin Css -->
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/light-gallery/css/lightgallery.css" rel="stylesheet">
 
+    <script type="text/javascript">
+        state = {
+            login: {{ session('login') ? 'true' : 'false' }},
+            @if(session('login'))
+            userid: {{session('id')}},
+            level: '{{session('level')}}',
+            @endif
+        };
+    </script>
+
     <!-- geolocation -->
     <script>
     function getLocation() {

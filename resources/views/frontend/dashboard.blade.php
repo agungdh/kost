@@ -260,8 +260,8 @@
                           <th style="text-align: center;">Kecamatan</th>
                           <th style="text-align: center;">Kelurahan</th>
                           <th style="text-align: center;">Tipe</th>
-                          <th style="text-align: center;">Bulanan</th>
-                          <th style="text-align: center;">Tahunan</th>
+                          {{-- <th style="text-align: center;">Bulanan</th> --}}
+                          <th style="text-align: center;">Biaya Per Tahun</th>
                           <th style="text-align: center;">Kamar Tersedia</th>
                           <th style="text-align: center;">Email Pemilik</th>
                           <th style="text-align: center;">Nama Pemilik</th>
@@ -314,7 +314,7 @@
                         }
                         @endphp
                         <td>{{ $tipe }}</td>
-                        <td>{{ $kost->bulanan != 0 ? $pustaka->rupiah($kost->bulanan) : '-' }}</td>
+                        {{-- <td>{{ $kost->bulanan != 0 ? $pustaka->rupiah($kost->bulanan) : '-' }}</td> --}}
                         <td>{{ $kost->tahunan != 0 ? $pustaka->rupiah($kost->tahunan) : '-' }}</td>
                         <td>{{ $kost->kamartersedia }}</td>
                         <td>{{ $kost->user->email }}</td>
@@ -377,11 +377,24 @@
                             </td>
 
                             <td>                              
-                              <a href="{{ route('pesan', $kost->id) }}">
+                              {{-- <a href="{{ route('pesan', $kost->id) }}"> --}}
+                              <a href="javascript:void(0)" onclick="keRoutePesan('{{$kost->id}}')">
                                 <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Pesan">
                                   <i class="material-icons">shopping_cart</i>
                                 </button>
                               </a>
+
+                              <script type="text/javascript">
+                                function keRoutePesan(id) {
+                                  if (!state.login) {
+                                    swal('blm login');
+                                  } else if (state.level != 'u') {
+                                    swal('Harus ');
+                                  } else {
+                                    window.location = '{{ route('pesan') }}/' + id;
+                                  }
+                                }
+                              </script>
                             </td>
                           
                       </tr>
