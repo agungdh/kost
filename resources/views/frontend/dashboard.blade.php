@@ -212,10 +212,10 @@
                   'namaz' => 'Nama (Z-A)',
                   'alamata' => 'Alamat (A-Z)',
                   'alamatz' => 'Alamat (Z-A)',
-                  'provinsia' => 'Provinsi (A-Z)',
-                  'provinsiz' => 'Provinsi (Z-A)',
-                  'kabupatena' => 'Kabupaten (A-Z)',
-                  'kabupatenz' => 'Kabupaten (Z-A)',
+                  // 'provinsia' => 'Provinsi (A-Z)',
+                  // 'provinsiz' => 'Provinsi (Z-A)',
+                  // 'kabupatena' => 'Kabupaten (A-Z)',
+                  // 'kabupatenz' => 'Kabupaten (Z-A)',
                   'kecamatana' => 'Kecamatan (A-Z)',
                   'kecamatanz' => 'Kecamatan (Z-A)',
                   'kelurahana' => 'Kelurahan (A-Z)',
@@ -255,8 +255,8 @@
                       <tr>
                           <th style="text-align: center;">Nama</th>
                           <th style="text-align: center;">Alamat</th>
-                          <th style="text-align: center;">Provinsi</th>
-                          <th style="text-align: center;">Kabupaten</th>
+                          {{-- <th style="text-align: center;">Provinsi</th> --}}
+                          {{-- <th style="text-align: center;">Kabupaten</th> --}}
                           <th style="text-align: center;">Kecamatan</th>
                           <th style="text-align: center;">Kelurahan</th>
                           <th style="text-align: center;">Tipe</th>
@@ -290,8 +290,8 @@
                         }
                         @endphp
                         <td>{{ $kost->alamat }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
-                        <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->kabupaten->provinsi->nama_prop)) }}</td>
-                        <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->kabupaten->nama_kab)) }}</td>
+                        {{-- <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->kabupaten->provinsi->nama_prop)) }}</td> --}}
+                        {{-- <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->kabupaten->nama_kab)) }}</td> --}}
                         <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->nama_kec)) }}</td>
                         <td>{{ ucwords(strtolower($kost->kelurahan->nama_desa)) }}</td>
                         @php
