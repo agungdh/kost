@@ -15,7 +15,7 @@ class Transaksi extends Model
     						'kos_id',
     						'waktu_transaksi',
     						'lama_kost',
-    						'jenis_lama_kost',
+    						'jumlah_kamar',
     						'harga',
     						'waktu_validasi',
     						'user_id_validasi',

@@ -20,14 +20,16 @@
                           <th style="text-align: center;">No HP Pemilik</th>
                           <th style="text-align: center;">Nama</th>
                           <th style="text-align: center;">Alamat</th>
-                          <th style="text-align: center;">Provinsi</th>
-                          <th style="text-align: center;">Kabupaten</th>
+                          {{-- <th style="text-align: center;">Provinsi</th> --}}
+                          {{-- <th style="text-align: center;">Kabupaten</th> --}}
                           <th style="text-align: center;">Kecamatan</th>
                           <th style="text-align: center;">Kelurahan</th>
                           <th style="text-align: center;">Tipe</th>
-                          <th style="text-align: center;">Bulanan</th>
-                          <th style="text-align: center;">Tahunan</th>
-                          <th style="text-align: center;">Kamar Tersedia</th>
+                          {{-- <th style="text-align: center;">Bulanan</th> --}}
+                          <th style="text-align: center;">Biaya Per Tahun</th>
+                          <th style="text-align: center;">Jumlah Kamar</th>
+                          <th style="text-align: center;">Lama Kost</th>
+                          <th style="text-align: center;">Jumlah</th>
                           <th>&nbsp;</th>
                           <th>&nbsp;</th>
                           <th style="text-align: center;">Proses</th>
@@ -69,8 +71,8 @@
                         }
                         @endphp
                         <td>{{ $kost->alamat }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
-                        <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->kabupaten->provinsi->nama_prop)) }}</td>
-                        <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->kabupaten->nama_kab)) }}</td>
+                        {{-- <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->kabupaten->provinsi->nama_prop)) }}</td> --}}
+                        {{-- <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->kabupaten->nama_kab)) }}</td> --}}
                         <td>{{ ucwords(strtolower($kost->kelurahan->kecamatan->nama_kec)) }}</td>
                         <td>{{ ucwords(strtolower($kost->kelurahan->nama_desa)) }}</td>
                         @php
@@ -93,9 +95,11 @@
                         }
                         @endphp
                         <td>{{ $tipe }}</td>
-                        <td>{{ $kost->bulanan != 0 ? $pustaka->rupiah($kost->bulanan) : '-' }}</td>
+                        {{-- <td>{{ $kost->bulanan != 0 ? $pustaka->rupiah($kost->bulanan) : '-' }}</td> --}}
                         <td>{{ $kost->tahunan != 0 ? $pustaka->rupiah($kost->tahunan) : '-' }}</td>
-                        <td>{{ $kost->kamartersedia }}</td>
+                        <td>{{ $transaksi->jumlah_kamar }}</td>
+                        <td>{{ $transaksi->lama_kost }}</td>
+                        <td>{{ $pustaka->rupiah($transaksi->harga) }}</td>
                         
                             <td>
                             <a href="javascript:void(0)" onclick="modalDeskripsi('{{ $kost->id }}')">
@@ -106,11 +110,33 @@
                             </td> 
 
                             <td>
-                            <a href="{{ route('kos.mediaLibrary', $kost->id) }}">
-                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Media Library">
-                                <i class="material-icons">photo_library</i>
-                              </button>
-                            </a>
+                            {{-- media library --}}
+                            <div id="mediaLibrary{{ $kost->id }}">
+                              
+                              @php
+                              $i = 1;
+                              @endphp
+                              @foreach($kost->fotos as $foto)
+                                @php
+                                if (file_exists(storage_path('app/public/foto/kos/' . $foto->id))) {
+                                    $url = asset('storage/foto/kos/' . $foto->id);
+                                } else {
+                                    $url = asset('assets/img/sorry-no-image-available.png');
+                                }
+                                @endphp
+                                <a href="{{ $url }}" data-sub-html="{{ $foto->deskripsi }}">
+                                  <img style="display: none;" src="{{ $url }}">
+                                  @if($i == 1)
+                                  <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Foto">
+                                  <i class="material-icons">photo_library</i>
+                                  </button>
+                                  @endif
+                                </a>
+                                @php
+                                $i++;
+                                @endphp
+                              @endforeach
+                            </div>
                             </td>
                             
                             <td>
@@ -122,16 +148,16 @@
                             </td>
                             
                             <td>
-                            <a href="{{ route('kos.edit', $kost->id) }}">
-                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Ubah">
-                                <i class="material-icons">edit</i>
+                            {!! Form::open(['id' => 'formHapus' . $kost->id, 'route' => ['kos.destroy', $kost->id], 'method' => 'delete']) !!}
+                            <button type="button" class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Konfirmasi Pemesanan" onclick="hapus('{{ $kost->id }}')">
+                                <i class="material-icons">check</i>
                               </button>
-                            </a>
+                            {!! Form::close() !!}
                             </td>
 
                             <td>
                             {!! Form::open(['id' => 'formHapus' . $kost->id, 'route' => ['kos.destroy', $kost->id], 'method' => 'delete']) !!}
-                            <button type="button" class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="hapus('{{ $kost->id }}')">
+                            <button type="button" class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Batalkan Pesanan" onclick="hapus('{{ $kost->id }}')">
                                 <i class="material-icons">delete</i>
                               </button>
                             {!! Form::close() !!}
@@ -185,5 +211,13 @@
       $("#formHapus" + id).submit();
     });
   }
+</script>
+<script type="text/javascript">
+  @foreach($transaksis as $transaksi)
+  @php
+  $kost = $transaksi->kos;
+  @endphp
+  $("#mediaLibrary{{ $kost->id }}").lightGallery({thumbnail: true, selector: 'a'});
+  @endforeach
 </script>
 @endsection
