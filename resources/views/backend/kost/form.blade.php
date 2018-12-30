@@ -83,7 +83,7 @@
     )
 !!}
 
-{!!
+{{-- {!!
     Form::adhText(
         'Biaya Bulanan',
         'bulanan',  
@@ -94,10 +94,10 @@
         ]
     )
 !!}
-
+ --}}
 {!!
     Form::adhText(
-        'Biaya Tahunan',
+        'Biaya Per Tahun',
         'tahunan',  
         true,  
         null, 

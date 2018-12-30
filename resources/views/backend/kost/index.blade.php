@@ -25,13 +25,13 @@
                       <tr>
                           <th style="text-align: center;">Nama</th>
                           <th style="text-align: center;">Alamat</th>
-                          <th style="text-align: center;">Provinsi</th>
-                          <th style="text-align: center;">Kabupaten</th>
+                          {{-- <th style="text-align: center;">Provinsi</th> --}}
+                          {{-- <th style="text-align: center;">Kabupaten</th> --}}
                           <th style="text-align: center;">Kecamatan</th>
                           <th style="text-align: center;">Kelurahan</th>
                           <th style="text-align: center;">Tipe</th>
-                          <th style="text-align: center;">Bulanan</th>
-                          <th style="text-align: center;">Tahunan</th>
+                          {{-- <th style="text-align: center;">Bulanan</th> --}}
+                          <th style="text-align: center;">Biaya Per Tahun</th>
                           <th style="text-align: center;">Kamar Tersedia</th>
                           <th>&nbsp;</th><th>&nbsp;</th>
                           <th style="text-align: center;">Proses</th>
@@ -58,8 +58,8 @@
                         }
                         @endphp
                         <td>{{ $kos->alamat }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
-                        <td>{{ ucwords(strtolower($kos->kelurahan->kecamatan->kabupaten->provinsi->nama_prop)) }}</td>
-                        <td>{{ ucwords(strtolower($kos->kelurahan->kecamatan->kabupaten->nama_kab)) }}</td>
+                        {{-- <td>{{ ucwords(strtolower($kos->kelurahan->kecamatan->kabupaten->provinsi->nama_prop)) }}</td> --}}
+                        {{-- <td>{{ ucwords(strtolower($kos->kelurahan->kecamatan->kabupaten->nama_kab)) }}</td> --}}
                         <td>{{ ucwords(strtolower($kos->kelurahan->kecamatan->nama_kec)) }}</td>
                         <td>{{ ucwords(strtolower($kos->kelurahan->nama_desa)) }}</td>
                         @php
@@ -82,7 +82,7 @@
                         }
                         @endphp
                         <td>{{ $tipe }}</td>
-                        <td>{{ $kos->bulanan != 0 ? $pustaka->rupiah($kos->bulanan) : '-' }}</td>
+                        {{-- <td>{{ $kos->bulanan != 0 ? $pustaka->rupiah($kos->bulanan) : '-' }}</td> --}}
                         <td>{{ $kos->tahunan != 0 ? $pustaka->rupiah($kos->tahunan) : '-' }}</td>
                         <td>{{ $kos->kamartersedia }}</td>
                           

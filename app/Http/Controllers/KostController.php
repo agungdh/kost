@@ -33,18 +33,18 @@ class KostController extends Controller
         $request->validate([
             'nama' => 'required',
             'alamat' => 'required',
-            'prop' => 'required',
-            'kab' => 'required',
+            // 'prop' => 'required',
+            // 'kab' => 'required',
             'kec' => 'required',
             'desa' => 'required',
             'tipe' => 'required',
-            'bulanan' => 'required_without:tahunan|numeric',
-            'tahunan' => 'required_without:bulanan|numeric',
+            // 'bulanan' => 'required_without:tahunan|numeric',
+            'tahunan' => 'required|numeric',
             'kamartersedia' => 'required|numeric',
             'deskripsi' => 'required',
         ]);
 
-        $data = $request->only('nama', 'alamat', 'tipe', 'bulanan', 'tahunan', 'kamartersedia', 'deskripsi');
+        $data = $request->only('nama', 'alamat', 'tipe', 'tahunan', 'kamartersedia', 'deskripsi');
         $data['id_desa'] = $request->desa;
         $data['id_user'] = session('id');
         $data['latitude'] = $request->lat;
@@ -118,18 +118,18 @@ class KostController extends Controller
         $request->validate([
             'nama' => 'required',
             'alamat' => 'required',
-            'prop' => 'required',
-            'kab' => 'required',
+            // 'prop' => 'required',
+            // 'kab' => 'required',
             'kec' => 'required',
             'desa' => 'required',
             'tipe' => 'required',
-            'bulanan' => 'required_without:tahunan|numeric',
-            'tahunan' => 'required_without:bulanan|numeric',
+            // 'bulanan' => 'required_without:tahunan|numeric',
+            'tahunan' => 'required|numeric',
             'kamartersedia' => 'required|numeric',
             'deskripsi' => 'required',
         ]);
 
-        $data = $request->only('nama', 'alamat', 'tipe', 'bulanan', 'tahunan', 'kamartersedia', 'deskripsi');
+        $data = $request->only('nama', 'alamat', 'tipe', 'tahunan', 'kamartersedia', 'deskripsi');
         $data['id_desa'] = $request->desa;
         $data['id_user'] = session('id');
         $data['latitude'] = $request->lat;

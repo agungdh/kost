@@ -26,10 +26,14 @@
 @endsection
 
 @section('js')
+<script type="text/javascript">
+  CKEDITOR.replace('deskripsi');
+  getLocation();
+</script>
 {{-- onsubmit --}}
 <script type="text/javascript">
   $("form").submit(function() {
-    $("#bulanan").val($("#bulanan").cleanVal());
+    // $("#bulanan").val($("#bulanan").cleanVal());
     $("#tahunan").val($("#tahunan").cleanVal());
     $("#kamartersedia").val($("#kamartersedia").cleanVal());
   });
@@ -39,9 +43,6 @@
 {{-- onload --}}
 <script type="text/javascript">
 $(function() {
-  CKEDITOR.replace('deskripsi');
-  getLocation();
-
   $.ajax({
     type: "POST",
     url: "{{ route('publicAjax.prop') }}",
@@ -50,6 +51,50 @@ $(function() {
     },
     success: function(response) {
       $("#prop").html(response);
+
+      $("#prop").val('18');
+      $("#prop").prop('disabled', true);
+
+      $.ajax({
+        type: "POST",
+        url: "{{ route('publicAjax.kab') }}",
+        data: {
+          prop : $("#prop").val(),
+        },
+        success: function(response) {
+          $("#kab").html(response);
+
+          $("#kab").val('1871');
+          $("#kab").prop('disabled', true);
+
+          $("#kab").select2();
+
+          $.ajax({
+            type: "POST",
+            url: "{{ route('publicAjax.kec') }}",
+            data: {
+              kab : $("#kab").val(),
+            },
+            success: function(response) {
+              $("#kec").html(response);
+
+              $("#kec").prop('disabled', false);
+
+              $("#kec").select2();
+            },
+            error: function(e) {
+              swal('ERROR !!!', 'See console!', 'error');
+
+              console.log(e);
+            }
+          });
+        },
+        error: function(e) {
+          swal('ERROR !!!', 'See console!', 'error');
+
+          console.log(e);
+        }
+      });
 
       $("#prop").select2();
     },
@@ -155,9 +200,11 @@ function initDaerah() {
     success: function(response) {
       $("#prop").html(response);
 
-      $("#prop").prop('disabled', false);
+      $("#prop").val('18');
+      $("#prop").prop('disabled', true);
+      // $("#prop").prop('disabled', false);
 
-      $("#prop").val('{{ old('prop') }}');
+      // $("#prop").val('{{ old('prop') }}');
 
       $("#prop").select2();
 
@@ -170,9 +217,12 @@ function initDaerah() {
         success: function(response) {
           $("#kab").html(response);
 
-          $("#kab").prop('disabled', false);
+          $("#kab").val('1871');
+          $("#kab").prop('disabled', true);
 
-          $("#kab").val('{{ old('kab') }}');
+          // $("#kab").prop('disabled', false);
+
+          // $("#kab").val('{{ old('kab') }}');
 
           $("#kab").select2();
 

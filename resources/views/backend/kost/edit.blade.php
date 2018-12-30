@@ -26,10 +26,13 @@
 @endsection
 
 @section('js')
+<script type="text/javascript">
+  CKEDITOR.replace('deskripsi');
+</script>
 {{-- onsubmit --}}
 <script type="text/javascript">
   $("form").submit(function() {
-    $("#bulanan").val($("#bulanan").cleanVal());
+    // $("#bulanan").val($("#bulanan").cleanVal());
     $("#tahunan").val($("#tahunan").cleanVal());
     $("#kamartersedia").val($("#kamartersedia").cleanVal());
   });
@@ -39,8 +42,6 @@
 {{-- onload --}}
 <script type="text/javascript">
 $(function() {
-  CKEDITOR.replace('deskripsi');
-  
   initDaerahEdit();
 });  
 </script>
@@ -62,7 +63,9 @@ $("#prop").change(function() {
     success: function(response) {
       $("#kab").html(response);
 
-      $("#kab").prop('disabled', false);
+      
+      $("#kab").val('1871');
+      $("#kab").prop('disabled', true);
 
       $("#kab").select2();
     },
@@ -138,9 +141,9 @@ function initDaerah() {
     success: function(response) {
       $("#prop").html(response);
 
-      $("#prop").prop('disabled', false);
+      $("#prop").prop('disabled', true);
 
-      $("#prop").val('{{ old('prop') }}');
+      $("#prop").val('18');
 
       $("#prop").select2();
 
@@ -153,7 +156,7 @@ function initDaerah() {
         success: function(response) {
           $("#kab").html(response);
 
-          $("#kab").prop('disabled', false);
+          $("#kab").prop('disabled', true);
 
           $("#kab").val('{{ old('kab') }}');
 
@@ -233,7 +236,7 @@ function initDaerahEdit() {
     success: function(response) {
       $("#prop").html(response);
 
-      $("#prop").prop('disabled', false);
+      $("#prop").prop('disabled', true);
 
       $("#prop").val('{{ $kost->prop }}');
 
@@ -248,7 +251,7 @@ function initDaerahEdit() {
         success: function(response) {
           $("#kab").html(response);
 
-          $("#kab").prop('disabled', false);
+          $("#kab").prop('disabled', true);
 
           $("#kab").val('{{ $kost->kab }}');
 
