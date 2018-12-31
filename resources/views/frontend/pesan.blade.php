@@ -42,9 +42,6 @@
 		  <tr>
 		    {{-- <td>BULANAN: </td> --}}
 		    {{-- <td>{{ $kos->bulanan != 0 ? $pustaka->rupiah($kos->bulanan) : '-' }}</td> --}}
-		    <td></td>
-		    <td></td>
-		    <td>ALAMAT: </td>
 		    @php
 	        if($kos->verified_alamat == 'y') {
 	          $title = 'Verified';
@@ -54,7 +51,10 @@
 	          $icon = '?';
 	        }
 	        @endphp
-	        <td>{{ $kos->alamat }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
+		    <td>ALAMAT: </td>
+		    <td>{{ $kos->alamat }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
+		    {{-- <td></td> --}}
+	        <td></td>
 		  </tr>
 		  <tr>
 		    <td>BIAYA PER TAHUN: </td>
@@ -155,7 +155,7 @@
 
         	{!!
 			    Form::adhText(
-			        'Lama Kost',
+			        'Lama Kost (Tahun)',
 			        'lama_kost',
 			        true,  
 			        null, 

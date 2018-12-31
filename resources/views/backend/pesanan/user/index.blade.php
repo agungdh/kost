@@ -28,8 +28,10 @@
                           {{-- <th style="text-align: center;">Bulanan</th> --}}
                           <th style="text-align: center;">Biaya Per Tahun</th>
                           <th style="text-align: center;">Jumlah Kamar</th>
-                          <th style="text-align: center;">Lama Kost</th>
+                          <th style="text-align: center;">Lama Kost (Tahun)</th>
                           <th style="text-align: center;">Jumlah</th>
+                          <th style="text-align: center;">Status</th>
+                          <th style="text-align: center;">Bukti Transfer</th>
                           <th>&nbsp;</th>
                           <th>&nbsp;</th>
                           <th style="text-align: center;">Proses</th>
@@ -100,7 +102,41 @@
                         <td>{{ $transaksi->jumlah_kamar }}</td>
                         <td>{{ $transaksi->lama_kost }}</td>
                         <td>{{ $pustaka->rupiah($transaksi->harga) }}</td>
+                        <td>
+                          @php
+                          $disabled = [
+                            'btnCancel' => 'disabled',
+                          ];
+                          switch ($transaksi->status) {
+                            case 'a':
+                              $s = 'Berhasil';
+                              break;
+                            case 'd':
+                              $s = 'Ditolak';
+                              break;
+                            case 'c':
+                              $s = 'Dibatalkan';
+                              break;
+                            default:
+                              if ($transaksi->waktu_upload_bukti) {
+                                $s = 'Menunggu Konfirmasi';
+                              } else {
+                                $s = 'Silakan Upload Bukti Transfer';
+                              }
+                              $disabled['btnCancel'] = '';
+                              break;
+                          }
+                          @endphp
+                          {{$s}}
+                        </td>
                         
+                        <td>
+                          File
+                        </td>
+                            <td>
+                              Upload
+                            </td>
+
                             <td>
                             <a href="javascript:void(0)" onclick="modalDeskripsi('{{ $kost->id }}')">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Deskripsi">
@@ -138,7 +174,15 @@
                               @endforeach
                             </div>
                             </td>
-                            
+                                                        
+                            {{-- <td>
+                            {!! Form::open(['id' => 'formHapus' . $kost->id, 'route' => ['kos.destroy', $kost->id], 'method' => 'delete']) !!}
+                            <button type="button" class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Konfirmasi Pemesanan" onclick="hapus('{{ $kost->id }}')">
+                                <i class="material-icons">check</i>
+                              </button>
+                            {!! Form::close() !!}
+                            </td> --}}
+
                             <td>
                             <a target="_blank" href="https://www.google.com/maps/search/{{ $kost->latitude }},{{ $kost->longitude }}">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Google Maps">
@@ -146,18 +190,11 @@
                               </button>
                             </a>
                             </td>
-                            
-                            <td>
-                            {!! Form::open(['id' => 'formHapus' . $kost->id, 'route' => ['kos.destroy', $kost->id], 'method' => 'delete']) !!}
-                            <button type="button" class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Konfirmasi Pemesanan" onclick="hapus('{{ $kost->id }}')">
-                                <i class="material-icons">check</i>
-                              </button>
-                            {!! Form::close() !!}
-                            </td>
+
 
                             <td>
-                            {!! Form::open(['id' => 'formHapus' . $kost->id, 'route' => ['kos.destroy', $kost->id], 'method' => 'delete']) !!}
-                            <button type="button" class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Batalkan Pesanan" onclick="hapus('{{ $kost->id }}')">
+                            {!! Form::open(['id' => 'formCancel' . $transaksi->id, 'route' => ['pesananUser.cancel', $transaksi->id], 'method' => 'delete']) !!}
+                            <button type="button" {{$disabled['btnCancel']}} class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Batalkan Pesanan" onclick="cancel('{{ $transaksi->id }}')">
                                 <i class="material-icons">delete</i>
                               </button>
                             {!! Form::close() !!}
@@ -190,6 +227,22 @@
 @endsection
 
 @section('js')
+<script type="text/javascript">
+  function cancel(id) {
+    swal({
+      title: "Yakin Batalkan?",
+      text: "Setelah dibatalkan data tidak dapat dikembalikan!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: 'Ya, batalkan!',
+      cancelButtonText: 'Kembali',
+      closeOnConfirm: false
+    }, function () {
+      $("#formCancel" + id).submit();
+    });
+  }
+</script>
 <script type="text/javascript">
   function modalDeskripsi(id) {
     $("#modalBody").html(deskripsi[id]);

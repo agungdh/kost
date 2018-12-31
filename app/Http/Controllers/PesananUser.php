@@ -12,4 +12,16 @@ class PesananUser extends Controller
 
     	return view('backend.pesanan.user.index', compact(['transaksis']))->with('pustaka', new \agungdh\Pustaka());
     }
+
+    function cancel($id) {
+    	$trx = Transaksi::find($id);
+    	$trx->status = 'c';
+    	$trx->save();
+
+    	return redirect()->route('pesananUser.index')->with('alert', [
+                        'title' => 'BERHASIL !!!',
+                        'message' => 'Pembatalan Pesanan Berhasil !!!',
+                        'class' => 'success',
+                    ]);
+    }
 }
