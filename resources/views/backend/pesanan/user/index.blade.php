@@ -130,12 +130,25 @@
                           {{$s}}
                         </td>
                         
+                        {!! Form::open(['id' => 'formUpload' . $transaksi->id, 'route' => ['pesananUser.upBukti', $transaksi->id], 'files' => true]) !!}
                         <td>
-                          File
+                          <div class="form-group">
+                          @php
+                          $class = $errors->has('berkas__' . $transaksi->id) ? 'form-line error focused' : 'form-line';
+                          $message = $errors->has('berkas__' . $transaksi->id) ? '<label class="error">' . $errors->first('berkas__' . $transaksi->id) . '</label>' : '';
+                          @endphp
+                          <div class="{{$class}}">
+                            <input type="file" name="berkas__{{$transaksi->id}}">
+                          </div>
+                          {!! $message !!}
+                        </div>
                         </td>
-                            <td>
-                              Upload
-                            </td>
+                        <td>
+                        <button type="button" class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Upload Bukti Transfer" onclick="upload('{{ $transaksi->id }}')">
+                            <i class="material-icons">file_upload</i>
+                          </button>
+                        </td>
+                        {!! Form::close() !!}
 
                             <td>
                             <a href="javascript:void(0)" onclick="modalDeskripsi('{{ $kost->id }}')">
@@ -262,6 +275,22 @@
       closeOnConfirm: false
     }, function () {
       $("#formHapus" + id).submit();
+    });
+  }
+</script>
+<script type="text/javascript">
+  function upload(id) {
+    swal({
+      title: "Yakin Upload?",
+      text: "Setelah diupload data tidak dapat dikembalikan!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-success",
+      confirmButtonText: 'Ya, upload!',
+      cancelButtonText: 'Batal',
+      closeOnConfirm: false
+    }, function () {
+      $("#formUpload" + id).submit();
     });
   }
 </script>

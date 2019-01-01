@@ -102,3 +102,4 @@ Route::put('/pezanan/{id}', 'PesananPemilik@do')->name('pesananPemilik.do');
 Route::get('/pecanan', 'PesananUser@index')->name('pesananUser.index');
 Route::delete('/pecanan/{id}', 'PesananUser@cancel')->name('pesananUser.cancel');
 Route::put('/pecanan/{id}', 'PesananUser@do')->name('pesananUser.do');
+Route::post('/pecanan/{id}', 'PesananUser@upBukti')->name('pesananUser.upBukti');
