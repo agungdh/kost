@@ -130,9 +130,30 @@
                           {{$s}}
                         </td>
                         
+                        @php
+                        if (file_exists(storage_path('app/public/foto/bukti/' . $transaksi->id))) {
+                            $url_gambar_bukti = asset('storage/foto/bukti/' . $transaksi->id);
+                        }
+                        @endphp
+
                         {!! Form::open(['id' => 'formUpload' . $transaksi->id, 'route' => ['pesananUser.upBukti', $transaksi->id], 'files' => true]) !!}
                         <td>
-                          <div class="form-group">
+                        @if(isset($url_gambar_bukti))
+                        @php
+                        $disBtn = 'disabled';
+                        @endphp
+                        {{-- <img src="{{$url_gambar_bukti}}"> --}}
+                        
+                        <div id="mediaLibrary{{ $transaksi->id }}">
+                          <a href="{{ $url_gambar_bukti }}" data-sub-html="{{ $pustaka->tanggalWaktuIndo($transaksi->waktu_upload_bukti) }}">
+                            <img width="160px" height="90px" src="{{ $url_gambar_bukti }}">
+                          </a>
+                        </div>
+                        @else
+                        @php
+                        $disBtn = '';
+                        @endphp
+                        <div class="form-group">
                           @php
                           $class = $errors->has('berkas__' . $transaksi->id) ? 'form-line error focused' : 'form-line';
                           $message = $errors->has('berkas__' . $transaksi->id) ? '<label class="error">' . $errors->first('berkas__' . $transaksi->id) . '</label>' : '';
@@ -142,12 +163,17 @@
                           </div>
                           {!! $message !!}
                         </div>
+                        @endif
                         </td>
                         <td>
-                        <button type="button" class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Upload Bukti Transfer" onclick="upload('{{ $transaksi->id }}')">
+                        <button type="button" {{$disBtn}} class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Upload Bukti Transfer" onclick="upload('{{ $transaksi->id }}')">
                             <i class="material-icons">file_upload</i>
-                          </button>
+                        </button>
                         </td>
+                        @php
+                        unset($url_gambar_bukti);
+                        unset($disBtn);
+                        @endphp
                         {!! Form::close() !!}
 
                             <td>
@@ -301,5 +327,10 @@
   @endphp
   $("#mediaLibrary{{ $kost->id }}").lightGallery({thumbnail: true, selector: 'a'});
   @endforeach
+</script>
+<script type="text/javascript">
+@foreach($transaksis as $transaksi)
+$("#mediaLibrary{{ $transaksi->id }}").lightGallery({thumbnail: true, selector: 'a'});
+@endforeach
 </script>
 @endsection

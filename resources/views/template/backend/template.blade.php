@@ -33,6 +33,8 @@
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
     <link href="{{ asset('assets') }}/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/lightbox/ekko-lightbox.css">
     
     <!-- Light Gallery Plugin Css -->
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/light-gallery/css/lightgallery.css" rel="stylesheet">
@@ -220,6 +222,7 @@
 
     <!-- Jquery Core Js -->
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="{{asset('assets')}}/lightbox/ekko-lightbox.min.js"></script>
     <script type="text/javascript">
     $.ajaxSetup({
         headers: {
