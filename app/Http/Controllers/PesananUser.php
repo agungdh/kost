@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Transaksi;
 use Storage;
+use App\Helpers\trxHelper;
 
 class PesananUser extends Controller
 {
@@ -15,9 +16,7 @@ class PesananUser extends Controller
     }
 
     function cancel($id) {
-    	$trx = Transaksi::find($id);
-    	$trx->status = 'c';
-    	$trx->save();
+        trxHelper::changeStatus($id, 'c');
 
     	return redirect()->route('pesananUser.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
