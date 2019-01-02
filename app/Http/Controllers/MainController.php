@@ -199,11 +199,26 @@ class MainController extends Controller
 
 	public function dashboard()
 	{   
-		if (!in_array(session('level'), ['a', 'p', 'u'])) {
-            return redirect(route('login'));
-        } else {
-        	return view('backend.dashboard');
-        }
+		// if (!in_array(session('level'), ['a', 'p', 'u'])) {
+  //           return redirect(route('login'));
+  //       } else {
+  //       	return view('backend.dashboard');
+  //       }
+
+        switch (session('level')) {
+             case 'a':
+                 return view('backend.dashboard.admin')->with('pustaka', new \agungdh\Pustaka());
+                 break;
+             case 'p':
+                 return view('backend.dashboard.pemilik')->with('pustaka', new \agungdh\Pustaka());
+                 break;
+             case 'u':
+                 return view('backend.dashboard.user')->with('pustaka', new \agungdh\Pustaka());
+                 break;
+             default:
+                 return redirect(route('login'));
+                 break;
+         }
     }
 
     public function dumpDB()
