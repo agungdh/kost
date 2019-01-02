@@ -202,7 +202,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; {{ date('Y') }} <a href="javascript:void(0)">{{ $judul }}</a>.
+                    &copy; {{ date('Y') }} <a href="{{url('/')}}">{{ $judul }}</a>.
                 </div>
             </div>
             <!-- #Footer -->

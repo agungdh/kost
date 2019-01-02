@@ -21,7 +21,7 @@ class PesananAdmin extends Controller
     }
 
     function acc($id) {
-    	trxHelper::changeStatus($id, 'a', true);
+    	trxHelper::changeStatus($id, 'a');
 
     	return redirect()->route('pesananAdmin.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
@@ -31,7 +31,7 @@ class PesananAdmin extends Controller
     }
 
     function dcc($id) {
-    	trxHelper::changeStatus($id, 'd', true);
+    	trxHelper::changeStatus($id, 'd');
 
     	return redirect()->route('pesananAdmin.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
