@@ -17,6 +17,8 @@
                   <thead>
                       <tr>
                           <th style="text-align: center;">ID Transaksi</th>
+                          <th style="text-align: center;">Nama Pembeli</th>
+                          <th style="text-align: center;">No HP Pembeli</th>
                           <th style="text-align: center;">Nama Pemilik</th>
                           <th style="text-align: center;">No HP Pemilik</th>
                           <th style="text-align: center;">Nama</th>
@@ -47,12 +49,25 @@
                     @foreach($transaksis as $transaksi)
                     @php
                     $kost = $transaksi->kos;
+                    $pencari = $transaksi->userPencariKos;
+                    $validator = $transaksi->userValidator;
                     @endphp
                     <script type="text/javascript">
                       deskripsi[{{ $kost->id }}] = atob('{!! base64_encode($kost->deskripsi) !!}');
                     </script>
                       <tr>
                         <td>{{$transaksi->id}}</td>
+                        <td>{{ $pencari->nama }}</td>
+                        @php
+                        if($pencari->verified_nohp == 'y') {
+                          $title = 'Verified';
+                          $icon = '&#10003;';
+                        } else {
+                          $title = 'Unverified';
+                          $icon = '?';
+                        }
+                        @endphp
+                        <td>{{ $pencari->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
                         <td>{{ $kost->user->nama }}</td>
                         @php
                         if($kost->user->verified_nohp == 'y') {

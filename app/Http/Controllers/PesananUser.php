@@ -9,6 +9,11 @@ use App\Helpers\trxHelper;
 
 class PesananUser extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('CustomAuth:u');
+    }
+
     function index() {
     	$transaksis = Transaksi::where('user_id_pencari_kos', session('id'))->get();
 
