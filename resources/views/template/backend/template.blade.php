@@ -8,7 +8,8 @@
     <title>{{ $judul }}</title>
     <!-- Favicon-->
     <link rel="icon" href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/favicon.ico" type="image/x-icon">
-
+<!-- Jquery Core Js -->
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/jquery/jquery.min.js"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -38,7 +39,14 @@
     
     <!-- Light Gallery Plugin Css -->
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/light-gallery/css/lightgallery.css" rel="stylesheet">
-
+<!-- Light Gallery Plugin Js -->
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/light-gallery/js/lightgallery-all.js"></script>
+    <script type="text/javascript">
+    $('#aniimated-thumbnials').lightGallery({
+        thumbnail: true,
+        selector: 'a'
+    });
+    </script>
     <script type="text/javascript">
         state = {
             login: {{ session('login') ? 'true' : 'false' }},
@@ -220,8 +228,7 @@
         </div>
     </section>
 
-    <!-- Jquery Core Js -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/jquery/jquery.min.js"></script>
+    
     <script type="text/javascript" src="{{asset('assets')}}/lightbox/ekko-lightbox.min.js"></script>
     <script type="text/javascript">
     $.ajaxSetup({
@@ -293,14 +300,7 @@
         });
     </script>
 
-    <!-- Light Gallery Plugin Js -->
-    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/light-gallery/js/lightgallery-all.js"></script>
-    <script type="text/javascript">
-    $('#aniimated-thumbnials').lightGallery({
-        thumbnail: true,
-        selector: 'a'
-    });
-    </script>
+
     
     <!-- Ckeditor -->
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/ckeditor/ckeditor.js"></script>

@@ -162,7 +162,7 @@
                         @endphp
                         {{-- <img src="{{$url_gambar_bukti}}"> --}}
                         
-                        <div id="mediaLibrary{{ $transaksi->id_transaksi }}">
+                        <div id="mediaLibrarytx{{ $transaksi->id_transaksi }}">
                           <a href="{{ $url_gambar_bukti }}" data-sub-html="{{ $pustaka->tanggalWaktuIndo($transaksi->waktu_upload_bukti) }}">
                             <img width="160px" height="90px" src="{{ $url_gambar_bukti }}">
                           </a>
@@ -387,7 +387,7 @@
 </script>
 <script type="text/javascript">
 @foreach($transaksis as $transaksi)
-$("#mediaLibrary{{ $transaksi->id_transaksi }}").lightGallery({thumbnail: true, selector: 'a'});
+$("#mediaLibrarytx{{ $transaksi->id_transaksi }}").lightGallery({thumbnail: true, selector: 'a'});
 @endforeach
 </script>
 <script type="text/javascript">
