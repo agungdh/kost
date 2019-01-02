@@ -2,4 +2,5 @@
 
 Aplikasi Kost Online
 
-Demo(https://kost.server1agungdh.site/)
+https://kost.server1agungdh.site/
+https://nyarikos.online/
