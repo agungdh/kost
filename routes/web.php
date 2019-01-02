@@ -104,3 +104,6 @@ Route::get('/pecanan', 'PesananUser@index')->name('pesananUser.index');
 Route::delete('/pecanan/{id}', 'PesananUser@cancel')->name('pesananUser.cancel');
 Route::put('/pecanan/{id}', 'PesananUser@do')->name('pesananUser.do');
 Route::post('/pecanan/{id}', 'PesananUser@upBukti')->name('pesananUser.upBukti');
+
+// invoice
+Route::get('{id}/invoice', 'MainController@invoice')->name('invoice');

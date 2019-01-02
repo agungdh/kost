@@ -12,13 +12,28 @@ use App\Kos;
 use App\VKos;
 use App\Transaksi;
 use DB;
-
+use Dompdf\Dompdf;
 use agungdh\Pustaka;
 
 class MainController extends Controller
 {
     public function __construct() {
 
+    }
+
+    function invoice($id_trx) {
+        $trx = Transaksi::find($id_trx);
+
+        if (!$trx || $trx->status != 'a') {
+            return redirect(url('/'));
+        }
+        $html = view('template.pdf.invoice', compact(['trx']))->with('pustaka', new \agungdh\Pustaka())->render();
+        // echo $html; die;
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->render();
+        $dompdf->stream("Invoice {$trx->id}");
     }
 
     public function index(Request $request)
