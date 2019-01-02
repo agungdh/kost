@@ -108,6 +108,8 @@
                           @php
                           $disabled = [
                             'btnCancel' => 'disabled',
+                            'btnUpload' => 'disabled',
+                            'img' => true,
                           ];
                           switch ($transaksi->status) {
                             case 'a':
@@ -126,6 +128,8 @@
                                 $s = 'Silakan Upload Bukti Transfer';
                               }
                               $disabled['btnCancel'] = '';
+                              $disabled['btnUpload'] = '';
+                              unset($disabled['img']);
                               break;
                           }
                           @endphp
@@ -160,15 +164,19 @@
                           $class = $errors->has('berkas__' . $transaksi->id) ? 'form-line error focused' : 'form-line';
                           $message = $errors->has('berkas__' . $transaksi->id) ? '<label class="error">' . $errors->first('berkas__' . $transaksi->id) . '</label>' : '';
                           @endphp
+                          @if(isset($disabled['img']))
+                            -
+                          @else
                           <div class="{{$class}}">
                             <input type="file" name="berkas__{{$transaksi->id}}">
                           </div>
+                          @endif
                           {!! $message !!}
                         </div>
                         @endif
                         </td>
                         <td>
-                        <button type="button" {{$disBtn}} class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Upload Bukti Transfer" onclick="upload('{{ $transaksi->id }}')">
+                        <button type="button" {{$disBtn}} {{$disabled['btnUpload']}} class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Upload Bukti Transfer" onclick="upload('{{ $transaksi->id }}')">
                             <i class="material-icons">file_upload</i>
                         </button>
                         </td>
@@ -242,6 +250,9 @@
                             </td>
 
                       </tr>
+                      @php
+                      unset($disabled);
+                      @endphp
                     @endforeach
                   </tbody>
               </table>
