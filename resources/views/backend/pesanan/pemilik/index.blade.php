@@ -13,7 +13,7 @@
       @endadhHeader
       <div class="body">
           <div class="table-responsive">
-              <table class="table table-bordered table-striped table-hover datatable">
+              <table class="table table-bordered table-striped table-hover" id="dete">
                   <thead>
                       <tr>
                           <th style="text-align: center;">ID Transaksi</th>
@@ -35,11 +35,11 @@
                           <th style="text-align: center;">Jumlah</th>
                           <th style="text-align: center;">Status</th>
                           <th style="text-align: center;">Bukti Transfer</th>
-                          <th>&nbsp;</th>
+                          {{-- <th>&nbsp;</th> --}}
                           <th>&nbsp;</th>
                           <th style="text-align: center;">Proses</th>
                           <th>&nbsp;</th>
-                          <th>&nbsp;</th>
+                          {{-- <th>&nbsp;</th> --}}
                       </tr>
                   </thead>
                   <tbody>
@@ -56,7 +56,7 @@
                       deskripsi[{{ $kost->id }}] = atob('{!! base64_encode($kost->deskripsi) !!}');
                     </script>
                       <tr>
-                        <td>{{$transaksi->id_transaksi}}</td>
+                        <td>#{{$transaksi->id_transaksi}}</td>
                         <td>{{ $pencari->nama }}</td>
                         @php
                         if($pencari->verified_nohp == 'y') {
@@ -250,22 +250,22 @@
                             </td>
 
 
-                            <td>
+{{--                             <td>
                             {!! Form::open(['id' => 'formTerima' . $transaksi->id_transaksi, 'route' => ['pesananAdmin.terima', $transaksi->id_transaksi], 'method' => 'put']) !!}
                             <button type="button" {{$disabled['btnCancel']}} class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Terima" onclick="terima('{{ $transaksi->id_transaksi }}')">
                                 <i class="material-icons">check</i>
                               </button>
                             {!! Form::close() !!}
                             </td>
-
-                            <td>
+ --}}
+{{--                             <td>
                             {!! Form::open(['id' => 'formTolak' . $transaksi->id_transaksi, 'route' => ['pesananAdmin.tolak', $transaksi->id_transaksi], 'method' => 'patch']) !!}
                             <button type="button" {{$disabled['btnCancel']}} class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Tolak" onclick="tolak('{{ $transaksi->id_transaksi }}')">
                                 <i class="material-icons">close</i>
                               </button>
                             {!! Form::close() !!}
                             </td>
-
+ --}}
                       </tr>
                     @endforeach
                   </tbody>
@@ -389,5 +389,13 @@
 @foreach($transaksis as $transaksi)
 $("#mediaLibrary{{ $transaksi->id_transaksi }}").lightGallery({thumbnail: true, selector: 'a'});
 @endforeach
+</script>
+<script type="text/javascript">
+  $('#dete').DataTable({
+      responsive: true,
+      search: {
+        "search": ""
+      }
+  });
 </script>
 @endsection

@@ -52,7 +52,7 @@
                       deskripsi[{{ $kost->id }}] = atob('{!! base64_encode($kost->deskripsi) !!}');
                     </script>
                       <tr>
-                        <td>{{$transaksi->id}}</td>
+                        <td>#{{$transaksi->id}}</td>
                         <td>{{ $kost->user->nama }}</td>
                         @php
                         if($kost->user->verified_nohp == 'y') {
