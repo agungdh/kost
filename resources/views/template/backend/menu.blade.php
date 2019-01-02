@@ -22,3 +22,16 @@
     </a>
 </li>
 @endif
+
+<li>
+    @if(session('level') == 'a')
+    <a href="{{ route('pesananAdmin.index') }}">
+    @elseif(session('level') == 'p')
+    <a href="{{ route('pesananPemilik.index') }}">
+    @elseif(session('level') == 'u')
+    <a href="{{ route('pesananUser.index') }}">
+    @endif
+        <i class="material-icons">insert_chart</i>
+        <span>Transaksi</span>
+    </a>
+</li>
