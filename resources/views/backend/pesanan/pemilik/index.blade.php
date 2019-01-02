@@ -19,8 +19,8 @@
                           <th style="text-align: center;">ID Transaksi</th>
                           <th style="text-align: center;">Nama Pembeli</th>
                           <th style="text-align: center;">No HP Pembeli</th>
-                          <th style="text-align: center;">Nama Pemilik</th>
-                          <th style="text-align: center;">No HP Pemilik</th>
+                          {{-- <th style="text-align: center;">Nama Pemilik</th> --}}
+                          {{-- <th style="text-align: center;">No HP Pemilik</th> --}}
                           <th style="text-align: center;">Nama</th>
                           <th style="text-align: center;">Alamat</th>
                           {{-- <th style="text-align: center;">Provinsi</th> --}}
@@ -53,10 +53,10 @@
                     $validator = $transaksi->userValidator;
                     @endphp
                     <script type="text/javascript">
-                      deskripsi[{{ $kost->id_kos }}] = atob('{!! base64_encode($kost->deskripsi) !!}');
+                      deskripsi[{{ $kost->id }}] = atob('{!! base64_encode($kost->deskripsi) !!}');
                     </script>
                       <tr>
-                        <td>{{$transaksi->id}}</td>
+                        <td>{{$transaksi->id_transaksi}}</td>
                         <td>{{ $pencari->nama }}</td>
                         @php
                         if($pencari->verified_nohp == 'y') {
@@ -68,7 +68,7 @@
                         }
                         @endphp
                         <td>{{ $pencari->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
-                        <td>{{ $kost->user->nama }}</td>
+                        {{-- <td>{{ $kost->user->nama }}</td> --}}
                         @php
                         if($kost->user->verified_nohp == 'y') {
                           $title = 'Verified';
@@ -78,7 +78,7 @@
                           $icon = '?';
                         }
                         @endphp
-                        <td>{{ $kost->user->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
+                        {{-- <td>{{ $kost->user->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td> --}}
                         <td>{{ $kost->nama }}</td>
                         @php
                         if($kost->verified_alamat == 'y') {
@@ -149,12 +149,12 @@
                         </td>
                         
                         @php
-                        if (file_exists(storage_path('app/public/foto/bukti/' . $transaksi->id))) {
-                            $url_gambar_bukti = asset('storage/foto/bukti/' . $transaksi->id);
+                        if (file_exists(storage_path('app/public/foto/bukti/' . $transaksi->id_transaksi))) {
+                            $url_gambar_bukti = asset('storage/foto/bukti/' . $transaksi->id_transaksi);
                         }
                         @endphp
 
-                        {!! Form::open(['id' => 'formUpload' . $transaksi->id, 'route' => ['pesananUser.upBukti', $transaksi->id], 'files' => true]) !!}
+                        {!! Form::open(['id' => 'formUpload' . $transaksi->id_transaksi, 'route' => ['pesananUser.upBukti', $transaksi->id_transaksi], 'files' => true]) !!}
                         <td>
                         @if(isset($url_gambar_bukti))
                         @php
@@ -162,7 +162,7 @@
                         @endphp
                         {{-- <img src="{{$url_gambar_bukti}}"> --}}
                         
-                        <div id="mediaLibrary{{ $transaksi->id }}">
+                        <div id="mediaLibrary{{ $transaksi->id_transaksi }}">
                           <a href="{{ $url_gambar_bukti }}" data-sub-html="{{ $pustaka->tanggalWaktuIndo($transaksi->waktu_upload_bukti) }}">
                             <img width="160px" height="90px" src="{{ $url_gambar_bukti }}">
                           </a>
@@ -173,11 +173,11 @@
                         @endphp
                         {{-- <div class="form-group">
                           @php
-                          $class = $errors->has('berkas__' . $transaksi->id) ? 'form-line error focused' : 'form-line';
-                          $message = $errors->has('berkas__' . $transaksi->id) ? '<label class="error">' . $errors->first('berkas__' . $transaksi->id) . '</label>' : '';
+                          $class = $errors->has('berkas__' . $transaksi->id_transaksi) ? 'form-line error focused' : 'form-line';
+                          $message = $errors->has('berkas__' . $transaksi->id_transaksi) ? '<label class="error">' . $errors->first('berkas__' . $transaksi->id_transaksi) . '</label>' : '';
                           @endphp
                           <div class="{{$class}}">
-                            <input type="file" name="berkas__{{$transaksi->id}}">
+                            <input type="file" name="berkas__{{$transaksi->id_transaksi}}">
                           </div>
                           {!! $message !!}
                         </div> --}}
@@ -185,7 +185,7 @@
                         @endif
                         </td>
                         {{-- <td>
-                        <button type="button" {{$disBtn}} class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Upload Bukti Transfer" onclick="upload('{{ $transaksi->id }}')">
+                        <button type="button" {{$disBtn}} class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Upload Bukti Transfer" onclick="upload('{{ $transaksi->id_transaksi }}')">
                             <i class="material-icons">file_upload</i>
                         </button>
                         </td> --}}
@@ -196,7 +196,7 @@
                         {!! Form::close() !!}
 
                             <td>
-                            <a href="javascript:void(0)" onclick="modalDeskripsi('{{ $kost->id_kos }}')">
+                            <a href="javascript:void(0)" onclick="modalDeskripsi('{{ $kost->id }}')">
                               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Deskripsi">
                                 <i class="material-icons">description</i>
                               </button>
@@ -205,7 +205,7 @@
 
                             <td>
                             {{-- media library --}}
-                            <div id="mediaLibrary{{ $kost->id_kos }}">
+                            <div id="mediaLibrary{{ $kost->id }}">
                               
                               @php
                               $i = 1;
@@ -234,8 +234,8 @@
                             </td>
                                                         
                             {{-- <td>
-                            {!! Form::open(['id' => 'formHapus' . $kost->id_kos, 'route' => ['kos.destroy', $kost->id_kos], 'method' => 'delete']) !!}
-                            <button type="button" class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Konfirmasi Pemesanan" onclick="hapus('{{ $kost->id_kos }}')">
+                            {!! Form::open(['id' => 'formHapus' . $kost->id, 'route' => ['kos.destroy', $kost->id], 'method' => 'delete']) !!}
+                            <button type="button" class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Konfirmasi Pemesanan" onclick="hapus('{{ $kost->id }}')">
                                 <i class="material-icons">check</i>
                               </button>
                             {!! Form::close() !!}
@@ -251,16 +251,16 @@
 
 
                             <td>
-                            {!! Form::open(['id' => 'formTerima' . $transaksi->id, 'route' => ['pesananAdmin.terima', $transaksi->id], 'method' => 'put']) !!}
-                            <button type="button" {{$disabled['btnCancel']}} class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Terima" onclick="terima('{{ $transaksi->id }}')">
+                            {!! Form::open(['id' => 'formTerima' . $transaksi->id_transaksi, 'route' => ['pesananAdmin.terima', $transaksi->id_transaksi], 'method' => 'put']) !!}
+                            <button type="button" {{$disabled['btnCancel']}} class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Terima" onclick="terima('{{ $transaksi->id_transaksi }}')">
                                 <i class="material-icons">check</i>
                               </button>
                             {!! Form::close() !!}
                             </td>
 
                             <td>
-                            {!! Form::open(['id' => 'formTolak' . $transaksi->id, 'route' => ['pesananAdmin.tolak', $transaksi->id], 'method' => 'patch']) !!}
-                            <button type="button" {{$disabled['btnCancel']}} class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Tolak" onclick="tolak('{{ $transaksi->id }}')">
+                            {!! Form::open(['id' => 'formTolak' . $transaksi->id_transaksi, 'route' => ['pesananAdmin.tolak', $transaksi->id_transaksi], 'method' => 'patch']) !!}
+                            <button type="button" {{$disabled['btnCancel']}} class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Tolak" onclick="tolak('{{ $transaksi->id_transaksi }}')">
                                 <i class="material-icons">close</i>
                               </button>
                             {!! Form::close() !!}
@@ -382,12 +382,12 @@
   @php
   $kost = $transaksi->kos;
   @endphp
-  $("#mediaLibrary{{ $kost->id_kos }}").lightGallery({thumbnail: true, selector: 'a'});
+  $("#mediaLibrary{{ $kost->id }}").lightGallery({thumbnail: true, selector: 'a'});
   @endforeach
 </script>
 <script type="text/javascript">
 @foreach($transaksis as $transaksi)
-$("#mediaLibrary{{ $transaksi->id }}").lightGallery({thumbnail: true, selector: 'a'});
+$("#mediaLibrary{{ $transaksi->id_transaksi }}").lightGallery({thumbnail: true, selector: 'a'});
 @endforeach
 </script>
 @endsection
