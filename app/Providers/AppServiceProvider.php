@@ -17,13 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::share([
-            'judul' => 'Aplikasi Gak Tau',    
-            'bank' => [
-                'namaBank' => 'MBOH',
-                'kodeBank' => '020',
-                'noRek' => '12345678',
-                'atasNama' => 'Agung DH',
-            ],
+            'judul' => 'NYARIKOS.ONLINE',    
         ]);
 
         FormFacade::component(
