@@ -166,8 +166,8 @@
 
                     <li>
                         <a href="{{ route('dashboard') }}">
-                            <i class="material-icons">dashboard</i>
-                            <span>Dashboard</span>
+                            <i class="material-icons">{{ session('login') ? 'dashboard' : 'person'}}</i>
+                            <span>{{ session('login') ? 'Dashboard' : 'Login'}}</span>
                         </a>
                     </li>
                     
