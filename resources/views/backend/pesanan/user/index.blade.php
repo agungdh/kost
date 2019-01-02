@@ -44,6 +44,9 @@
                     <script type="text/javascript">
                       var deskripsi = [];
                     </script>
+                    @php
+                    $iteration = 0;
+                    @endphp
                     @foreach($transaksis as $transaksi)
                     @php
                     $kost = $transaksi->kos;
@@ -158,11 +161,14 @@
                         @endphp
                         {{-- <img src="{{$url_gambar_bukti}}"> --}}
                         
-                        <div id="mediaLibraryTx{{ $transaksi->id }}">
+                        <div id="mediaLibraryTx{{ $iteration }}">
                           <a href="{{ $url_gambar_bukti }}" data-sub-html="{{ $pustaka->tanggalWaktuIndo($transaksi->waktu_upload_bukti) }}">
                             <img width="160px" height="90px" src="{{ $url_gambar_bukti }}">
                           </a>
                         </div>
+                        <script type="text/javascript">
+                            $("#mediaLibraryTx{{$iteration}}").lightGallery({thumbnail: true, selector: 'a'});  
+                            </script>
                         @else
                         @php
                         $disBtn = '';
@@ -204,7 +210,7 @@
 
                             <td>
                             {{-- media library --}}
-                            <div id="mediaLibrary{{ $kost->id }}">
+                            <div id="mediaLibrary{{ $iteration }}">
                               
                               @php
                               $i = 1;
@@ -230,6 +236,9 @@
                                 @endphp
                               @endforeach
                             </div>
+                            <script type="text/javascript">
+                            $("#mediaLibrary{{$iteration}}").lightGallery({thumbnail: true, selector: 'a'});  
+                            </script>
                             </td>
                                                         
                             {{-- <td>
@@ -260,6 +269,7 @@
                       </tr>
                       @php
                       unset($disabled);
+                      $iteration++;
                       @endphp
                     @endforeach
                   </tbody>
@@ -340,18 +350,5 @@
       $("#formUpload" + id).submit();
     });
   }
-</script>
-<script type="text/javascript">
-  @foreach($transaksis as $transaksi)
-  @php
-  $kost = $transaksi->kos;
-  @endphp
-  $("#mediaLibrary{{ $kost->id }}").lightGallery({thumbnail: true, selector: 'a'});
-  @endforeach
-</script>
-<script type="text/javascript">
-@foreach($transaksis as $transaksi)
-$("#mediaLibraryTx{{ $transaksi->id }}").lightGallery({thumbnail: true, selector: 'a'});
-@endforeach
 </script>
 @endsection
