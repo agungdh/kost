@@ -126,7 +126,7 @@
                           ];
                           switch ($transaksi->status) {
                             case 'a':
-                              $s = 'Berhasil';
+                              $s = 'Diterima';
                               break;
                             case 'd':
                               $s = 'Ditolak';
@@ -138,7 +138,7 @@
                               if ($transaksi->waktu_upload_bukti) {
                                 $s = 'Menunggu Konfirmasi';
                               } else {
-                                $s = 'Silakan Upload Bukti Transfer';
+                                $s = 'Menunggu Bukti Transfer';
                               }
                               $disabled['btnCancel'] = '';
                               break;
@@ -170,7 +170,7 @@
                         @php
                         $disBtn = '';
                         @endphp
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                           @php
                           $class = $errors->has('berkas__' . $transaksi->id) ? 'form-line error focused' : 'form-line';
                           $message = $errors->has('berkas__' . $transaksi->id) ? '<label class="error">' . $errors->first('berkas__' . $transaksi->id) . '</label>' : '';
@@ -179,14 +179,15 @@
                             <input type="file" name="berkas__{{$transaksi->id}}">
                           </div>
                           {!! $message !!}
-                        </div>
+                        </div> --}}
+                        -
                         @endif
                         </td>
-                        <td>
+                        {{-- <td>
                         <button type="button" {{$disBtn}} class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Upload Bukti Transfer" onclick="upload('{{ $transaksi->id }}')">
                             <i class="material-icons">file_upload</i>
                         </button>
-                        </td>
+                        </td> --}}
                         @php
                         unset($url_gambar_bukti);
                         unset($disBtn);
@@ -249,9 +250,17 @@
 
 
                             <td>
-                            {!! Form::open(['id' => 'formCancel' . $transaksi->id, 'route' => ['pesananUser.cancel', $transaksi->id], 'method' => 'delete']) !!}
-                            <button type="button" {{$disabled['btnCancel']}} class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Batalkan Pesanan" onclick="cancel('{{ $transaksi->id }}')">
-                                <i class="material-icons">delete</i>
+                            {!! Form::open(['id' => 'formTerima' . $transaksi->id, 'route' => ['pesananAdmin.terima', $transaksi->id], 'method' => 'put']) !!}
+                            <button type="button" {{$disabled['btnCancel']}} class="btn bg-green waves-effect" data-toggle="tooltip" data-placement="top" title="Terima" onclick="terima('{{ $transaksi->id }}')">
+                                <i class="material-icons">check</i>
+                              </button>
+                            {!! Form::close() !!}
+                            </td>
+
+                            <td>
+                            {!! Form::open(['id' => 'formTolak' . $transaksi->id, 'route' => ['pesananAdmin.tolak', $transaksi->id], 'method' => 'patch']) !!}
+                            <button type="button" {{$disabled['btnCancel']}} class="btn bg-red waves-effect" data-toggle="tooltip" data-placement="top" title="Tolak" onclick="tolak('{{ $transaksi->id }}')">
+                                <i class="material-icons">close</i>
                               </button>
                             {!! Form::close() !!}
                             </td>
@@ -334,6 +343,36 @@
       closeOnConfirm: false
     }, function () {
       $("#formUpload" + id).submit();
+    });
+  }
+</script>
+<script type="text/javascript">
+  function terima(id) {
+    swal({
+      title: "Yakin Terima?",
+      text: "Setelah diterima data tidak dapat dikembalikan!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-success",
+      confirmButtonText: 'Ya, terima!',
+      cancelButtonText: 'Batal',
+      closeOnConfirm: false
+    }, function () {
+      $("#formTerima" + id).submit();
+    });
+  }
+  function tolak(id) {
+    swal({
+      title: "Yakin Tolak?",
+      text: "Setelah ditolak data tidak dapat dikembalikan!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-success",
+      confirmButtonText: 'Ya, tolak!',
+      cancelButtonText: 'Batal',
+      closeOnConfirm: false
+    }, function () {
+      $("#formTolak" + id).submit();
     });
   }
 </script>

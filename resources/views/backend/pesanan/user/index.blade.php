@@ -113,7 +113,7 @@
                           ];
                           switch ($transaksi->status) {
                             case 'a':
-                              $s = 'Berhasil';
+                              $s = 'Diterima';
                               break;
                             case 'd':
                               $s = 'Ditolak';

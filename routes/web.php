@@ -92,7 +92,8 @@ Route::post('/pesan/{id}', 'MainController@doPesan')->name('doPesan');
 
 // admin pesanan
 Route::get('/pesanan', 'PesananAdmin@index')->name('pesananAdmin.index');
-Route::put('/pesanan/{id}', 'PesananAdmin@do')->name('pesananAdmin.do');
+Route::put('/pesanan/{id}/action', 'PesananAdmin@acc')->name('pesananAdmin.terima');
+Route::patch('/pesanan/{id}/action', 'PesananAdmin@dcc')->name('pesananAdmin.tolak');
 
 // pemilik pesanan
 Route::get('/pezanan', 'PesananPemilik@index')->name('pesananPemilik.index');
