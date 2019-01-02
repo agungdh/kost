@@ -113,7 +113,8 @@
                           ];
                           switch ($transaksi->status) {
                             case 'a':
-                              $s = 'Diterima';
+                              $berlakuSampai = date("d-m-Y", strtotime("+{$transaksi->lama_kost} years", strtotime($transaksi->waktu_validasi)));
+                              $s = "Diterima. Berlaku Sampai: {$berlakuSampai}";
                               break;
                             case 'd':
                               $s = 'Ditolak';
