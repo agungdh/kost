@@ -1,5 +1,7 @@
 <h3>Pesanan anda telah kami terima</h3>
 
+<h4>ID Pesanan adalah <b><u>{{ $transaksi->id }}</u></b></h4>
+
 <table class="table">
   <tr>
     <td>NAMA</td>
@@ -131,4 +133,6 @@
   </tr> --}}
 </table>
 
-<p>Silakan akses <a target="_blank" href="{{ route('metodePembayaran') }}">Halaman Ini</a> untuk cara pembayaran</p>
+<p>Transaksi akan otomatis dibatalkan bila pihak pencari kos tidak upload bukti transfer atau konfirmasi pembayaran ke Admin dalam waktu 1 X 24 jam</p>
+
+<p>Silakan akses <a target="_blank" href="{{ route('metodePembayaran') }}">halaman Ini</a> untuk cara pembayaran</p>

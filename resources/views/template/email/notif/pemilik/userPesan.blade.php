@@ -1,5 +1,7 @@
 <h3>Pesanan untuk kost anda</h3>
 
+<h4>ID Pesanan adalah <b><u>{{ $transaksi->id }}</u></b></h4>
+
 <table class="table">
   <tr>
     <td>NAMA</td>
@@ -130,5 +132,7 @@
     </td>
   </tr> --}}
 </table>
+
+<p>Transaksi akan otomatis dibatalkan bila pihak pencari kos tidak upload bukti transfer atau konfirmasi pembayaran ke Admin dalam waktu 1 X 24 jam</p>
 
 <p>Silakan untuk memastikan bahwa kamar tersedia. bila kamar tidak tersedia, silakan <a target="_blank" href="{{route('hubungiKami')}}">hubungi kami</a></p>

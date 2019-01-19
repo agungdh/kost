@@ -13,12 +13,10 @@ class notifMail {
         $pemilik_kos = $kos->user;
 
         $htmlUser = view('template.email.notif.pencari.userPesan', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
-        // echo $htmlUser;
-
+        echo $htmlUser;
+        echo '<hr>';
         $htmlPemilik = view('template.email.notif.pemilik.userPesan', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
         echo $htmlPemilik;
-
-        // dd(compact(['transaksi', 'kos', 'pencari_kos', 'pemilik_kos']));
     }
 
     // user transaksi otomatis cancel
@@ -28,6 +26,12 @@ class notifMail {
         $kos = $transaksi->kos;
         $pencari_kos = $transaksi->userPencariKos;
         $pemilik_kos = $kos->user;
+
+        $htmlUser = view('template.email.notif.pencari.userAutoCancel', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
+        echo $htmlUser;
+        echo '<hr>';
+        $htmlPemilik = view('template.email.notif.pemilik.userAutoCancel', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
+        echo $htmlPemilik;
     }
 
     // user upload bukti
