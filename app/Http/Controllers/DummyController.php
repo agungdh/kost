@@ -11,6 +11,8 @@ use App\Kabupaten;
 use App\Kecamatan;
 use App\Kelurahan;
 
+use App\Helpers\notifMail;
+
 class DummyController extends Controller
 {
     var $httpMethod;
@@ -19,9 +21,9 @@ class DummyController extends Controller
         $this->httpMethod = $request->method();
     }
 
-    public function temp()
+    public function temp($id = null)
     {
-        // return view('template.email.aktivasi');
+        notifMail::userPesan($id);
     }
 
     public function testModelProvinsi($id)
