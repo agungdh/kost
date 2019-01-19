@@ -1,4 +1,4 @@
-<h3>Anda telah membatalkan pesanan anda</h3>
+<h3>Pesanan untuk kost anda telah dibatalkan</h3>
 
 <h4>ID Pesanan adalah <b><u>{{ $transaksi->id }}</u></b></h4>
 

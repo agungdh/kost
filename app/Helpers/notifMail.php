@@ -42,7 +42,11 @@ class notifMail {
         $pencari_kos = $transaksi->userPencariKos;
         $pemilik_kos = $kos->user;
 
-        // admin
+        $htmlUser = view('template.email.notif.pencari.userUploadBukti', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
+        echo $htmlUser;
+        echo '<hr>';
+        $htmlAdmin = view('template.email.notif.admin.userUploadBukti', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
+        echo $htmlAdmin;
     }
     
     // user cancel transaksi
@@ -52,6 +56,12 @@ class notifMail {
         $kos = $transaksi->kos;
         $pencari_kos = $transaksi->userPencariKos;
         $pemilik_kos = $kos->user;
+
+        $htmlUser = view('template.email.notif.pencari.userCancelTransaksi', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
+        echo $htmlUser;
+        echo '<hr>';
+        $htmlPemilik = view('template.email.notif.pemilik.userCancelTransaksi', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
+        echo $htmlPemilik;
     }
 
     // user transaksi ditolak
@@ -61,6 +71,12 @@ class notifMail {
         $kos = $transaksi->kos;
         $pencari_kos = $transaksi->userPencariKos;
         $pemilik_kos = $kos->user;
+
+        $htmlUser = view('template.email.notif.pencari.userTransaksiDitolak', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
+        echo $htmlUser;
+        echo '<hr>';
+        $htmlPemilik = view('template.email.notif.pemilik.userTransaksiDitolak', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
+        echo $htmlPemilik;
     }
 
     // user transaksi diterima
@@ -70,5 +86,11 @@ class notifMail {
         $kos = $transaksi->kos;
         $pencari_kos = $transaksi->userPencariKos;
         $pemilik_kos = $kos->user;
+
+        $htmlUser = view('template.email.notif.pencari.userTransaksiDiterima', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
+        echo $htmlUser;
+        echo '<hr>';
+        $htmlPemilik = view('template.email.notif.pemilik.userTransaksiDiterima', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
+        echo $htmlPemilik;
     }
 }

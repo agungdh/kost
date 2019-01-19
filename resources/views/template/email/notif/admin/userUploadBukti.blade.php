@@ -1,4 +1,4 @@
-<h3>Anda telah membatalkan pesanan anda</h3>
+<h3>Pencari kost telah mengupload bukti pembayaran</h3>
 
 <h4>ID Pesanan adalah <b><u>{{ $transaksi->id }}</u></b></h4>
 
@@ -132,5 +132,3 @@
     </td>
   </tr> --}}
 </table>
-
-<p>Jika ini adalah kesalahan, silakan <a href="{{route('hubungiKami')}}">hubungi kami</a></p>

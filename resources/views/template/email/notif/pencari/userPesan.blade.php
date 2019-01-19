@@ -136,3 +136,5 @@
 <p>Transaksi akan otomatis dibatalkan bila pihak pencari kos tidak upload bukti transfer atau konfirmasi pembayaran ke Admin dalam waktu 1 X 24 jam</p>
 
 <p>Silakan akses <a target="_blank" href="{{ route('metodePembayaran') }}">halaman Ini</a> untuk cara pembayaran</p>
+
+<p>Jika ini adalah kesalahan, silakan <a href="{{route('hubungiKami')}}">hubungi kami</a></p>

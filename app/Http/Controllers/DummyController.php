@@ -23,8 +23,7 @@ class DummyController extends Controller
 
     public function temp($id = null)
     {
-        notifMail::userAutoCancel($id);
-        // return view('template.email.notif.pencari.userPesan');
+        notifMail::userUploadBukti($id);
     }
 
     public function testModelProvinsi($id)
