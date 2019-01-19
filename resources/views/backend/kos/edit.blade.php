@@ -1,7 +1,7 @@
 @extends('template.backend.template')
 
 @section('nav')
-@include('backend.kos.nav')
+@include('backend.kost.nav')
 @endsection
 
 @section('content')
@@ -14,10 +14,10 @@
         <div class="body">
             {!! Form::model($kost, ['route' => ['kos.update',$kost->id], 'method' => 'put']) !!}
 
-                @include('backend.kos.form')
+                @include('backend.kost.form')
 
                 <button type="submit" class="btn btn-success waves-effect">SIMPAN</button>
-                <a href="{{ route('kos.index') }}" class="btn btn-primary waves-effect">BATAL</a>
+                <a href="{{ route('kost.index') }}" class="btn btn-primary waves-effect">BATAL</a>
 
             {!! Form::close() !!}
         </div>
@@ -26,10 +26,13 @@
 @endsection
 
 @section('js')
+<script type="text/javascript">
+  CKEDITOR.replace('deskripsi');
+</script>
 {{-- onsubmit --}}
 <script type="text/javascript">
   $("form").submit(function() {
-    $("#bulanan").val($("#bulanan").cleanVal());
+    // $("#bulanan").val($("#bulanan").cleanVal());
     $("#tahunan").val($("#tahunan").cleanVal());
     $("#kamartersedia").val($("#kamartersedia").cleanVal());
   });
@@ -39,10 +42,6 @@
 {{-- onload --}}
 <script type="text/javascript">
 $(function() {
-  CKEDITOR.replace('deskripsi');
-  
-  getLocation();
-
   initDaerahEdit();
 });  
 </script>
@@ -64,7 +63,9 @@ $("#prop").change(function() {
     success: function(response) {
       $("#kab").html(response);
 
-      $("#kab").prop('disabled', false);
+      
+      $("#kab").val('1871');
+      $("#kab").prop('disabled', true);
 
       $("#kab").select2();
     },
@@ -140,9 +141,9 @@ function initDaerah() {
     success: function(response) {
       $("#prop").html(response);
 
-      $("#prop").prop('disabled', false);
+      $("#prop").prop('disabled', true);
 
-      $("#prop").val('{{ old('prop') }}');
+      $("#prop").val('18');
 
       $("#prop").select2();
 
@@ -155,9 +156,8 @@ function initDaerah() {
         success: function(response) {
           $("#kab").html(response);
 
-          $("#kab").prop('disabled', false);
-
-          $("#kab").val('{{ old('kab') }}');
+          $("#kab").val('1871');
+          $("#kab").prop('disabled', true);
 
           $("#kab").select2();
 
@@ -235,7 +235,7 @@ function initDaerahEdit() {
     success: function(response) {
       $("#prop").html(response);
 
-      $("#prop").prop('disabled', false);
+      $("#prop").prop('disabled', true);
 
       $("#prop").val('{{ $kost->prop }}');
 
@@ -250,7 +250,7 @@ function initDaerahEdit() {
         success: function(response) {
           $("#kab").html(response);
 
-          $("#kab").prop('disabled', false);
+          $("#kab").prop('disabled', true);
 
           $("#kab").val('{{ $kost->kab }}');
 

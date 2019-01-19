@@ -156,9 +156,8 @@ function initDaerah() {
         success: function(response) {
           $("#kab").html(response);
 
+          $("#kab").val('1871');
           $("#kab").prop('disabled', true);
-
-          $("#kab").val('{{ old('kab') }}');
 
           $("#kab").select2();
 
