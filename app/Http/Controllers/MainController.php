@@ -22,6 +22,15 @@ class MainController extends Controller
 
     }
 
+    public function index_new(Request $request)
+    {
+        $inputs = $request->all();
+
+        return view('frontend.dashboard', compact(['inputs']))
+            ->with('pustaka', new \agungdh\Pustaka())
+            ->with('fullUrl', $request->fullUrl());
+    }
+
     function invoice($id_trx) {
         $trx = Transaksi::find($id_trx);
 
@@ -193,17 +202,17 @@ class MainController extends Controller
 
         if (count($request->all()) > 0) { $inputs['uqm'] = false; } else { $inputs['uqm'] = true; }
 
-    	return view('frontend.dashboard', compact(['inputs', 'kosts', 'paramCariKos']))
+        return view('frontend.dashboard', compact(['inputs', 'kosts', 'paramCariKos']))
             ->with('pustaka', new \agungdh\Pustaka())
-            ->with('fullUrl', $request->fullUrl());	
+            ->with('fullUrl', $request->fullUrl()); 
     }
 
-	public function dashboard()
-	{   
-		// if (!in_array(session('level'), ['a', 'p', 'u'])) {
+    public function dashboard()
+    {   
+        // if (!in_array(session('level'), ['a', 'p', 'u'])) {
   //           return redirect(route('login'));
   //       } else {
-  //       	return view('backend.dashboard');
+  //        return view('backend.dashboard');
   //       }
 
         switch (session('level')) {
