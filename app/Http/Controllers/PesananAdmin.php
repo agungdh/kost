@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Helpers\trxHelper;
 use App\Transaksi;
+use App\Helpers\notifMail;
 
 
 class PesananAdmin extends Controller

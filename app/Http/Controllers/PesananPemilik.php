@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Transaksi;
 use App\Kos;
+use App\Helpers\notifMail;
 
 class PesananPemilik extends Controller
 {

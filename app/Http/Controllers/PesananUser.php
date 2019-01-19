@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Transaksi;
 use Storage;
 use App\Helpers\trxHelper;
+use App\Helpers\notifMail;
 
 class PesananUser extends Controller
 {

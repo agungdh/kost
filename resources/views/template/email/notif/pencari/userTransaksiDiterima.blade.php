@@ -133,4 +133,6 @@
   </tr> --}}
 </table>
 
+<p><a href="{{route('invoice', $transaksi->id)}}">Unduh Bukti Pemesanan</a></p>
+
 <p>Jika ini adalah kesalahan, silakan <a href="{{route('hubungiKami')}}">hubungi kami</a></p>
