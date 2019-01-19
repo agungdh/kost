@@ -310,7 +310,9 @@ class MainController extends Controller
     {
         $trx = Transaksi::select(DB::raw('*, DATE_ADD(waktu_transaksi, INTERVAL 1 DAY) deadline, now() sekarang'))
                 ->whereRaw('now() > DATE_ADD(waktu_transaksi, INTERVAL 1 DAY)')
-                ->whereNull('waktu_validasi')->get();
+                ->whereNull('waktu_validasi')
+                ->whereNull('waktu_upload_bukti')
+                ->get();
 
         $idTrx = [];
         foreach ($trx as $value) {
