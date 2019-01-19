@@ -298,9 +298,9 @@ class MainController extends Controller
         // }
         $data['harga'] = $request->jumlah_kamar * ($request->lama_kost * $kos->tahunan);
 
-        $trx = Transaksi::insertGetId($data);
+        $id_trx = Transaksi::insertGetId($data);
 
-        notifMail::userPesan($trx->id);
+        notifMail::userPesan($id_trx);
 
         return redirect(route('pesananUser.index'))->with('alert', [
                         'title' => 'BERHASIL !!!',
@@ -320,6 +320,7 @@ class MainController extends Controller
         $idTrx = [];
         foreach ($trx as $value) {
             $idTrx[] = $value->id;
+            notifMail::userAutoCancel($value->id);
         }
 
         $ttrx = Transaksi::whereIn('id', $idTrx)->update(['status' => 'c', 'waktu_validasi' => date('Y-m-d H:i:s')]);

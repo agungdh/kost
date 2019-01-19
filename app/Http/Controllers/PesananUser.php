@@ -23,6 +23,8 @@ class PesananUser extends Controller
     function cancel($id) {
         trxHelper::changeStatus($id, 'c');
 
+        notifMail::userCancelTransaksi($id);
+
     	return redirect()->route('pesananUser.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
                         'message' => 'Pembatalan Pesanan Berhasil !!!',
@@ -39,6 +41,8 @@ class PesananUser extends Controller
         $trx->waktu_upload_bukti = date('Y-m-d H:i:s');
         $trx->save();
 
+        notifMail::userUploadBukti($trx->id);
+        
         return redirect()->route('pesananUser.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
                         'message' => 'Upload Foto Berhasil !!!',

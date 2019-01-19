@@ -23,6 +23,8 @@ class PesananAdmin extends Controller
     function acc($id) {
     	trxHelper::changeStatus($id, 'a');
 
+        notifMail::userTransaksiDiterima($id);
+
     	return redirect()->route('pesananAdmin.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
                         'message' => 'Validasi Berhasil, Transaksi Telah Diterima !!!',
@@ -32,6 +34,8 @@ class PesananAdmin extends Controller
 
     function dcc($id) {
     	trxHelper::changeStatus($id, 'd');
+
+        notifMail::userTransaksiDitolak($id);
 
     	return redirect()->route('pesananAdmin.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
