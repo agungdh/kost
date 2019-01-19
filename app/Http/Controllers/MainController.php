@@ -14,6 +14,7 @@ use App\Transaksi;
 use DB;
 use Dompdf\Dompdf;
 use agungdh\Pustaka;
+use App\Helpers\notifMail;
 
 class MainController extends Controller
 {
@@ -297,7 +298,9 @@ class MainController extends Controller
         // }
         $data['harga'] = $request->jumlah_kamar * ($request->lama_kost * $kos->tahunan);
 
-        Transaksi::insert($data);
+        $trx = Transaksi::insertGetId($data);
+
+        notifMail::userPesan($trx->id);
 
         return redirect(route('pesananUser.index'))->with('alert', [
                         'title' => 'BERHASIL !!!',

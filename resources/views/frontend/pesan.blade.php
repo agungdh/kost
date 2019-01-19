@@ -15,9 +15,9 @@
 	<div class="body">
 		<table class="table">
 		  <tr>
-		    <td>NAMA: </td>
-		    <td>{{ $kos->nama }}</td>
-		    <td>TIPE: </td>
+		    <td>NAMA</td>
+		    <td>: {{ $kos->nama }}</td>
+		    <td>TIPE</td>
 		    @php
 	        switch ($kos->tipe) {
 	          case 'l':
@@ -37,7 +37,7 @@
 	            break;
 	        }
 	        @endphp
-	        <td>{{ $tipe }}</td>
+	        <td>: {{ $tipe }}</td>
 		  </tr>
 		  <tr>
 		    {{-- <td>BULANAN: </td> --}}
@@ -51,31 +51,31 @@
 	          $icon = '?';
 	        }
 	        @endphp
-		    <td>ALAMAT: </td>
-		    <td>{{ $kos->alamat }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
+		    <td>ALAMAT</td>
+		    <td>: {{ $kos->alamat }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
 		    {{-- <td></td> --}}
 	        <td></td>
 		  </tr>
 		  <tr>
-		    <td>BIAYA PER TAHUN: </td>
-		    <td>{{ $kos->tahunan != 0 ? $pustaka->rupiah($kos->tahunan) : '-' }}</td>
-		    <td>PROVINSI: </td>
-		    <td>{{ ucwords(strtolower($kos->kelurahan->kecamatan->kabupaten->provinsi->nama_prop)) }}</td>
+		    <td>BIAYA PER TAHUN</td>
+		    <td>: {{ $kos->tahunan != 0 ? $pustaka->rupiah($kos->tahunan) : '-' }}</td>
+		    <td>PROVINSI</td>
+		    <td>: {{ ucwords(strtolower($kos->kelurahan->kecamatan->kabupaten->provinsi->nama_prop)) }}</td>
 		  </tr>
 		  <tr>
-		    <td>KAMAR TERSEDIA: </td>
-		    <td>{{ $kos->kamartersedia }}</td>
-		    <td>KABUPATEN: </td>
-		    <td>{{ ucwords(strtolower($kos->kelurahan->kecamatan->kabupaten->nama_kab)) }}</td>
+		    <td>KAMAR TERSEDIA</td>
+		    <td>: {{ $kos->kamartersedia }}</td>
+		    <td>KABUPATEN</td>
+		    <td>: {{ ucwords(strtolower($kos->kelurahan->kecamatan->kabupaten->nama_kab)) }}</td>
 		  </tr>
 		  <tr>
-		    <td>NAMA PEMILIK: </td>
-		    <td>{{ $kos->user->nama }}</td>
-		    <td>KECAMATAN: </td>
-		    <td>{{ ucwords(strtolower($kos->kelurahan->kecamatan->nama_kec)) }}</td>
+		    <td>NAMA PEMILIK</td>
+		    <td>: {{ $kos->user->nama }}</td>
+		    <td>KECAMATAN</td>
+		    <td>: {{ ucwords(strtolower($kos->kelurahan->kecamatan->nama_kec)) }}</td>
 		  </tr>
 		  <tr>
-		    <td>NO HP PEMILIK: </td>
+		    <td>NO HP PEMILIK</td>
 		    @php
 	        if($kos->user->verified_nohp == 'y') {
 	          $title = 'Verified';
@@ -85,9 +85,9 @@
 	          $icon = '?';
 	        }
 	        @endphp
-	        <td>{{ $kos->user->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
-		    <td>KELURAHAN: </td>
-		    <td>{{ ucwords(strtolower($kos->kelurahan->nama_desa)) }}</td>
+	        <td>: {{ $kos->user->nohp }}<label data-toggle="tooltip" data-placement="top" title="{{ $title }}">({!! $icon !!})</label></td>
+		    <td>KELURAHAN</td>
+		    <td>: {{ ucwords(strtolower($kos->kelurahan->nama_desa)) }}</td>
 		  </tr>
 		  <tr>
 		  	<td></td>

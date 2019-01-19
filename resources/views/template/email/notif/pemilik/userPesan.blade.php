@@ -1,4 +1,4 @@
-<h3>Pesanan anda telah kami terima</h3>
+<h3>Pesanan untuk kost anda</h3>
 
 <table class="table">
   <tr>
@@ -83,16 +83,16 @@
     <td><b><u>: {{ $pustaka->rupiah($transaksi->harga) }}</b></u></td>
   </tr>
 {{--   <tr>
-  	<td></td>
-  	<td>
-  		<a href="javascript:void(0)" onclick="modalDeskripsi('{{ $kos->id }}')">
+    <td></td>
+    <td>
+      <a href="javascript:void(0)" onclick="modalDeskripsi('{{ $kos->id }}')">
           <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Deskripsi">
             <i class="material-icons">description</i>
             Deskripsi
           </button>
         </a>
-  	</td>
-  	<td>
+    </td>
+    <td>
         <div id="mediaLibrary{{ $kos->id }}">
           @php
           $i = 1;
@@ -120,7 +120,7 @@
           @endforeach
         </div>
     </td>
-  	<td>
+    <td>
     <a target="_blank" href="https://www.google.com/maps/search/{{ $kos->latitude }},{{ $kos->longitude }}">
       <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Google Maps">
         <i class="material-icons">place</i>
@@ -131,4 +131,4 @@
   </tr> --}}
 </table>
 
-<p>Silakan akses <a target="_blank" href="{{ route('metodePembayaran') }}">Halaman Ini</a> untuk cara pembayaran</p>
+<p>Silakan untuk memastikan bahwa kamar tersedia. bila kamar tidak tersedia, silakan <a target="_blank" href="{{route('hubungiKami')}}">hubungi kami</a></p>

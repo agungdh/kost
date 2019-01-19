@@ -8,27 +8,35 @@ class notifMail {
     public static function userPesan($id_transaksi)
     {
         $transaksi = Transaksi::find($id_transaksi);
-        
+        $kos = $transaksi->kos;
         $pencari_kos = $transaksi->userPencariKos;
-        $pemilik_kos = $transaksi->kos->user;
+        $pemilik_kos = $kos->user;
+
+        $htmlUser = view('template.email.notif.pencari.userPesan', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
+        // echo $htmlUser;
+
+        $htmlPemilik = view('template.email.notif.pemilik.userPesan', compact(['transaksi', 'pencari_kos', 'pemilik_kos', 'kos']))->with('pustaka', new \agungdh\Pustaka())->render();
+        echo $htmlPemilik;
+
+        // dd(compact(['transaksi', 'kos', 'pencari_kos', 'pemilik_kos']));
     }
 
     // user transaksi otomatis cancel
     public static function userAutoCancel($id_transaksi)
     {
         $transaksi = Transaksi::find($id_transaksi);
-
+        $kos = $transaksi->kos;
         $pencari_kos = $transaksi->userPencariKos;
-        $pemilik_kos = $transaksi->kos->user;
+        $pemilik_kos = $kos->user;
     }
 
     // user upload bukti
     public static function userUploadBukti($id_transaksi)
     {
         $transaksi = Transaksi::find($id_transaksi);
-
+        $kos = $transaksi->kos;
         $pencari_kos = $transaksi->userPencariKos;
-        $pemilik_kos = $transaksi->kos->user;
+        $pemilik_kos = $kos->user;
 
         // admin
     }
@@ -37,26 +45,26 @@ class notifMail {
     public static function userCancelTransaksi($id_transaksi)
     {
         $transaksi = Transaksi::find($id_transaksi);
-
+        $kos = $transaksi->kos;
         $pencari_kos = $transaksi->userPencariKos;
-        $pemilik_kos = $transaksi->kos->user;
+        $pemilik_kos = $kos->user;
     }
 
     // user transaksi ditolak
     public static function userTransaksiDitolak($id_transaksi)
     {
         $transaksi = Transaksi::find($id_transaksi);
-
+        $kos = $transaksi->kos;
         $pencari_kos = $transaksi->userPencariKos;
-        $pemilik_kos = $transaksi->kos->user;
+        $pemilik_kos = $kos->user;
     }
 
     // user transaksi diterima
     public static function userTransaksiDiterima($id_transaksi)
     {
         $transaksi = Transaksi::find($id_transaksi);
-
+        $kos = $transaksi->kos;
         $pencari_kos = $transaksi->userPencariKos;
-        $pemilik_kos = $transaksi->kos->user;
+        $pemilik_kos = $kos->user;
     }
 }

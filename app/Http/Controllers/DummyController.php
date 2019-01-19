@@ -24,6 +24,7 @@ class DummyController extends Controller
     public function temp($id = null)
     {
         notifMail::userPesan($id);
+        // return view('template.email.notif.pencari.userPesan');
     }
 
     public function testModelProvinsi($id)
