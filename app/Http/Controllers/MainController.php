@@ -306,4 +306,18 @@ class MainController extends Controller
                     ]);
     }
 
+    public static function cancelLebihSehari() 
+    {
+        $trx = Transaksi::select(DB::raw('*, DATE_ADD(waktu_transaksi, INTERVAL 1 DAY) deadline, now() sekarang'))
+                ->whereRaw('now() > DATE_ADD(waktu_transaksi, INTERVAL 1 DAY)')
+                ->whereNull('waktu_validasi')->get();
+
+        $idTrx = [];
+        foreach ($trx as $value) {
+            $idTrx[] = $value->id;
+        }
+
+        $ttrx = Transaksi::whereIn('id', $idTrx)->update(['status' => 'c', 'waktu_validasi' => date('Y-m-d H:i:s')]);
+    }
+
 }

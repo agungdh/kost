@@ -21,8 +21,8 @@
                           <th style="text-align: center;">No HP Pemilik</th>
                           <th style="text-align: center;">Nama</th>
                           <th style="text-align: center;">Alamat</th>
-                          <th style="text-align: center;">Provinsi</th>
-                          <th style="text-align: center;">Kabupaten</th>
+                          {{-- <th style="text-align: center;">Provinsi</th> --}}
+                          {{-- <th style="text-align: center;">Kabupaten</th> --}}
                           <th style="text-align: center;">Kecamatan</th>
                           <th style="text-align: center;">Kelurahan</th>
                           <th style="text-align: center;">Tipe</th>

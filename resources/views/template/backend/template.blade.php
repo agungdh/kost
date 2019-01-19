@@ -168,7 +168,7 @@
                     <li>
                         <a href="{{ route('root') }}">
                             <i class="material-icons">home</i>
-                            <span>Home</span>
+                            <span>Cari Kost</span>
                         </a>
                     </li>
 

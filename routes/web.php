@@ -107,3 +107,6 @@ Route::post('/pecanan/{id}', 'PesananUser@upBukti')->name('pesananUser.upBukti')
 
 // invoice
 Route::get('{id}/invoice', 'MainController@invoice')->name('invoice');
+
+// cancel transaksi > 1 hari
+Route::get('cancellebihsehari', 'MainController@cancelLebihSehari')->name('cancelLebihSehari');
