@@ -22,11 +22,12 @@ class MainController extends Controller
 
     }
 
-    public function index_new(Request $request)
+    public function index(Request $request)
     {
         $inputs = $request->all();
+        $kosts = Kos::all();
 
-        return view('frontend.dashboard', compact(['inputs']))
+        return view('frontend.dashboard', compact(['inputs', 'kosts']))
             ->with('pustaka', new \agungdh\Pustaka())
             ->with('fullUrl', $request->fullUrl());
     }
@@ -46,7 +47,7 @@ class MainController extends Controller
         $dompdf->stream("Invoice {$trx->id}");
     }
 
-    public function index(Request $request)
+    public function index_bak(Request $request)
     {
         // inputan
         $inputs = $request->all();

@@ -1,7 +1,6 @@
 @extends('template.frontend.template')
 
 @section('nav')
-<li><a href="{{ route('root') }}">Home</a></li>
 <li><a href="{{ route('tentangKami') }}">Tentang Kami</a></li>
 @endsection
 
