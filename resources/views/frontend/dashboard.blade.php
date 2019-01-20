@@ -10,7 +10,7 @@
     <div class="card col-md-12">
       <div class="header">
           <h2>
-              HOME
+              CARI KOS
           </h2>
       </div>
     </div>
@@ -20,12 +20,11 @@
       <div class="body">
           <p>Nama : {{$kost->nama}}</p>
           <p>Alamat : {{$kost->alamat}}</p>
-          <p>Biaya : {{$kost->tahunan}}</p>
+          <p>Biaya : {{$pustaka->rupiah($kost->tahunan)}}</p>
           <p>Deskripsi : </p>
           <hr>
           {!!$kost->deskripsi!!}
           <hr>
-          <br>
           <p>
             <a target="_blank" href="https://www.google.com/maps/search/{{ $kost->latitude }},{{ $kost->longitude }}">
               <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Google Maps">
