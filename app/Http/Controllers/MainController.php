@@ -279,7 +279,13 @@ class MainController extends Controller
 
     public function pesan($id_kos)
     {
-        if (!in_array(session('level'), ['u'])) {
+        if (!session('login')) {
+            return redirect(route('root'))->with('alert', [
+                        'title' => 'ERROR !!!',
+                        'message' => 'Anda harus login terlebih dahulu',
+                        'class' => 'error',
+                    ]);
+        } elseif (!in_array(session('level'), ['u'])) {
             return redirect(route('root'))->with('alert', [
                         'title' => 'ERROR !!!',
                         'message' => 'Hanya User Dengan Level Pencari Kos Yang Dapat Memesan !!!',
