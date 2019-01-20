@@ -11,6 +11,7 @@ use Apfelbox\FileDownload\FileDownload;
 use App\Kos;
 use App\VKos;
 use App\Transaksi;
+use App\Kecamatan;
 use DB;
 use Dompdf\Dompdf;
 use agungdh\Pustaka;
@@ -24,10 +25,18 @@ class MainController extends Controller
 
     public function index(Request $request)
     {
+        $kecamatans = [];
+        foreach (Kecamatan::where('kab_id', 1871)->get() as $value) {
+            $kecamatans[$value->id] = ucwords(strtolower($value->nama_kec));
+        }
         $inputs = $request->all();
-        $kosts = Kos::all();
+        if ($request->kec) {
+            $kosts = VKos::where('kec_id', $request->kec)->get();
+        } else {
+            $kosts = VKos::all();
+        }
 
-        return view('frontend.dashboard', compact(['inputs', 'kosts']))
+        return view('frontend.dashboard', compact(['inputs', 'kosts', 'kecamatans']))
             ->with('pustaka', new \agungdh\Pustaka())
             ->with('fullUrl', $request->fullUrl());
     }
