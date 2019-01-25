@@ -25,6 +25,12 @@
               )
           !!}
 
+          <div class="col-md-6">
+              <p><b>Range Example</b></p>
+              <div id="nouislider_range_example"></div>
+              <div class="m-t-20 font-12"><b>Value: </b><span class="js-nouislider-value"></span></div>
+          </div>
+
           <button class="btn btn-success">Cari</button>
 
         {!! Form::close() !!}
@@ -99,5 +105,34 @@
 @foreach($kosts as $kost)
 $("#mediaLibrary{{ $kost->id }}").lightGallery({thumbnail: true, selector: 'a'});
 @endforeach
+
+//Range Example
+var rangeSlider = document.getElementById('nouislider_range_example');
+noUiSlider.create(rangeSlider, {
+    start: [100000, 1000000000],
+    connect: true,
+    range: {
+        'min': 100000,
+        'max': 1000000000,
+    },
+    step: 500
+});
+getNoUISliderValue(rangeSlider, false);
+
+//Get noUISlider Value and write on
+function getNoUISliderValue(slider, percentage) {
+    slider.noUiSlider.on('update', function () {
+        var val = slider.noUiSlider.get();
+        if (percentage) {
+            val = parseInt(val);
+            val += '%';
+        }
+        $(slider).parent().find('span.js-nouislider-value').text(val);
+    });
+}
+</script>
+
+<script type="text/javascript">
+  $("form").attr('action', 'page1.php');
 </script>
 @endsection

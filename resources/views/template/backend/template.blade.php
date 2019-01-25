@@ -247,6 +247,8 @@
     <!-- Waves Effect Plugin Js -->
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/node-waves/waves.js"></script>
 
+    <!-- No UI Slider -->
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/nouislider/nouislider.js"></script>
 
     <!-- Jquery CountTo Plugin Js -->
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/jquery-countto/jquery.countTo.js"></script>
