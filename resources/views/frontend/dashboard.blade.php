@@ -109,11 +109,7 @@ $("#mediaLibrary{{ $kost->id }}").lightGallery({thumbnail: true, selector: 'a'})
 //Range Example
 var rangeSlider = document.getElementById('nouislider_range_example');
 noUiSlider.create(rangeSlider, {
-    @if($val1 != 0 && $val2 != 0)
-    start: [{{$val1}}, {{$val1}}],
-    @else
     start: [100000, 1000000000],
-    @endif
     connect: true,
     range: {
         'min': 100000,
