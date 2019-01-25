@@ -23,17 +23,27 @@ class MainController extends Controller
 
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $val1 = 0, $val2 = 0)
     {
         $kecamatans = [];
         foreach (Kecamatan::where('kab_id', 1871)->get() as $value) {
             $kecamatans[$value->id] = ucwords(strtolower($value->nama_kec));
         }
         $inputs = $request->all();
+
         if ($request->kec) {
             $kosts = VKos::where('kec_id', $request->kec)->get();
+            if ($val1 != 0 && $val2 != 0) {
+                $kosts = VKos::where('kec_id', $request->kec)->whereBetween('tahunan', [$val1, $val2])->get();
+            } else {
+                $kosts = VKos::where('kec_id', $request->kec)->get();
+            }
         } else {
-            $kosts = VKos::all();
+            if ($val1 != 0 && $val2 != 0) {
+                $kosts = VKos::whereBetween('tahunan', [$val1, $val2])->get();
+            } else {
+                $kosts = VKos::all();
+            }
         }
 
         return view('frontend.dashboard', compact(['inputs', 'kosts', 'kecamatans']))

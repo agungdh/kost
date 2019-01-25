@@ -133,6 +133,8 @@ function getNoUISliderValue(slider, percentage) {
 </script>
 
 <script type="text/javascript">
-  $("form").attr('action', 'page1.php');
+  $("form").submit(function() {
+    $("form").attr('action', '{{ route('root') }}' +'/'+rangeSlider.noUiSlider.get()[0]+'/'+rangeSlider.noUiSlider.get()[1]);
+  });
 </script>
 @endsection
