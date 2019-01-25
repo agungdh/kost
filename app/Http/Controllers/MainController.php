@@ -46,7 +46,7 @@ class MainController extends Controller
             }
         }
 
-        return view('frontend.dashboard', compact(['inputs', 'kosts', 'kecamatans']))
+        return view('frontend.dashboard', compact(['inputs', 'kosts', 'kecamatans', 'val1', 'val2']))
             ->with('pustaka', new \agungdh\Pustaka())
             ->with('fullUrl', $request->fullUrl());
     }
