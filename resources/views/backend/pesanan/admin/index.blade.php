@@ -213,7 +213,7 @@
 
                             <td>
                             <a href="javascript:void(0)" onclick="modalDeskripsi('{{ $kost->id }}')">
-                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Deskripsi">
+                              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Deskripsi & Fasilitas">
                                 <i class="material-icons">description</i>
                               </button>
                             </a>
