@@ -76,8 +76,15 @@
           <p>Nama : {{$kost->nama}}</p>
           <p>Alamat : {{$kost->alamat}}</p>
           <p>Biaya : {{$pustaka->rupiah($kost->tahunan)}}</p>
-          <p>Deskripsi : </p>
           <hr>
+          <p>Fasilitas : </p> 
+            @foreach($kost->fasilitasKos as $fk)
+            <ul>
+              <li>{{$fk->masterFasilitas->fasilitas}}</li>
+            </ul>
+            @endforeach
+          <hr>
+          <p>Deskripsi : </p>
           {!!$kost->deskripsi!!}
           <hr>
           <p>

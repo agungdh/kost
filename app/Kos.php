@@ -44,4 +44,9 @@ class Kos extends Model
     {
         return $this->hasMany('App\Transaksi', 'kos_id');
     }
+
+    public function fasilitasKos()
+    {
+        return $this->hasMany('App\FasilitasKos', 'id_kos');
+    }
 }
