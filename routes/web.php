@@ -1,7 +1,8 @@
 <?php
 
 // root
-Route::get('/{val1?}/{val2?}', 'MainController@index')->name('root');
+// Route::get('/{val1?}/{val2?}', 'MainController@index')->name('root');
+Route::get('/', 'MainController@index')->name('root');
 
 // log
 Route::get('/login', 'AuthController@login')->name('login');
@@ -71,6 +72,7 @@ Route::get('/metodepembayaran', 'MainController@metodePembayaran')->name('metode
 // resources
 Route::resources([
 	'/kost' => 'KostController',
+	'/masterfasilitas' => 'MasterFasilitasController',
 ]);
 
 // dump db

@@ -25,11 +25,11 @@
               )
           !!}
 
-          <div class="col-md-6">
+         {{--  <div class="col-md-6">
               <p><b>Range Example</b></p>
               <div id="nouislider_range_example"></div>
               <div class="m-t-20 font-12"><b>Value: </b><span class="js-nouislider-value"></span></div>
-          </div>
+          </div> --}}
 
           <button class="btn btn-success">Cari</button>
 
@@ -133,8 +133,8 @@ function getNoUISliderValue(slider, percentage) {
 </script>
 
 <script type="text/javascript">
-  $("form").submit(function() {
-    $("form").attr('action', '{{ route('root') }}' +'/'+rangeSlider.noUiSlider.get()[0]+'/'+rangeSlider.noUiSlider.get()[1]);
-  });
+  // $("form").submit(function() {
+  //   $("form").attr('action', '{{ route('root') }}' +'/'+rangeSlider.noUiSlider.get()[0]+'/'+rangeSlider.noUiSlider.get()[1]);
+  // });
 </script>
 @endsection

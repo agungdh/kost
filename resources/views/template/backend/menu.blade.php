@@ -21,6 +21,13 @@
         <span>User</span>
     </a>
 </li>
+
+<li>
+    <a href="{{ route('masterfasilitas.index') }}">
+        <i class="material-icons">extension</i>
+        <span>Master Fasilitas</span>
+    </a>
+</li>
 @endif
 
 <li>

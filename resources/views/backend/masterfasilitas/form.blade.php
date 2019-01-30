@@ -1,0 +1,6 @@
+{!!
+    Form::adhText(
+        'Fasilitas',
+        'fasilitas'
+    )
+!!}
