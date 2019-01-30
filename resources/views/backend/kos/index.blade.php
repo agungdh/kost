@@ -39,10 +39,20 @@
                   <tbody>
                     <script type="text/javascript">
                       var deskripsi = [];
+                      var fasilitas = [];
                     </script>
                     @foreach($kosts as $kost)
                     <script type="text/javascript">
                       deskripsi[{{ $kost->id }}] = atob('{!! base64_encode($kost->deskripsi) !!}');
+                      @php
+                      // dd($kost->fasilitasKos);
+                      $fasilitasHTML = '<ul>';
+                      foreach($kost->fasilitasKos as $fk) {
+                      $fasilitasHTML .= '<li>'.$fk->masterFasilitas->fasilitas.'</li>';
+                      }
+                      $fasilitasHTML .= '</ul>';
+                      @endphp
+                      fasilitas[{{ $kost->id }}] = atob('{!! base64_encode($fasilitasHTML) !!}');
                     </script>
                       <tr>
                         <td>{{ $kost->user->email }}</td>
@@ -154,6 +164,12 @@
           <div class="modal-body" id="modalBody">
               
           </div>
+          <div class="modal-header">
+              <h4 class="modal-title">Fasilitas</h4>
+          </div>
+          <div class="modal-body" id="modalFasilitas">
+              
+          </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">TUTUP</button>
           </div>
@@ -166,6 +182,7 @@
 <script type="text/javascript">
   function modalDeskripsi(id) {
     $("#modalBody").html(deskripsi[id]);
+    $("#modalFasilitas").html(fasilitas[id]);
     $("#modalDeskripsi").modal('show');
   }
 </script>
