@@ -30,6 +30,11 @@ class KostController extends Controller
 
     public function store(Request $request)
     {
+        if($request->fasilitas) {
+            dd($request->fasilitas);
+        } else {
+            die("gak ada fasilitas");
+        }
         $request->validate([
             'nama' => 'required',
             'alamat' => 'required',

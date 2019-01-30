@@ -119,6 +119,29 @@
     )
 !!}
 
+<div class="form-group">
+    <select id="optgroup" class="ms" multiple="multiple" name="fasilitas[]">
+        <optgroup label="Fasilitas">
+        @php
+        $fasilitasnya = [];
+        if (isset($kost)) {
+            $fasilitasnya_raw = \App\FasilitasKos::where('id_kos', $kost->id)->get();
+            foreach ($fasilitasnya_raw as $value) {
+                $fasilitasnya[] = $value->id_fasilitas;
+            }
+        }
+        @endphp
+        @foreach(\App\MasterFasilitas::all() as $mf)
+        @if(in_array($mf->id, $fasilitasnya))
+        <option selected value="{{$mf->id}}">{{$mf->fasilitas}}</option>
+        @else
+        <option value="{{$mf->id}}">{{$mf->fasilitas}}</option>
+        @endif
+        @endforeach
+        </optgroup>
+    </select>
+</div>
+        
 {!!
     Form::adhTextArea(
         'Deskripsi',

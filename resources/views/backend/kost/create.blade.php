@@ -27,6 +27,11 @@
 
 @section('js')
 <script type="text/javascript">
+  $(function() {
+    $('#optgroup').multiSelect({ selectableOptgroup: false });
+  });
+</script>
+<script type="text/javascript">
   CKEDITOR.replace('deskripsi');
   getLocation();
 </script>

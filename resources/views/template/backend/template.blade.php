@@ -23,6 +23,9 @@
     <!-- Animation Css -->
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/animate-css/animate.css" rel="stylesheet" />
 
+    <!-- Multi Select Css -->
+    <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/multi-select/css/multi-select.css" rel="stylesheet">
+    
     <!-- Custom Css -->
     <link href="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/css/style.css" rel="stylesheet">
 
@@ -302,7 +305,8 @@
         });
     </script>
 
-
+    <!-- Multi Select Plugin Js -->
+    <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/multi-select/js/jquery.multi-select.js"></script>
     
     <!-- Ckeditor -->
     <script src="{{ asset('assets') }}/AdminBSBMaterialDesign-1.0.7/plugins/ckeditor/ckeditor.js"></script>
