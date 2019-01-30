@@ -93,9 +93,9 @@
 		  	<td></td>
 		  	<td>
 		  		<a href="javascript:void(0)" onclick="modalDeskripsi('{{ $kos->id }}')">
-	              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Deskripsi">
+	              <button type="button" class="btn bg-blue waves-effect" data-toggle="tooltip" data-placement="top" title="Deskripsi & Fasilitas">
 	                <i class="material-icons">description</i>
-	                Deskripsi
+	                Deskripsi & Fasilitas
 	              </button>
 	            </a>
 		  	</td>
@@ -207,6 +207,12 @@
           <div class="modal-body" id="modalBody">
               
           </div>
+          <div class="modal-header">
+              <h4 class="modal-title">Fasilitas</h4>
+          </div>
+          <div class="modal-body" id="modalFasilitas">
+              
+          </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">TUTUP</button>
           </div>
@@ -270,6 +276,7 @@ $("form").submit(function(event) {
 <script type="text/javascript">
   function modalDeskripsi(id) {
     $("#modalBody").html(deskripsi[id]);
+    $("#modalFasilitas").html(fasilitas[id]);
     $("#modalDeskripsi").modal('show');
   }
 </script>
@@ -282,7 +289,19 @@ $(function() {
 });  
 </script>
 <script type="text/javascript">
-var deskripsi = [];
-deskripsi[{{ $kos->id }}] = atob('{!! base64_encode($kos->deskripsi) !!}');
+  var deskripsi = [];
+  var fasilitas = [];
+</script>
+<script type="text/javascript">
+  deskripsi[{{ $kos->id }}] = atob('{!! base64_encode($kos->deskripsi) !!}');
+  @php
+  // dd($kos->fasilitasKos);
+  $fasilitasHTML = '<ul>';
+  foreach($kos->fasilitasKos as $fk) {
+  $fasilitasHTML .= '<li>'.$fk->masterFasilitas->fasilitas.'</li>';
+  }
+  $fasilitasHTML .= '</ul>';
+  @endphp
+  fasilitas[{{ $kos->id }}] = atob('{!! base64_encode($fasilitasHTML) !!}');
 </script>
 @endsection
