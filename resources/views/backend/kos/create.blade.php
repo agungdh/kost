@@ -26,6 +26,11 @@
 @endsection
 
 @section('js')
+<script type="text/javascript">
+  $(function() {
+    $('#optgroup').multiSelect({ selectableOptgroup: false });
+  });
+</script>
 {{-- onsubmit --}}
 <script type="text/javascript">
   $("form").submit(function() {

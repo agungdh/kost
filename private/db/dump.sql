@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1	Database: serverag_kost
 -- ------------------------------------------------------
 -- Server version 	10.2.18-MariaDB-cll-lve
--- Date: Sun, 20 Jan 2019 22:04:54 +0700
+-- Date: Thu, 31 Jan 2019 07:15:48 +0700
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -48,6 +48,38 @@ COMMIT;
 --
 
 --
+-- Table structure for table `fasilitas_kos`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fasilitas_kos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_fasilitas` int(11) NOT NULL,
+  `id_kos` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_fasilitas` (`id_fasilitas`),
+  KEY `id_kos` (`id_kos`),
+  CONSTRAINT `fasilitas_kos_ibfk_1` FOREIGN KEY (`id_fasilitas`) REFERENCES `master_fasilitas` (`id`),
+  CONSTRAINT `fasilitas_kos_ibfk_2` FOREIGN KEY (`id_kos`) REFERENCES `kos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fasilitas_kos`
+--
+
+LOCK TABLES `fasilitas_kos` WRITE;
+/*!40000 ALTER TABLE `fasilitas_kos` DISABLE KEYS */;
+SET autocommit=0;
+/*!40000 ALTER TABLE `fasilitas_kos` ENABLE KEYS */;
+UNLOCK TABLES;
+COMMIT;
+
+-- Dumped table `fasilitas_kos` with 0 row(s)
+--
+
+--
 -- Table structure for table `foto`
 --
 
@@ -60,7 +92,7 @@ CREATE TABLE `foto` (
   PRIMARY KEY (`id`),
   KEY `id_kos` (`id_kos`),
   CONSTRAINT `foto_ibfk_1` FOREIGN KEY (`id_kos`) REFERENCES `kos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,11 +102,12 @@ CREATE TABLE `foto` (
 LOCK TABLES `foto` WRITE;
 /*!40000 ALTER TABLE `foto` DISABLE KEYS */;
 SET autocommit=0;
+INSERT INTO `foto` VALUES (1,1,'Kost'),(2,1,'Mantap'),(3,1,NULL),(4,1,NULL),(5,1,NULL),(6,1,NULL);
 /*!40000 ALTER TABLE `foto` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `foto` with 0 row(s)
+-- Dumped table `foto` with 6 row(s)
 --
 
 --
@@ -157,7 +190,7 @@ CREATE TABLE `kos` (
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`),
   CONSTRAINT `kos_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,11 +200,40 @@ CREATE TABLE `kos` (
 LOCK TABLES `kos` WRITE;
 /*!40000 ALTER TABLE `kos` DISABLE KEYS */;
 SET autocommit=0;
+INSERT INTO `kos` VALUES (1,2,'Kost Keren 12345','Nunggalrejo, Punggur, Lampung Tengah','1871011002','p',10000000,'<p>Kost <strong>mantap</strong></p>',21,'-5.3952512','105.259008','n');
 /*!40000 ALTER TABLE `kos` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `kos` with 0 row(s)
+-- Dumped table `kos` with 1 row(s)
+--
+
+--
+-- Table structure for table `master_fasilitas`
+--
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `master_fasilitas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fasilitas` varchar(191) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `master_fasilitas`
+--
+
+LOCK TABLES `master_fasilitas` WRITE;
+/*!40000 ALTER TABLE `master_fasilitas` DISABLE KEYS */;
+SET autocommit=0;
+INSERT INTO `master_fasilitas` VALUES (5,'TV'),(6,'AC');
+/*!40000 ALTER TABLE `master_fasilitas` ENABLE KEYS */;
+UNLOCK TABLES;
+COMMIT;
+
+-- Dumped table `master_fasilitas` with 2 row(s)
 --
 
 --
@@ -227,7 +289,7 @@ CREATE TABLE `transaksi` (
   CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`kos_id`) REFERENCES `kos` (`id`),
   CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`user_id_pencari_kos`) REFERENCES `user` (`id`),
   CONSTRAINT `transaksi_ibfk_3` FOREIGN KEY (`user_id_validasi`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,11 +299,12 @@ CREATE TABLE `transaksi` (
 LOCK TABLES `transaksi` WRITE;
 /*!40000 ALTER TABLE `transaksi` DISABLE KEYS */;
 SET autocommit=0;
+INSERT INTO `transaksi` VALUES (1,3,1,2,'2019-01-20 22:13:43',2,40000000,'2019-01-20 22:14:09','a','2019-01-20 22:14:57',NULL);
 /*!40000 ALTER TABLE `transaksi` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `transaksi` with 0 row(s)
+-- Dumped table `transaksi` with 1 row(s)
 --
 
 --
@@ -264,7 +327,7 @@ CREATE TABLE `user` (
   `verified_nohp` enum('y','n') DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -274,12 +337,12 @@ CREATE TABLE `user` (
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `user` VALUES (1,'admin@email.com','$2y$10$WwAZ2IliBuDLWwX1JiwcWuBe5c8t.KckyQf6siSS5Ea1cKRwZUe2K','Administrator','Somewhere','08124124','a','y',NULL,NULL,'y');
+INSERT INTO `user` VALUES (1,'admin@email.com','$2y$10$WwAZ2IliBuDLWwX1JiwcWuBe5c8t.KckyQf6siSS5Ea1cKRwZUe2K','Administrator','Somewhere','08124124','a','y',NULL,NULL,'y'),(2,'agunggantengdh@gmail.com','$2y$10$e5fC2sNczXMQnq7gQ8SRqukb.3AXVb6deVWWmjXReF07QQX0.E/FS','Agung Pemilik','Nunggalrejo, Punggur, Lampung Tengah','12124124','p','y',NULL,NULL,'n'),(3,'agungsaptomargonodh@gmail.com','$2y$10$2ykU.6BG9OD5TU/2oMzlb.rRCDGBLZobxnhs/ZhHn9shfTo8.qbg.','Agung Pencari','Nunggalrejo, Punggur, Lampung Tengah','123444','u','y',NULL,NULL,'n'),(4,'akunemailkita@gmail.com','$2y$10$aTVRXm9dWV0L.aHjHwMJMuNN2jD8HTZZ4rJo8L0pR24S59TlCfkuW','Pencari','Bandar Lampung','083177703438','u','y',NULL,NULL,'y'),(5,'septianggraini59@gmail.com','$2y$10$aeIsvU2nWHD1xWhg7I97EOfqUUrDY5h6SEysQ4d8.uUKr45Cr3Rba','Septi','Kalianda, Lampung Selatan','083177703430','p','y',NULL,NULL,'y'),(6,'anggia5197@gmail.com','$2y$10$sa0MoKtPSpeY58wM9W4m/eJA17cHnENKQKV5tngj0mZnQb0.r4cOK','Putri Anggiria','Jl. Sejahtera III, Hajimena, Kabupaten Lampung Selatan, Lampung','082280304869','p','y',NULL,NULL,'n');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `user` with 1 row(s)
+-- Dumped table `user` with 6 row(s)
 --
 
 --
@@ -360,4 +423,4 @@ DROP TABLE IF EXISTS `v_kos`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Sun, 20 Jan 2019 22:04:55 +0700
+-- Dump completed on: Thu, 31 Jan 2019 07:15:50 +0700

@@ -9,6 +9,7 @@ use Storage;
 
 use App\Kos;
 use App\Foto;
+use App\FasilitasKos;
 
 class KosController extends Controller
 {
@@ -70,6 +71,20 @@ class KosController extends Controller
 
         Kos::where('id', $id)->update($data);
 
+        FasilitasKos::where('id_kos', $id)->delete();
+        if($request->fasilitas) {
+            // dd($request->fasilitas);
+            $fk = [];
+            foreach($request->fasilitas as $f) {
+                $fk[] = [
+                    'id_kos' => $id,
+                    'id_fasilitas' => $f,
+                ];
+            }
+            // dd($fk);
+            FasilitasKos::insert($fk);
+        }
+
         return redirect()->route('kos.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
                         'message' => 'Ubah Data Berhasil !!!',
@@ -88,7 +103,7 @@ class KosController extends Controller
         }
 
         Foto::where('id_kos', $id)->delete();
-
+        FasilitasKos::where('id_kos', $id)->delete();
         Kos::destroy($id);
 
         return redirect()->route('kos.index')->with('alert', [
