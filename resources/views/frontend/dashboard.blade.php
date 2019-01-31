@@ -157,4 +157,9 @@ function getNoUISliderValue(slider, percentage) {
   //   $("form").attr('action', '{{ route('root') }}' +'/'+rangeSlider.noUiSlider.get()[0]+'/'+rangeSlider.noUiSlider.get()[1]);
   // });
 </script>
+<script type="text/javascript">
+  $(document).ready(function() { 
+    $("#kec").select2({ width: 'resolve' });   
+  });
+</script>
 @endsection
