@@ -25,26 +25,37 @@ class MainController extends Controller
 
     public function index(Request $request, $val1 = 0, $val2 = 0)
     {
+        // dd($request->all());
         $kecamatans = [];
         foreach (Kecamatan::where('kab_id', 1871)->get() as $value) {
             $kecamatans[$value->id] = ucwords(strtolower($value->nama_kec));
         }
         $inputs = $request->all();
 
-        if ($request->kec) {
-            $kosts = VKos::where('kec_id', $request->kec)->get();
-            if ($val1 != 0 && $val2 != 0) {
-                $kosts = VKos::where('kec_id', $request->kec)->whereBetween('tahunan', [$val1, $val2])->get();
-            } else {
-                $kosts = VKos::where('kec_id', $request->kec)->get();
+        // if ($request->kec) {
+        //     $kosts = VKos::where('kec_id', $request->kec)->get();
+        //     if ($val1 != 0 && $val2 != 0) {
+        //         $kosts = VKos::where('kec_id', $request->kec)->whereBetween('tahunan', [$val1, $val2])->get();
+        //     } else {
+        //         $kosts = VKos::where('kec_id', $request->kec)->get();
+        //     }
+        // } else {
+        //     if ($val1 != 0 && $val2 != 0) {
+        //         $kosts = VKos::whereBetween('tahunan', [$val1, $val2])->get();
+        //     } else {
+        //         $kosts = VKos::all();
+        //     }
+        // }
+        
+        $kosts = VKos::where(function ($query) use ($request) {
+            if ($request->kec) {
+                $query->where('kec_id', $request->kec);
             }
-        } else {
-            if ($val1 != 0 && $val2 != 0) {
-                $kosts = VKos::whereBetween('tahunan', [$val1, $val2])->get();
-            } else {
-                $kosts = VKos::all();
+
+            if ($request->rangea && $request->rangeb) {
+                $query->whereBetween('tahunan', [$request->rangea, $request->rangeb]);
             }
-        }
+        })->get();
 
         return view('frontend.dashboard', compact(['inputs', 'kosts', 'kecamatans', 'val1', 'val2']))
             ->with('pustaka', new \agungdh\Pustaka())

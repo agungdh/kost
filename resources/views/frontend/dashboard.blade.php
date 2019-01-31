@@ -15,7 +15,8 @@
       </div>
       <div class="body">
         {!! Form::model($inputs, ['route' => 'root', 'method' => 'get']) !!}
-          
+          <input type="hidden" name="rangea" id="rangeaval">
+          <input type="hidden" name="rangeb" id="rangebval">
           {!!
               Form::adhSelect2(
                   'Kecamatan',
@@ -24,12 +25,12 @@
                   $kecamatans
               )
           !!}
-
-         {{--  <div class="col-md-6">
-              <p><b>Range Example</b></p>
-              <div id="nouislider_range_example"></div>
-              <div class="m-t-20 font-12"><b>Value: </b><span class="js-nouislider-value"></span></div>
-          </div> --}}
+          <label>Range Harga</label>
+          <div class="form-group">
+              <div class="form-coontrol" id="nouislider_range_example"></div>
+              <br>
+              <p><span id="rangea"></span> - <span id="rangeb"></span></p>
+          </div>
 
           <button class="btn btn-success">Cari</button>
 
@@ -116,11 +117,15 @@ $("#mediaLibrary{{ $kost->id }}").lightGallery({thumbnail: true, selector: 'a'})
 //Range Example
 var rangeSlider = document.getElementById('nouislider_range_example');
 noUiSlider.create(rangeSlider, {
-    start: [100000, 1000000000],
+    @if(isset($inputs['rangea']) && isset($inputs['rangeb']))
+    start: [{{$inputs['rangea']}}, {{$inputs['rangeb']}}],
+    @else
+    start: [100000, 50000000],
+    @endif
     connect: true,
     range: {
         'min': 100000,
-        'max': 1000000000,
+        'max': 50000000,
     },
     step: 500
 });
@@ -134,7 +139,15 @@ function getNoUISliderValue(slider, percentage) {
             val = parseInt(val);
             val += '%';
         }
-        $(slider).parent().find('span.js-nouislider-value').text(val);
+        // $(slider).parent().find('span.js-nouislider-value').text(val);
+        var kata = val;
+        // console.log(kata);
+        $("#rangea").text(convertToRupiah(parseInt(kata[0])));
+        $("#rangeb").text(convertToRupiah(parseInt(kata[1])));
+        $("#rangeaval").val(parseInt(kata[0]));
+        $("#rangebval").val(parseInt(kata[1]));
+        // console.log(convertToRupiah(parseInt(kata[0])));
+        // console.log(convertToRupiah(parseInt(kata[1])));
     });
 }
 </script>
