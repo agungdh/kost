@@ -8,6 +8,7 @@ use DB;
 use Storage;
 use App\Kos;
 use App\Foto;
+use App\FasilitasKos;
 
 class KostController extends Controller
 {
@@ -30,11 +31,6 @@ class KostController extends Controller
 
     public function store(Request $request)
     {
-        if($request->fasilitas) {
-            dd($request->fasilitas);
-        } else {
-            die("gak ada fasilitas");
-        }
         $request->validate([
             'nama' => 'required',
             'alamat' => 'required',
@@ -78,6 +74,18 @@ class KostController extends Controller
                             'id_kos' => $kos->id,
                         ],
                     ]);
+        
+        if($request->fasilitas) {
+            $fk = [];
+            foreach($request->fasilitas as $f) {
+                $fk[] = [
+                    'id_kos' => $kos->id,
+                    'id_fasilitas' => $f,
+                ];
+            }
+            // dd($fk);
+            FasilitasKos::insert($fk);
+        }
 
         return redirect()->route('kost.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
@@ -152,6 +160,20 @@ class KostController extends Controller
 
         Kos::where('id', $id)->update($data);
 
+        FasilitasKos::where('id_kos', $id)->delete();
+        if($request->fasilitas) {
+            // dd($request->fasilitas);
+            $fk = [];
+            foreach($request->fasilitas as $f) {
+                $fk[] = [
+                    'id_kos' => $id,
+                    'id_fasilitas' => $f,
+                ];
+            }
+            // dd($fk);
+            FasilitasKos::insert($fk);
+        }
+
         return redirect()->route('kost.index')->with('alert', [
                         'title' => 'BERHASIL !!!',
                         'message' => 'Ubah Data Berhasil !!!',
@@ -175,6 +197,7 @@ class KostController extends Controller
         }
 
         Foto::where('id_kos', $id)->delete();
+        FasilitasKos::where('id_kos', $id)->delete();
         $kost->delete();
 
         return redirect()->route('kost.index')->with('alert', [
